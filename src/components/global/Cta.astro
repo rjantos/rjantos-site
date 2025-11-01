@@ -1,0 +1,45 @@
+---
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<section class="bg-accent-600 text-white">
+  <Wrapper variant="standard" class="py-16">
+    <div class="text-center max-w-4xl mx-auto">
+      <Text tag="h2" variant="displayLG" class="text-white mb-6 font-serif">
+        Ready to Get Started?
+      </Text>
+
+      <Text
+        tag="p"
+        variant="textLG"
+        class="text-accent-100 mb-8 leading-relaxed"
+      >
+        Don't let legal challenges hold you back. Our experienced attorneys are
+        here to provide the guidance and representation you need. Schedule your
+        free consultation today.
+      </Text>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <Button
+          variant="default"
+          size="lg"
+          isLink={true}
+          href="/free-consultation"
+        >
+          Schedule Free Consultation
+        </Button>
+
+        <Button variant="muted" size="lg" isLink={true} href="/contact">
+          Contact Us
+        </Button>
+      </div>
+
+      <Text tag="p" variant="textSM" class="text-accent-200 mt-6">
+        No obligation • Confidential • Professional guidance
+      </Text>
+    </div>
+  </Wrapper>
+</section>

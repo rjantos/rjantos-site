@@ -1,0 +1,354 @@
+---
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const contactInfo = [
+  {
+    type: "phone",
+    label: "Phone",
+    value: "(555) 123-4567",
+    href: "tel:+15551234567",
+  },
+  {
+    type: "email",
+    label: "Email",
+    value: "info@carringtonlaw.com",
+    href: "mailto:info@carringtonlaw.com",
+  },
+  {
+    type: "address",
+    label: "Address",
+    value: "123 Legal Avenue, Suite 400\nNew York, NY 10001",
+    href: "#",
+  },
+];
+
+const officeLocations = [
+  {
+    name: "Main Office - New York",
+    address: "123 Legal Avenue, Suite 400",
+    city: "New York, NY 10001",
+    phone: "(555) 123-4567",
+    email: "ny@carringtonlaw.com",
+  },
+  {
+    name: "Branch Office - Los Angeles",
+    address: "456 Justice Boulevard, Floor 12",
+    city: "Los Angeles, CA 90210",
+    phone: "(555) 987-6543",
+    email: "la@carringtonlaw.com",
+  },
+];
+
+const businessHours = [
+  { day: "Monday - Friday", hours: "8:00 AM - 6:00 PM" },
+  { day: "Saturday", hours: "9:00 AM - 2:00 PM" },
+  { day: "Sunday", hours: "Closed" },
+];
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard">
+      <Text
+        tag="h1"
+        variant="textLG"
+        class="order-last font-serif uppercase lg:order-none col-span-full lg:col-span-2 text-base-900 mb-8"
+      >
+        Contact Us
+      </Text>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        <!-- Contact Information -->
+        <div>
+          <Text
+            tag="h2"
+            variant="textBase"
+            class="font-semibold text-base-900 mb-6"
+          >
+            Get In Touch
+          </Text>
+
+          <div class="space-y-4 mb-8">
+            {
+              contactInfo.map((info) => (
+                <div class="flex items-start space-x-3">
+                  <div class="flex-shrink-0 w-6 h-6 bg-accent-100 rounded-full flex items-center justify-center">
+                    {info.type === "phone" && (
+                      <span class="text-accent-600 text-sm">P</span>
+                    )}
+                    {info.type === "email" && (
+                      <span class="text-accent-600 text-sm">E</span>
+                    )}
+                    {info.type === "address" && (
+                      <span class="text-accent-600 text-sm">A</span>
+                    )}
+                  </div>
+                  <div>
+                    <Text
+                      tag="p"
+                      variant="textSm"
+                      class="font-medium text-base-900"
+                    >
+                      {info.label}
+                    </Text>
+                    {info.href !== "#" ? (
+                      <a
+                        href={info.href}
+                        class="text-accent-600 hover:text-accent-700 transition-colors"
+                      >
+                        <Text tag="p" variant="textSm">
+                          {info.value}
+                        </Text>
+                      </a>
+                    ) : (
+                      <Text tag="p" variant="textSm" class="text-base-700">
+                        {info.value
+                          .split("\n")
+                          .map((line) => line.trim())
+                          .join(", ")}
+                      </Text>
+                    )}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+
+          <!-- Business Hours -->
+          <div class="mb-8">
+            <Text
+              tag="h3"
+              variant="textSm"
+              class="font-semibold text-base-900 mb-3"
+            >
+              Business Hours
+            </Text>
+            <div class="space-y-2">
+              {
+                businessHours.map((schedule) => (
+                  <div class="flex justify-between text-sm">
+                    <span class="text-base-700">{schedule.day}</span>
+                    <span class="text-base-900 font-medium">
+                      {schedule.hours}
+                    </span>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div>
+          <Text
+            tag="h2"
+            variant="textBase"
+            class="font-semibold text-base-900 mb-6"
+          >
+            Send Us a Message
+          </Text>
+
+          <form class="space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label
+                  for="firstName"
+                  class="block text-sm font-medium text-base-700 mb-2"
+                >
+                  First Name *
+                </label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  required
+                  class="w-full px-3 py-2 border border-base-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
+                />
+              </div>
+              <div>
+                <label
+                  for="lastName"
+                  class="block text-sm font-medium text-base-700 mb-2"
+                >
+                  Last Name *
+                </label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  required
+                  class="w-full px-3 py-2 border border-base-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                for="email"
+                class="block text-sm font-medium text-base-700 mb-2"
+              >
+                Email Address *
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-3 py-2 border border-base-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
+              />
+            </div>
+
+            <div>
+              <label
+                for="phone"
+                class="block text-sm font-medium text-base-700 mb-2"
+              >
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                class="w-full px-3 py-2 border border-base-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
+              />
+            </div>
+
+            <div>
+              <label
+                for="practiceArea"
+                class="block text-sm font-medium text-base-700 mb-2"
+              >
+                Practice Area
+              </label>
+              <select
+                id="practiceArea"
+                name="practiceArea"
+                class="w-full px-3 py-2 border border-base-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
+              >
+                <option value="">Select a practice area</option>
+                <option value="corporate">Corporate Law</option>
+                <option value="criminal">Criminal Defense</option>
+                <option value="family">Family Law</option>
+                <option value="personal-injury">Personal Injury</option>
+                <option value="real-estate">Real Estate</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label
+                for="message"
+                class="block text-sm font-medium text-base-700 mb-2"
+              >
+                Message *
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+                placeholder="Please describe your legal matter..."
+                class="w-full px-3 py-2 border border-base-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
+              ></textarea>
+            </div>
+
+            <Button variant="accent" size="base" type="submit">
+              Send Message
+            </Button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Office Locations -->
+      <div class="mb-16">
+        <Text
+          tag="h2"
+          variant="textBase"
+          class="font-semibold text-base-900 mb-6"
+        >
+          Our Offices
+        </Text>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {
+            officeLocations.map((office) => (
+              <div class="border border-base-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                <Text
+                  tag="h3"
+                  variant="textSm"
+                  class="font-semibold text-base-900 mb-3"
+                >
+                  {office.name}
+                </Text>
+
+                <div class="space-y-2 text-sm text-base-700">
+                  <p>{office.address}</p>
+                  <p>{office.city}</p>
+                  <p>
+                    <a
+                      href={`tel:${office.phone}`}
+                      class="text-accent-600 hover:text-accent-700 transition-colors"
+                    >
+                      {office.phone}
+                    </a>
+                  </p>
+                  <p>
+                    <a
+                      href={`mailto:${office.email}`}
+                      class="text-accent-600 hover:text-accent-700 transition-colors"
+                    >
+                      {office.email}
+                    </a>
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Office Maps -->
+      <div>
+        <Text
+          tag="h2"
+          variant="textBase"
+          class="font-semibold text-base-900 mb-6"
+        >
+          Find Our Offices
+        </Text>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {
+            officeLocations.map((office) => (
+              <div>
+                <Text
+                  tag="h3"
+                  variant="textSm"
+                  class="font-semibold text-base-900 mb-4"
+                >
+                  {office.name}
+                </Text>
+                <div class="aspect-video bg-base-100 border border-base-200 rounded-lg overflow-hidden">
+                  <iframe
+                    src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.221990489111!2d-74.00369368459375!3d40.713129579331854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316ba4bf83%3A0xbae5cb597764b!2s${encodeURIComponent(office.address + ", " + office.city)}!5e0!3m2!1sen!2sus!4v1696871234567!5m2!1sen!2sus`}
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title={`Map of ${office.name}`}
+                  />
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

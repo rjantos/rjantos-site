@@ -1,4 +1,92 @@
-<section><div class="py-24 lg:pt-72 h-full px-8 md:px-12 lg:px-32 max-w-7xl mx-auto"><div class="text-left lg:text-center"><p class="text-4xl font-semibold lg:text-5xl  tracking-tighter text-zinc-900">
-Building one pagers together, <span class="lg:block">wherever and anywhere</span></p><p class="mt-4 text-base text-zinc-500">
-The fastest method for working together
-<span class="lg:block"> on staging and temporary environments.</span></p><form class="max-w-sm mx-auto mt-8"><div class="flex flex-col lg:flex-row gap-2"><label class="sr-only" for="email-address">Email address</label><input autocomplete="email" class="block w-full px-4 py-2 h-10 border bg-chalk border-zinc-300 rounded-lg appearance-none text-accent-500 placeholder-zinc-300 focus:border-zinc-300 focus:outline-none focus:ring-zinc-300 duration-200 sm:text-sm" id="email-address" name="email" placeholder="Enter your email" required="" type="email"><button class="rounded-lg shrink-0 px-4 py-2 text-sm font-semibold transition-all flex items-center justify-center bg-black text-white hover:bg-zinc-700 h-10" type="submit">Join the waitlist</button></div></form></div></div></section>
+---
+// Assets
+import { Image } from "astro:assets";
+import DavidKim from "@/images/team/david-kim.jpg";
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<section>
+  <Wrapper variant="paddingLess">
+    <div class="relative overflow-hidden">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        class="object-cover object-center w-full h-[65dvh] lg:h-[72dvh]  bg-base-50"
+      >
+        <source src="/bgvideo.mp4" type="video/mp4" />
+      </video>
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 pointer-events-none bg-base-950/50"
+      >
+      </div>
+      <!-- Contact Info Overlay -->
+      <div
+        class="absolute hidden lg:grid lg:grid-cols-3 bottom-4 right-24 flex flex-col items-end z-10 w-full"
+      >
+        <a href="/contact" class="grid grid-cols-3  w-full col-start-3">
+          <div class="shadow-xl">
+            <Image
+              src={DavidKim}
+              width={500}
+              height={500}
+              loading="eager"
+              decoding="async"
+              alt="David Kim portrait"
+              class="h-full object-cover r object-top"
+            />
+          </div>
+          <div
+            class="shadow-lg flex flex-col h-full justify-between backdrop-blur-md p-4 bg-base-50 col-span-2"
+          >
+            <div>
+              <Text
+                tag="p"
+                variant="textBase"
+                class="text-base-900 font-medium"
+              >
+                David Kim
+              </Text>
+              <Text tag="h4" variant="textSM" class="text-base-500 mt-1">
+                Senior Paralegal
+              </Text>
+              <Text tag="p" variant="textXS" class="text-base-500"
+                >at Carrington Law</Text
+              >
+            </div>
+            <div
+              class="flex items-center mt-8 text-base-900 text-sm justify-between w-full"
+            >
+              Let's talk <span>&rarr;</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </Wrapper>
+  <Wrapper variant="standard" class="py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-3 lg:items-end gap-y-4">
+      <Text
+        tag="h1"
+        variant="displayXL"
+        class="text-base-900 font-display text-balance lg:col-span-2"
+      >
+        Experienced legal counsel you can trust.
+      </Text>
+      <Text
+        tag="p"
+        variant="textSBase"
+        class="text-base-600 leading-relaxed border-accent-500"
+      >
+        For over two decades, Carrington Law has been the trusted partner for
+        businesses and individuals facing complex legal challenges. We deliver
+        strategic solutions with unwavering commitment to your success.
+      </Text>
+    </div>
+  </Wrapper>
+</section>

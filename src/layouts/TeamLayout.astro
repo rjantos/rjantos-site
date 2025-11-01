@@ -1,0 +1,209 @@
+---
+// Assets
+import { Image } from "astro:assets";
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Content
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard" class="py-24 lg:pt-48">
+      <div class="max-w-4xl mx-auto">
+        <div class="mb-8">
+          <Text
+            tag="a"
+            href="javascript:history.back()"
+            variant="textXS"
+            class="inline-flex items-center gap-1 hover:text-base-600 transition-colors mb-4"
+          >
+            &larr; Go back
+          </Text>
+        </div>
+        <div class="grid lg:grid-cols-3 gap-12">
+          <div class="lg:col-span-1">
+            <div class="text-center lg:text-left">
+              <Image
+                alt={frontmatter.image.alt}
+                src={frontmatter.image.url}
+                width={400}
+                height={400}
+                loading="lazy"
+                decoding="async"
+                class="object-cover w-full aspect-square rounded-lg mb-6"
+              />
+              <Text
+                tag="h1"
+                variant="textLG"
+                class="font-medium text-base-900 mb-2"
+              >
+                {frontmatter.name}
+              </Text>
+              <Text tag="p" variant="textBase" class="text-base-600 mb-6">
+                {frontmatter.title}
+              </Text>
+              <div class="space-y-2 text-sm">
+                <div>
+                  <Text
+                    tag="span"
+                    variant="textSM"
+                    class="font-medium text-base-900"
+                  >
+                    Email:
+                  </Text>
+                  <a
+                    href={`mailto:${frontmatter.contact.email}`}
+                    class="text-base-600 hover:text-base-900 ml-2"
+                  >
+                    {frontmatter.contact.email}
+                  </a>
+                </div>
+                <div>
+                  <Text
+                    tag="span"
+                    variant="textSM"
+                    class="font-medium text-base-900"
+                  >
+                    Phone:
+                  </Text>
+                  <span class="text-base-600 ml-2">
+                    {frontmatter.contact.phone}
+                  </span>
+                </div>
+                <div>
+                  <Text
+                    tag="span"
+                    variant="textSM"
+                    class="font-medium text-base-900"
+                  >
+                    Office:
+                  </Text>
+                  <span class="text-base-600 ml-2">
+                    {frontmatter.contact.location}
+                  </span>
+                </div>
+              </div>
+              <div class="mt-6">
+                <Text
+                  tag="h3"
+                  variant="textSM"
+                  class="font-medium text-base-900 mb-3"
+                >
+                  Connect
+                </Text>
+                <div class="flex gap-3">
+                  <a
+                    href={frontmatter.socials.linkedin}
+                    target="_blank"
+                    class="text-base-500 hover:text-base-900"
+                  >
+                    LinkedIn
+                  </a>
+                  <a
+                    href={frontmatter.socials.website}
+                    target="_blank"
+                    class="text-base-500 hover:text-base-900"
+                  >
+                    Website
+                  </a>
+                  <a
+                    href={frontmatter.socials.twitter}
+                    target="_blank"
+                    class="text-base-500 hover:text-base-900"
+                  >
+                    Twitter
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-2">
+            <div class="mb-8">
+              <Text
+                tag="h2"
+                variant="textBase"
+                class="font-medium text-base-900 mb-4"
+              >
+                About
+              </Text>
+              <Wrapper variant="prose">
+                <p>{frontmatter.bio}</p>
+              </Wrapper>
+            </div>
+            <div class="mb-8">
+              <Text
+                tag="h2"
+                variant="textBase"
+                class="font-medium text-base-900 mb-4"
+              >
+                Experience
+              </Text>
+              <Wrapper variant="prose">
+                <p>{frontmatter.experience}</p>
+              </Wrapper>
+            </div>
+            <div class="mb-8">
+              <Text
+                tag="h2"
+                variant="textBase"
+                class="font-medium text-base-900 mb-4"
+              >
+                Practice Areas
+              </Text>
+              <div class="flex flex-wrap gap-2">
+                {
+                  frontmatter.specialties.map((specialty) => (
+                    <span class="bg-base-100 text-base-800 px-3 py-1 rounded-full text-sm">
+                      {specialty}
+                    </span>
+                  ))
+                }
+              </div>
+            </div>
+            <div class="mb-8">
+              <Text
+                tag="h2"
+                variant="textBase"
+                class="font-medium text-base-900 mb-4"
+              >
+                Education
+              </Text>
+              <ul class="space-y-2">
+                {
+                  frontmatter.education.map((edu) => (
+                    <li class="flex items-start">
+                      <span class="text-base-600 mr-2">•</span>
+                      <span class="text-base-700">{edu}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+            <div class="mb-8">
+              <Text
+                tag="h2"
+                variant="textBase"
+                class="font-medium text-base-900 mb-4"
+              >
+                Bar Admissions
+              </Text>
+              <div class="flex flex-wrap gap-2">
+                {
+                  frontmatter.barAdmissions.map((bar) => (
+                    <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+                      {bar}
+                    </span>
+                  ))
+                }
+              </div>
+            </div>
+            <slot />
+          </div>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

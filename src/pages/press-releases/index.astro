@@ -1,0 +1,47 @@
+---
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import PressCard from "@/components/press/PressCard.astro";
+import { getCollection } from "astro:content";
+
+const pressReleasesData = await getCollection("pressReleases");
+const pressReleases = pressReleasesData
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .map((release) => ({
+    slug: release.slug,
+    data: release.data,
+  }));
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard">
+      <!-- Hero Section -->
+      <div class="text-center mb-16">
+        <Text
+          tag="h1"
+          variant="textLG"
+          class="order-last font-serif uppercase lg:order-none col-span-full lg:col-span-2 text-base-900 mb-6"
+        >
+          Press Releases
+        </Text>
+        <Text
+          tag="p"
+          variant="textBase"
+          class="text-base-700 max-w-3xl mx-auto leading-relaxed"
+        >
+          Stay informed with the latest news and announcements from Carrington
+          Law. Our press releases highlight important developments,
+          achievements, and industry insights.
+        </Text>
+      </div>
+
+      <!-- Press Releases Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {pressReleases.map((release) => <PressCard post={release} />)}
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

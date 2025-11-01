@@ -1,0 +1,251 @@
+---
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import PressCard from "@/components/press/PressCard.astro";
+import { getCollection } from "astro:content";
+
+const pressReleasesData = await getCollection("pressReleases");
+const pressReleases = pressReleasesData.map((release) => ({
+  slug: release.slug,
+  data: release.data,
+}));
+
+const mediaCoverage = [
+  {
+    title: "How Carrington Law is Revolutionizing Corporate Legal Services",
+    publication: "Business Law Today",
+    date: "November 2024",
+    type: "Feature Article",
+    excerpt:
+      "An in-depth look at how Carrington Law's innovative approach to corporate law is setting new industry standards.",
+  },
+  {
+    title: "Carrington Law Partners with Local Community Organizations",
+    publication: "Legal Gazette",
+    date: "October 2024",
+    type: "News Article",
+    excerpt:
+      "Coverage of the firm's commitment to community service and pro bono legal work in underserved communities.",
+  },
+  {
+    title: "The Future of Litigation: Insights from Carrington Law",
+    publication: "American Lawyer",
+    date: "September 2024",
+    type: "Interview",
+    excerpt:
+      "Managing Partner discusses emerging trends in business litigation and dispute resolution strategies.",
+  },
+  {
+    title: "Carrington Law's Impact on Employment Law Reform",
+    publication: "Labor Law Journal",
+    date: "August 2024",
+    type: "Analysis",
+    excerpt:
+      "Examination of the firm's role in shaping employment law policies and workplace regulations.",
+  },
+];
+
+const featuredPublications = [
+  "The New York Times",
+  "Wall Street Journal",
+  "Forbes",
+  "Bloomberg Law",
+  "American Lawyer",
+  "Legal 500",
+  "Chambers & Partners",
+  "Business Law Today",
+  "Corporate Counsel",
+  "National Law Journal",
+];
+
+const mediaStats = [
+  { number: "150+", label: "Media Mentions" },
+  { number: "25+", label: "Publications Featured" },
+  { number: "50+", label: "Press Releases" },
+  { number: "10+", label: "Years of Coverage" },
+];
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard">
+      <!-- Hero Section -->
+      <div class="text-center mb-16">
+        <Text
+          tag="h1"
+          variant="textLG"
+          class="order-last font-serif uppercase lg:order-none col-span-full lg:col-span-2 text-base-900 mb-6"
+        >
+          Press and Media
+        </Text>
+        <Text
+          tag="p"
+          variant="textBase"
+          class="text-base-700 max-w-3xl mx-auto leading-relaxed mb-8"
+        >
+          Carrington Law maintains strong relationships with media outlets and
+          industry publications. Our thought leadership and legal expertise
+          regularly appear in major publications, providing valuable insights to
+          businesses and legal professionals nationwide.
+        </Text>
+
+        <!-- Media Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+          {
+            mediaStats.map((stat) => (
+              <div class="text-center">
+                <div class="text-3xl font-bold text-accent-600 mb-2">
+                  {stat.number}
+                </div>
+                <div class="text-sm text-base-700">{stat.label}</div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Press Releases Section -->
+      <div class="mb-16">
+        <Text
+          tag="h2"
+          variant="textBase"
+          class="font-semibold text-base-900 text-center mb-12"
+        >
+          Latest Press Releases
+        </Text>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {pressReleases.map((release) => <PressCard post={release} />)}
+        </div>
+      </div>
+
+      <!-- Media Coverage Section -->
+      <div class="mb-16">
+        <Text
+          tag="h2"
+          variant="textBase"
+          class="font-semibold text-base-900 text-center mb-12"
+        >
+          Recent Media Coverage
+        </Text>
+
+        <div class="space-y-6">
+          {
+            mediaCoverage.map((coverage) => (
+              <div class="bg-base-50 border border-base-200 rounded-lg p-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                  <div class="flex-1">
+                    <Text
+                      tag="h3"
+                      variant="textSm"
+                      class="font-semibold text-base-900 mb-2"
+                    >
+                      {coverage.title}
+                    </Text>
+                    <div class="flex items-center gap-4 text-xs text-base-600">
+                      <span class="font-medium">{coverage.publication}</span>
+                      <span>{coverage.date}</span>
+                      <span class="bg-base-200 text-base-800 px-2 py-1 rounded">
+                        {coverage.type}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <Text
+                  tag="p"
+                  variant="textXs"
+                  class="text-base-700 leading-relaxed"
+                >
+                  {coverage.excerpt}
+                </Text>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Featured Publications -->
+      <div class="mb-16">
+        <Text
+          tag="h2"
+          variant="textBase"
+          class="font-semibold text-base-900 text-center mb-8"
+        >
+          Featured In
+        </Text>
+
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+          {
+            featuredPublications.map((publication) => (
+              <div class="bg-white border border-base-200 rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+                <Text
+                  tag="p"
+                  variant="textXs"
+                  class="font-semibold text-base-900"
+                >
+                  {publication}
+                </Text>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Media Contact -->
+      <div class="bg-base-900 text-white rounded-lg p-8 text-center">
+        <Text tag="h2" variant="textBase" class="font-semibold mb-4">
+          Media Inquiries
+        </Text>
+        <Text
+          tag="p"
+          variant="textSm"
+          class="mb-6 opacity-90 max-w-2xl mx-auto"
+        >
+          For press inquiries, interview requests, or media opportunities,
+          please contact our communications team. We respond to all media
+          inquiries within 24 hours.
+        </Text>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 max-w-2xl mx-auto"
+        >
+          <div class="text-center">
+            <Text tag="p" variant="textSm" class="font-semibold mb-1">
+              Press Contact
+            </Text>
+            <Text tag="p" variant="textXs" class="opacity-80">
+              Sarah Mitchell
+            </Text>
+            <Text tag="p" variant="textXs" class="opacity-80">
+              Director of Communications
+            </Text>
+            <a
+              href="mailto:press@carringtonlaw.com"
+              class="text-accent-400 hover:text-accent-300 text-sm underline"
+            >
+              press@carringtonlaw.com
+            </a>
+          </div>
+          <div class="text-center">
+            <Text tag="p" variant="textSm" class="font-semibold mb-1">
+              Phone
+            </Text>
+            <a
+              href="tel:+15551234567"
+              class="text-accent-400 hover:text-accent-300 text-sm underline"
+            >
+              (555) 123-4567
+            </a>
+          </div>
+        </div>
+
+        <Button isLink={true} href="/contact" variant="accent" size="base">
+          Contact Media Team
+        </Button>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

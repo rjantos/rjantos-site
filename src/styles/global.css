@@ -1,3 +1,43 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+@plugin "tailwind-scrollbar-hide";
+@theme {
+  /* Typography */
+  --font-display: "Newsreader", serif;
+  --font-sans: "Inter", sans-serif;
+  /* Colors */
+  /* Accent */
+  --color-accent-50: oklch(0.958 0.011 243.62);
+  --color-accent-100: oklch(0.912 0.023 246.04);
+  --color-accent-200: oklch(0.825 0.049 244.57);
+  --color-accent-300: oklch(0.739 0.072 240.57);
+  --color-accent-400: oklch(0.651 0.065 241.58);
+  --color-accent-500: oklch(0.576 0.055 239.99);
+  --color-accent-600: oklch(0.489 0.048 240.41);
+  --color-accent-700: oklch(0.404 0.039 239.3);
+  --color-accent-800: oklch(0.317 0.031 243.48);
+  --color-accent-900: oklch(0.233 0.022 240.44);
+  --color-accent-950: oklch(0.187 0.019 245.44);
+  /* Base */
+  --color-base-50: oklch(0.974 0.003 286.81);
+  --color-base-100: oklch(0.94 0.004 271.53);
+  --color-base-200: oklch(0.879 0.008 271.39);
+  --color-base-300: oklch(0.827 0.012 269.57);
+  --color-base-400: oklch(0.767 0.016 269.97);
+  --color-base-500: oklch(0.664 0.025 269.33);
+  --color-base-600: oklch(0.56 0.024 270.98);
+  --color-base-700: oklch(0.449 0.019 266.11);
+  --color-base-800: oklch(0.345 0.015 269.28);
+  --color-base-900: oklch(0.241 0.012 278.03);
+  --color-base-950: oklch(0.187 0.008 274.47);
+}
+:root {
+  font-family: Inter, sans-serif;
+  font-feature-settings: "liga" 1, "calt" 1; /* fix for Chrome */
+}
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: InterVariable, sans-serif;
+  }
+}

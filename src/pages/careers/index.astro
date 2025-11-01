@@ -1,0 +1,33 @@
+---
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+import CareerCard from "@/components/careers/CareerCard.astro";
+// Content
+import { getCollection } from "astro:content";
+const allCareers = await getCollection("careers");
+allCareers.sort((a, b) => {
+  const dateA = new Date(a.data.postedDate).getTime();
+  const dateB = new Date(b.data.postedDate).getTime();
+  return dateB - dateA; // Most recent first
+});
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard">
+      <Text
+        tag="h1"
+        variant="textLG"
+        class="order-last font-serif uppercase lg:order-none col-span-full lg:col-span-2 text-base-900"
+      >
+        Careers
+      </Text>
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {allCareers.map((career) => <CareerCard post={career} />)}
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

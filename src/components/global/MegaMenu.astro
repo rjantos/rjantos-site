@@ -1,0 +1,279 @@
+---
+// Assets
+import { Image } from "astro:assets";
+import heroImage from "@/images/assets/heroImage.png";
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+const exploreLinks = [
+  {
+    label: "Practice Areas",
+    desc: "See our legal services",
+    href: "/practice-areas",
+  },
+  { label: "Cases", desc: "Representative matters and wins", href: "/cases" },
+  { label: "Team", desc: "Meet our attorneys", href: "/team" },
+  { label: "Blog", desc: "Insights and firm updates", href: "/blog" },
+  { label: "Careers", desc: "Join our firm", href: "/careers" },
+  {
+    label: "Press & Media",
+    desc: "News and coverage",
+    href: "/press-and-media",
+  },
+  { label: "Offices", desc: "Locations and contact info", href: "/offices" },
+  { label: "Contact", desc: "Get in touch", href: "/contact" },
+  {
+    label: "Free Consultation",
+    desc: "Schedule a call",
+    href: "/free-consultation",
+  },
+  {
+    label: "Press Releases",
+    desc: "Official announcements",
+    href: "/press-releases",
+  },
+  { label: "Testimonials", desc: "What clients say", href: "/testimonials" },
+  { label: "Newsletter", desc: "Subscribe for updates", href: "/newsletter" },
+];
+const posts = [
+  {
+    title: "Latest Blog Post",
+    slug: "1",
+    description: "Insights and updates from our team.",
+  },
+  {
+    title: "Second Blog Post",
+    slug: "2",
+    description: "More news and legal commentary.",
+  },
+];
+const featuredCase = {
+  title: "Acme Acquires Beta",
+  slug: "acme-acquires-beta",
+  summary: "A major acquisition handled by our firm.",
+  category: "Corporate Law",
+};
+---
+<div class="group" data-mega-wrap>
+  <button
+    type="button"
+    class="inline-flex items-center gap-1 text-base-200 focus:outline-none"
+    aria-expanded="false"
+    aria-controls="mega-desktop"
+    data-mega-trigger
+    data-explore-trigger
+  >
+    <span>Explore</span>
+    <svg
+      class="size-4 transition-transform group-hover:rotate-180"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6 9l6 6 6-6"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </button>
+  <!-- Megamenu Panel -->
+  <div
+    id="mega-desktop"
+    data-mega-panel
+    class="absolute inset-x-0 mt-2 top-full w-full z-50 invisible opacity-0 pointer-events-none transition-opacity duration-150 lg:group-hover:visible lg:group-hover:opacity-100 lg:group-hover:pointer-events-auto lg:group-focus-within:visible lg:group-focus-within:opacity-100 lg:group-focus-within:pointer-events-auto"
+  >
+    <Wrapper>
+      <div class="bg-white overflow-hidden rounded-xl shadow-xl">
+        <div class="grid grid-cols-3 items-start">
+          <!-- CTA: First Column -->
+          <div class="flex flex-col justify-start ">
+            <Image
+              alt="Carrington Law - Professional Legal Services"
+              src={heroImage}
+              aria-hidden="true"
+              loading="eager"
+              decoding="async"
+              fetchpriority="auto"
+              width="1200"
+              height="1200"
+              class="object-cover object-top w-full h-60"
+            />
+            <div class="flex flex-col h-full p-6">
+              <Text
+                tag="h1"
+                variant="displaySM"
+                class="font-display text-base-900"
+              >
+                Talk to an attorney
+              </Text>
+              <Text tag="p" variant="textSM" class="text-base-600 mt-2">
+                Schedule a free, no-obligation consultation with our team. Get
+                expert legal advice tailored to your situation.
+              </Text>
+              <ul class="list-disc pl-3 mt-4 text-base-700 text-xs space-y-1">
+                <li>Confidential case evaluation</li>
+                <li>Direct access to experienced attorneys</li>
+                <li>No fees unless you hire us</li>
+                <li>Quick response, same-day appointments available</li>
+              </ul>
+              <Text tag="p" variant="textXS" class="text-base-500 mt-4">
+                Call us: <a
+                  href="tel:+1234567890"
+                  class="underline text-accent-700">(123) 456-7890</a
+                >
+              </Text>
+              <Button
+                isLink={true}
+                href="/free-consultation"
+                variant="accent"
+                size="xs"
+                class="w-fit mt-8"
+              >
+                Free Consultation
+              </Button>
+            </div>
+          </div>
+          <!-- Explore: Second Column -->
+          <div class="p-6">
+            <Text
+              tag="h3"
+              variant="textSM"
+              class="font-semibold text-base-200 flex items-center gap-2"
+            >
+              Explore
+            </Text>
+            <ul class="space-y-3 mt-2">
+              {
+                // Ensure "Our Attorneys" link is present
+                exploreLinks.slice(0, 8).map((explore) => (
+                  <li>
+                    <a href={explore.href}>
+                      <Text
+                        tag="p"
+                        variant="textSM"
+                        class="font-medium text-base-900"
+                      >
+                        {explore.label}
+                      </Text>
+                      {explore.desc && (
+                        <Text
+                          tag="p"
+                          variant="textXS"
+                          class="text-base-600 mt-1"
+                        >
+                          {explore.desc}
+                        </Text>
+                      )}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+          <!-- Insights & Featured Case: Secondary Section -->
+          <div class="flex flex-col gap-8">
+            <div>
+              <Text
+                tag="h3"
+                variant="textSM"
+                class="font-semibold text-base-200 mb-4 flex items-center gap-2"
+              >
+                Insights
+              </Text>
+              <div class="space-y-4">
+                {
+                  posts.map((post) => (
+                    <a
+                      href={`/blog/posts/${post.slug}`}
+                      class="block rounded-lg px-3 py-2 hover:bg-base-50 focus:bg-base-50 focus:outline-none border border-base-100"
+                      aria-label={`Read: ${post.title}`}
+                    >
+                      <Text
+                        tag="p"
+                        variant="textSM"
+                        class="font-medium text-base-200"
+                      >
+                        {post.title}
+                      </Text>
+                      {post.description && (
+                        <Text
+                          tag="p"
+                          variant="textXS"
+                          class="text-base-200 mt-1"
+                        >
+                          {post.description}
+                        </Text>
+                      )}
+                    </a>
+                  ))
+                }
+                <a
+                  href="/blog"
+                  class="text-sm text-accent-600 hover:text-accent-700"
+                >
+                  Explore all insights
+                </a>
+              </div>
+            </div>
+            <div>
+              <Text
+                tag="h3"
+                variant="textSM"
+                class="font-semibold text-base-200 mb-4 flex items-center gap-2"
+              >
+                <svg
+                  class="size-5 text-accent-600"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  ><path
+                    d="M12 4v16m8-8H4"
+                    stroke="currentColor"
+                    stroke-width="2"></path></svg
+                >
+                Featured Case
+              </Text>
+              {
+                featuredCase && (
+                  <a
+                    href={`/cases/${featuredCase.slug}`}
+                    class="block rounded-lg border border-base-100 p-3 hover:bg-base-100 focus:outline-none"
+                    aria-label={`View case: ${featuredCase.title}`}
+                  >
+                    <Text
+                      tag="p"
+                      variant="textSM"
+                      class="font-medium text-base-200"
+                    >
+                      {featuredCase.title}
+                    </Text>
+                    {featuredCase.summary && (
+                      <Text tag="p" variant="textXS" class="text-base-200 mt-1">
+                        {featuredCase.summary}
+                      </Text>
+                    )}
+                    {featuredCase.category && (
+                      <Text tag="p" variant="textXS" class="text-base-500 mt-2">
+                        {featuredCase.category}
+                      </Text>
+                    )}
+                  </a>
+                )
+              }
+              <div class="mt-2">
+                <a
+                  href="/cases"
+                  class="text-sm text-accent-600 hover:text-accent-700"
+                >
+                  View all cases
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Wrapper>
+  </div>
+</div>

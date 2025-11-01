@@ -1,0 +1,159 @@
+---
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+const pageSections = [
+  {
+    title: "Static",
+    columns: [
+      {
+        category: " Pages",
+        links: [
+          { text: "Home", href: "/" },
+          { text: "404", href: "/404" },
+          { text: "FAQ", href: "/faq" },
+          { text: "Contact", href: "/contact" },
+          { text: "Offices", href: "/offices" },
+          { text: "Newsletter", href: "/newsletter" },
+          { text: "Testimonials", href: "/testimonials" },
+          { text: "Press and Media", href: "/press-and-media" },
+          { text: "Free Consultation", href: "/free-consultation" },
+          {
+            text: "Awards and Recognitions",
+            href: "/awwards-and-recognitions",
+          },
+        ],
+      },
+      {
+        category: "System",
+        links: [
+          { text: "Colors", href: "/system/colors" },
+          { text: "Links", href: "/system/link" },
+          { text: "Buttons", href: "/system/buttons" },
+          { text: "Typography", href: "/system/typography" },
+        ],
+      },
+      {
+        category: "Resources",
+        links: [
+          { text: "Social", href: "https://x.com/lexingtonthemes" },
+          {
+            text: "License",
+            href: "https://lexingtonthemes.com/legal/license",
+          },
+          {
+            text: "Documentation",
+            href: "https://lexingtonthemes.com/documentation/",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Content Collections",
+    columns: [
+      {
+        category: "Blog Pages",
+        links: [
+          { text: "Home", href: "/blog/" },
+          { text: "Detail", href: "/blog/posts/1" },
+          { text: "Tag Index", href: "/blog/tags" },
+          { text: "Tag Category", href: "/blog/tags/photography" },
+          { text: "RSS", href: "/rss.xml" },
+        ],
+      },
+      {
+        category: "Careers",
+        links: [
+          { text: "Home", href: "/careers" },
+          { text: "Detail", href: "/careers/associate-attorney-mna" },
+        ],
+      },
+      {
+        category: "Cases",
+        links: [
+          { text: "Home", href: "/cases/" },
+          { text: "Detail", href: "/cases/acme-acquires-beta" },
+        ],
+      },
+      {
+        category: "Team",
+        links: [
+          { text: "Home", href: "/team/" },
+          { text: "Detail", href: "/team/jon-sullivan" },
+        ],
+      },
+      {
+        category: "Press Releases",
+        links: [
+          { text: "Home", href: "/press-releases/" },
+          {
+            text: "Detail",
+            href: "/press-releases/carrington-expands-corporate-practice",
+          },
+        ],
+      },
+      {
+        category: "Utility Pages",
+        links: [
+          { text: "Terms Of Use", href: "/infopages/terms" },
+          { text: "Privacy Policy", href: "/infopages/privacy" },
+        ],
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout hideBigLogo={true}>
+  <section>
+    <Wrapper variant="standard" class="py-2">
+      <Text tag="h2" variant="textBase" class="font-medium text-base-900">
+        Overview
+      </Text>
+      <div class="flex flex-col mt-12 gap-12">
+        {
+          pageSections.map((section) => (
+            <div>
+              <Text
+                tag="h3"
+                variant="textBase"
+                class="font-medium text-base-900"
+              >
+                {section.title}
+              </Text>
+              <div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 xl:grid-cols-4">
+                {section.columns.map((column) => (
+                  <div>
+                    <Text
+                      tag="p"
+                      variant="textBase"
+                      class="font-medium text-base-900"
+                    >
+                      {column.category}
+                    </Text>
+                    <ul role="list" class="mt-2 ">
+                      {column.links.map((link) => (
+                        <li>
+                          <Text
+                            tag="a"
+                            variant="textSM"
+                            href={link.href}
+                            class="text-base-500 hover:text-base-900 duration-300"
+                          >
+                            {link.text}
+                          </Text>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

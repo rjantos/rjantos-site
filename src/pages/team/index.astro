@@ -1,0 +1,31 @@
+---
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+import TeamCard from "@/components/team/TeamCard.astro";
+// Content
+import { getCollection } from "astro:content";
+const allTeam = await getCollection("team");
+allTeam.sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard">
+      <Text
+        tag="h1"
+        variant="textLG"
+        class="order-last font-serif uppercase lg:order-none col-span-full lg:col-span-2 text-base-900"
+      >
+        Our Attorneys
+      </Text>
+      <div
+        class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-24 gap-8"
+      >
+        {allTeam.map((member) => <TeamCard post={member} />)}
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

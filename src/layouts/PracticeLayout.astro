@@ -1,0 +1,27 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+const { frontmatter } = Astro.props;
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard" class="py-24 lg:pt-48">
+      <div class="max-w-4xl mx-auto">
+        <div class="mb-8">
+          <Text tag="h1" variant="textLG" class="font-medium text-base-900">
+            {frontmatter.title}
+          </Text>
+          <Text tag="p" variant="textBase" class="mt-4 text-base-600">
+            {frontmatter.summary}
+          </Text>
+        </div>
+        <div class="prose prose-lg max-w-none">
+          <slot />
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

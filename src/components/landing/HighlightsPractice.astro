@@ -1,0 +1,48 @@
+---
+// Assets
+import { Image } from "astro:assets";
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+import PracticeCard from "@/components/practices/PracticeCard.astro";
+// Content
+import { getCollection } from "astro:content";
+
+const allPractices = await getCollection("practice");
+
+// Select first 4 practice areas to highlight
+const highlightedPractices = allPractices.slice(0, 4);
+---
+
+<section class="bg-white">
+  <Wrapper variant="standard" class="py-20">
+    <div class="text-center mb-16">
+      <Text tag="h2" variant="displayLG" class="text-base-900 mb-6 font-serif">
+        Practice Areas
+      </Text>
+      <Text
+        tag="p"
+        variant="textLG"
+        class="text-base-700 max-w-3xl mx-auto leading-relaxed"
+      >
+        Our experienced attorneys provide comprehensive legal services across a
+        wide range of practice areas, delivering strategic solutions tailored to
+        your unique needs.
+      </Text>
+    </div>
+
+    <!-- Practice Areas Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+      {highlightedPractices.map((practice) => <PracticeCard post={practice} />)}
+    </div>
+
+    <!-- See All Link -->
+    <div class="text-center">
+      <Button variant="muted" size="lg" isLink={true} href="/practice-areas">
+        View All Practice Areas
+      </Button>
+    </div>
+  </Wrapper>
+</section>

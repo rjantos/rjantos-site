@@ -1,0 +1,289 @@
+---
+// Assets
+import { Image } from "astro:assets";
+import heroImage from "@/images/assets/heroImage.png";
+import Logo from "@/components/assets/Logo.astro";
+// Icons
+import Burger from "@/components/fundations/icons/Burger.astro";
+import Close from "@/components/fundations/icons/Close.astro";
+// Fundations
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+// Content
+import { getCollection } from "astro:content";
+import MegaMenu from "@/components/global/MegaMenu.astro";
+const practiceAreas = (await getCollection("practice")).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title)
+);
+// Enrich megamenu with additional content
+const posts = (await getCollection("posts"))
+  .slice()
+  .sort(
+    (a, b) =>
+      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+  )
+  .slice(0, 2);
+const navLinks = [
+  { label: "Cases", href: "/cases" },
+  { label: "Team", href: "/team" },
+  { label: "Blog", href: "/blog" },
+  { label: "Careers", href: "/careers" },
+  { label: "Practice Areas", href: "/practice-areas" },
+  { label: "Press & Media", href: "/press-and-media" },
+  { label: "Contact", href: "/contact" },
+  { label: "Overview", href: "/system/overview" },
+];
+const primaryShortcuts = [
+  { label: "Overview", href: "/system/overview" },
+  { label: "Results", href: "/cases" },
+  { label: "Our Attorneys", href: "/team" },
+  { label: "Practice Areas", href: "/practice-areas" },
+  { label: "Offices", href: "/offices" },
+  { label: "Contact", href: "/contact" },
+];
+---
+
+<nav
+  class="fixed w-full top-0 z-50 transition-colors duration-300 border-b border-white/10"
+  data-nav
+>
+  <Wrapper variant="standard" class="relative">
+    <div class="flex py-3 items-center justify-between">
+      <!-- Left: Logo -->
+      <a href="/" aria-label="Home" class="focus:outline-none">
+        <span class="sr-only">Home</span>
+        <Logo data-logo class="text-white font-semibold text-lg" />
+      </a>
+      <!-- Desktop: Primary Nav -->
+      <div class="hidden lg:flex items-center gap-8">
+        <!-- Megamenu -->
+        <MegaMenu />
+        <!-- Primary shortcuts next to Explore -->
+        <div class="flex items-center gap-6">
+          {
+            primaryShortcuts.map((l) => (
+              <a href={l.href} class="text-sm text-white " data-primary-link>
+                {l.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      <!-- Desktop: CTA -->
+      <div class="hidden lg:flex">
+        <Button
+          isLink={true}
+          href="/contact"
+          variant="default"
+          size="xs"
+          class="hidden lg:flex"
+        >
+          Buy Carrington
+        </Button>
+      </div>
+      <!-- Mobile: Hamburger -->
+      <button
+        class="lg:hidden flex text-white relative"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        data-menu-button
+      >
+        <span class="sr-only">Open main menu</span>
+        <span
+          class="block"
+          style="display: var(--burger-display, block);"
+          data-burger
+        >
+          <Burger size="xl" slot="icon" />
+        </span>
+        <span
+          class="hidden"
+          style="display: var(--close-display, none);"
+          data-close
+        >
+          <Close size="xl" slot="icon" />
+        </span>
+      </button>
+    </div>
+    <!-- Mobile: Slide-down panel -->
+    <div
+      id="mobile-menu"
+      class="lg:hidden hidden absolute inset-x-0 top-full p-4"
+    >
+      <div class="flex flex-col bg-accent-950/50 backdrop-blur p-8">
+        <div class="space-y-8 text- flex flex-col text-right">
+          {
+            navLinks.map((link) => (
+              <a href={link.href} class=" text-white text-lg uppercase">
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+        <div class="mt-12 space-y-2">
+          <Button
+            isLink={true}
+            href="/free-consultation"
+            variant="accent"
+            size="sm"
+            class="w-full"
+          >
+            Free Consultation
+          </Button>
+          <Button
+            isLink={true}
+            href="/contact"
+            variant="muted"
+            size="sm"
+            class="w-full"
+          >
+            Buy Carrington
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Wrapper>
+  <script is:inline>
+    window.addEventListener("DOMContentLoaded", () => {
+      // Mobile menu toggle logic
+      const menuButton = document.querySelector("[data-menu-button]");
+      const burger = menuButton
+        ? menuButton.querySelector("[data-burger]")
+        : null;
+      const close = menuButton
+        ? menuButton.querySelector("[data-close]")
+        : null;
+      const mobileMenu = document.getElementById("mobile-menu");
+      // Icon toggle
+      const updateIcons = () => {
+        if (!menuButton || !burger || !close) return;
+        const expanded = menuButton.getAttribute("aria-expanded") === "true";
+        burger.style.setProperty(
+          "--burger-display",
+          expanded ? "none" : "block"
+        );
+        close.style.setProperty("--close-display", expanded ? "block" : "none");
+      };
+      const toggleMenu = () => {
+        const expanded = menuButton.getAttribute("aria-expanded") === "true";
+        menuButton.setAttribute("aria-expanded", String(!expanded));
+        mobileMenu.classList.toggle("hidden", expanded);
+        updateIcons();
+      };
+      if (menuButton) menuButton.addEventListener("click", toggleMenu);
+      // Click outside to close
+      document.addEventListener("click", (e) => {
+        const target = e.target;
+        if (!mobileMenu.contains(target) && !menuButton.contains(target)) {
+          if (!mobileMenu.classList.contains("hidden")) {
+            mobileMenu.classList.add("hidden");
+            menuButton.setAttribute("aria-expanded", "false");
+            updateIcons();
+          }
+        }
+      });
+      // Escape to close
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !mobileMenu.classList.contains("hidden")) {
+          mobileMenu.classList.add("hidden");
+          menuButton.setAttribute("aria-expanded", "false");
+          updateIcons();
+        }
+      });
+      updateIcons();
+      // Scroll background + link colors
+      const navEl = document.querySelector("[data-nav]");
+      const logoEl = document.querySelector("[data-logo]");
+      const exploreEl = document.querySelector("[data-explore-trigger]");
+      const primaryLinks = document.querySelectorAll("[data-primary-link]");
+      // Swap between light and dark text classes
+      const swapColor = (el, scrolled) => {
+        if (!el) return;
+        el.classList.remove("text-white", "text-base-800");
+        el.classList.add(scrolled ? "text-base-800" : "text-white");
+      };
+      const handleScroll = () => {
+        const scrolled = window.scrollY > 0;
+        if (navEl) navEl.classList.toggle("bg-base-50", scrolled);
+        swapColor(logoEl, scrolled);
+        swapColor(exploreEl, scrolled);
+        primaryLinks.forEach((el) => swapColor(el, scrolled));
+        // Mobile icons
+        swapColor(burger, scrolled);
+        swapColor(close, scrolled);
+      };
+      window.addEventListener("scroll", handleScroll);
+      handleScroll(); // Initialize state on load
+      // Desktop megamenu logic
+      const megaTrigger = document.querySelector("[data-mega-trigger]");
+      const megaPanel = document.querySelector("[data-mega-panel]");
+      if (megaTrigger && megaPanel) {
+        let closeTimer;
+        const show = () => {
+          clearTimeout(closeTimer);
+          megaTrigger.setAttribute("aria-expanded", "true");
+          megaPanel.classList.remove(
+            "invisible",
+            "opacity-0",
+            "pointer-events-none"
+          );
+          megaPanel.classList.add(
+            "visible",
+            "opacity-100",
+            "pointer-events-auto"
+          );
+        };
+        const scheduleHide = () => {
+          clearTimeout(closeTimer);
+          closeTimer = setTimeout(() => {
+            megaTrigger.setAttribute("aria-expanded", "false");
+            megaPanel.classList.add(
+              "invisible",
+              "opacity-0",
+              "pointer-events-none"
+            );
+            megaPanel.classList.remove(
+              "visible",
+              "opacity-100",
+              "pointer-events-auto"
+            );
+          }, 80);
+        };
+        megaTrigger.addEventListener("mouseenter", show);
+        megaTrigger.addEventListener("mouseleave", scheduleHide);
+        megaPanel.addEventListener("mouseenter", show);
+        megaPanel.addEventListener("mouseleave", scheduleHide);
+        megaTrigger.addEventListener("focusin", show);
+        megaPanel.addEventListener("focusin", show);
+        megaTrigger.addEventListener("focusout", (e) => {
+          const next = e.relatedTarget;
+          if (!next || (next instanceof Node && !megaPanel.contains(next)))
+            scheduleHide();
+        });
+        megaPanel.addEventListener("focusout", (e) => {
+          const next = e.relatedTarget;
+          if (
+            !next ||
+            (next instanceof Node &&
+              !megaPanel.contains(next) &&
+              !megaTrigger.contains(next))
+          )
+            scheduleHide();
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") scheduleHide();
+        });
+        document.addEventListener("click", (e) => {
+          const t = e.target;
+          if (
+            t instanceof Node &&
+            !megaPanel.contains(t) &&
+            !megaTrigger.contains(t)
+          )
+            scheduleHide();
+        });
+      }
+    });
+  </script>
+</nav>

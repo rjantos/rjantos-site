@@ -1,0 +1,168 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+const { frontmatter } = Astro.props;
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard" class="py-24 lg:pt-48">
+      <div class="max-w-4xl mx-auto">
+        <div class="mb-8">
+          <Text tag="h1" variant="textLG" class="font-medium text-base-900">
+            {frontmatter.title}
+          </Text>
+
+          <div
+            class="flex flex-wrap items-center gap-4 mt-4 text-sm text-base-600"
+          >
+            {frontmatter.client && <span>Client: {frontmatter.client}</span>}
+            {
+              frontmatter.practice && (
+                <span>Practice: {frontmatter.practice}</span>
+              )
+            }
+            {
+              frontmatter.jurisdiction && (
+                <span>Jurisdiction: {frontmatter.jurisdiction}</span>
+              )
+            }
+            {frontmatter.value && <span>Value: {frontmatter.value}</span>}
+          </div>
+
+          {
+            frontmatter.result && (
+              <div class="mt-4 p-4 bg-green-50 border-l-4 border-green-400">
+                <Text
+                  tag="p"
+                  variant="textBase"
+                  class="font-medium text-green-800"
+                >
+                  Result: {frontmatter.result}
+                </Text>
+              </div>
+            )
+          }
+
+          <Text tag="p" variant="textSM" class="mt-4 text-base-500">
+            Published on {
+              new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            }
+          </Text>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-12">
+          <div class="lg:col-span-2">
+            {
+              frontmatter.summary && (
+                <div class="mb-8">
+                  <Text
+                    tag="h2"
+                    variant="textBase"
+                    class="font-medium text-base-900 mb-4"
+                  >
+                    Case Summary
+                  </Text>
+                  <Wrapper variant="prose">
+                    <p>{frontmatter.summary}</p>
+                  </Wrapper>
+                </div>
+              )
+            }
+
+            {
+              frontmatter.attorneys && frontmatter.attorneys.length > 0 && (
+                <div class="mb-8">
+                  <Text
+                    tag="h2"
+                    variant="textBase"
+                    class="font-medium text-base-900 mb-4"
+                  >
+                    Attorneys Involved
+                  </Text>
+                  <div class="flex flex-wrap gap-2">
+                    {frontmatter.attorneys.map((attorney) => (
+                      <span class="bg-base-100 text-base-800 px-3 py-1 rounded-full text-sm">
+                        {attorney}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )
+            }
+
+            <slot />
+          </div>
+
+          <div class="lg:col-span-1">
+            <div class="space-y-6">
+              {
+                frontmatter.category && (
+                  <div>
+                    <Text
+                      tag="h3"
+                      variant="textBase"
+                      class="font-medium text-base-900 mb-2"
+                    >
+                      Category
+                    </Text>
+                    <span class="bg-base-100 text-base-800 px-3 py-1 rounded text-sm">
+                      {frontmatter.category}
+                    </span>
+                  </div>
+                )
+              }
+
+              {
+                frontmatter.tags && frontmatter.tags.length > 0 && (
+                  <div>
+                    <Text
+                      tag="h3"
+                      variant="textBase"
+                      class="font-medium text-base-900 mb-2"
+                    >
+                      Tags
+                    </Text>
+                    <div class="flex flex-wrap gap-2">
+                      {frontmatter.tags.map((tag) => (
+                        <span class="bg-base-200 text-base-700 px-2 py-1 rounded text-xs">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )
+              }
+
+              {
+                frontmatter.testimonial && (
+                  <div class="bg-base-50 p-4 rounded-lg">
+                    <Text
+                      tag="h3"
+                      variant="textBase"
+                      class="font-medium text-base-900 mb-3"
+                    >
+                      Client Testimonial
+                    </Text>
+                    <blockquote class="text-base-700 italic mb-2">
+                      "{frontmatter.testimonial.quote}"
+                    </blockquote>
+                    <cite class="text-base-600 text-sm">
+                      — {frontmatter.testimonial.name}
+                    </cite>
+                  </div>
+                )
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

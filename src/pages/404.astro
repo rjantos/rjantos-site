@@ -1,0 +1,82 @@
+---
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const popularPages = [
+  { text: "Contact Us", href: "/contact" },
+  { text: "Careers", href: "/careers" },
+  { text: "Our Team", href: "/team" },
+  { text: "Case Studies", href: "/cases" },
+  { text: "FAQ", href: "/faq" },
+  { text: "Free Consultation", href: "/free-consultation" },
+];
+---
+
+<BaseLayout hideFooter={true} hideNavigation={true}>
+  <section>
+    <Wrapper
+      variant="standard"
+      class="flex flex-col h-svh items-center justify-center h-full py-24 text-center lg:py-48"
+    >
+      <div class="max-w-2xl mx-auto">
+        <Text
+          tag="h1"
+          variant="textLG"
+          class="order-last font-serif uppercase lg:order-none col-span-full lg:col-span-2 text-base-900 mb-6"
+        >
+          404 – Page Not Found
+        </Text>
+
+        <Text
+          tag="p"
+          variant="textBase"
+          class="text-base-700 mb-8 leading-relaxed"
+        >
+          The page you're looking for doesn't exist or may have been moved.
+          Don't worry – let's get you back on track with your legal needs.
+        </Text>
+
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+        >
+          <Button isLink={true} href="/" size="base" variant="accent">
+            Return Home
+          </Button>
+          <Button
+            isLink={true}
+            href="/practice-areas"
+            size="base"
+            variant="muted"
+          >
+            Browse Practice Areas
+          </Button>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-base-200">
+          <Text
+            tag="h3"
+            variant="textBase"
+            class="font-semibold text-base-900 mb-4"
+          >
+            Popular Pages
+          </Text>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+            {
+              popularPages.map((page) => (
+                <a
+                  href={page.href}
+                  class="text-accent-600 hover:text-accent-700 transition-colors"
+                >
+                  {page.text}
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>
