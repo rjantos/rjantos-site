@@ -64,7 +64,7 @@ const variantClass = {
   muted: mutedClass,
   none: [],
 };
-const sizeClass = iconOnly ? iconSizes[size] : sizes[size] || [];
+const sizeClass = iconOnly ? (iconSizes[size] ?? []) : (sizes[size] ?? []);
 const gapClass = !iconOnly && gap ? gapMap[gap] : [];
 const additionalClasses = className ? className.split(" ") : [];
 const baseClass = [
