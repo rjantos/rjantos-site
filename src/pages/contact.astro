@@ -78,7 +78,7 @@ const businessHours = [
                         </Text>
                       </a>
                     ) : (
-                      <Text tag="p" variant="textSM" class="text-base-500">
+                      <Text tag="p" variant="textSM" class="text-base-600">
                         {info.value
                           .split("\n")
                           .map((line) => line.trim())
@@ -259,7 +259,7 @@ const businessHours = [
                     height="100%"
                     style="border:0;"
                     allowfullscreen=""
-                    loading="lazy"
+                    loading="eager"
                     referrerpolicy="no-referrer-when-downgrade"
                     title={`Map of ${office.name}`}
                   />

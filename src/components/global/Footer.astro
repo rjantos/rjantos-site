@@ -66,18 +66,18 @@ const socialLinks = [
         <Text
           tag="p"
           variant="textXS"
-          class="text-base-500 mt-5 leading-relaxed"
+          class="text-base-600 mt-5 leading-relaxed"
         >
           Carrington Law provides comprehensive legal services with a commitment
           to excellence, integrity, and client success. Serving businesses and
           individuals nationwide.
         </Text>
-        <div class="flex flex-col gap-1 text-xs mt-8">
+        <div class="flex flex-col gap-4 text-xs mt-8">
           {
             socialLinks.map((social) => (
               <a
                 href={social.href}
-                class="text-base-500 hover:text-accent-800 transition-colors"
+                class="text-base-600 hover:text-accent-800 transition-colors"
                 aria-label={social.name}
               >
                 {social.name}
@@ -97,7 +97,7 @@ const socialLinks = [
                 <li>
                   <a
                     href={item.href}
-                    class="text-base-500 hover:text-accent-800 transition-colors text-xs"
+                    class="text-base-600 hover:text-accent-800 transition-colors text-xs"
                   >
                     {item.text}
                   </a>
@@ -114,7 +114,7 @@ const socialLinks = [
         <div class="grid grid-cols-2 md:grid-cols-1 gap-y-12 mt-4">
           {
             officeLocations.map((office) => (
-              <div class="text-base-500">
+              <div class="text-base-600">
                 <Text
                   tag="p"
                   variant="textXS"
@@ -130,7 +130,7 @@ const socialLinks = [
                 </Text>
                 <a
                   href={`tel:${office.phone}`}
-                  class=" hover:text-accent-800 text-base-400 transition-colors text-xs flex mt-4"
+                  class=" hover:text-accent-800 text-base-600 transition-colors text-xs flex mt-4"
                 >
                   {office.phone}
                 </a>
@@ -150,12 +150,12 @@ const socialLinks = [
       <div
         class="flex flex-col md:flex-row justify-between lg:items-center gap-4"
       >
-        <div class="text-base-400 text-sm">
+        <div class="text-base-600 text-sm">
           <Text tag="p" variant="textXS">
             © {currentYear} Carrington Law. All rights reserved.
           </Text>
         </div>
-        <div class="flex flex-col md:flex-row gap-4 text-base-400 text-xs">
+        <div class="flex flex-col md:flex-row gap-4 text-base-600 text-xs">
           <a
             href="/infopages/privacy"
             class="hover:text-accent-800 transition-colors"
@@ -172,7 +172,7 @@ const socialLinks = [
         </div>
       </div>
       <div class="mt-6 pt-6 border-t border-base-100">
-        <Text tag="p" variant="textXS" class="text-base-500 leading-relaxed">
+        <Text tag="p" variant="textXS" class="text-base-600 leading-relaxed">
           The information provided on this website is for general informational
           purposes only and does not constitute legal advice, nor does it create
           an attorney-client relationship. You should not act or rely on any

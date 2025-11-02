@@ -22,7 +22,7 @@ const { frontmatter } = Astro.props;
           src={frontmatter.image.url}
           width={800}
           height={1200}
-          loading="lazy"
+          loading="eager"
           decoding="async"
           class="object-cover w-full h-ful object-top h-80 lg:h-full"
         />

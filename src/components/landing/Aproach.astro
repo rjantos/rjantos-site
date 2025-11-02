@@ -97,12 +97,12 @@ const approachSteps = [
               >
                 <Image
                   src={customer}
-                  width={600}
-                  height={600}
+                  width={500}
+                  height={500}
+                  loading="eager"
+                  decoding="async"
                   alt="Customer testimonial — Alex Rivera"
                   class="object-cover h-60 size-full object-top"
-                  loading="lazy"
-                  decoding="async"
                 />
                 <figure class="p-4 flex flex-col h-full justify-between">
                   <blockquote>
@@ -152,7 +152,11 @@ const approachSteps = [
                     </Text>
                   </dt>
                   <dd>
-                    <Text tag="p" variant="textSM" class="text-base-600 text-balance">
+                    <Text
+                      tag="p"
+                      variant="textSM"
+                      class="text-base-600 text-balance"
+                    >
                       {step.description}
                     </Text>
                     <ul class="list-disc  space-y-1 list-inside mt-4 pt-4 border-t border-base-100">
