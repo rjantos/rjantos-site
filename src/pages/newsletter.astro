@@ -4,34 +4,37 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-
+// Icons
+import Updates from "@/components/fundations/icons/Updates.astro";
+import Insights from "@/components/fundations/icons/Insights.astro";
+import Clients from "@/components/fundations/icons/Clients.astro";
+import Industry from "@/components/fundations/icons/Industry.astro";
 const newsletterBenefits = [
   {
     title: "Legal Updates",
     description:
       "Stay informed about changes in laws and regulations that may affect your business or personal matters.",
-    icon: "L",
+    icon: Updates,
   },
   {
     title: "Practice Insights",
     description:
       "Get expert analysis and insights into various practice areas including corporate law, litigation, and more.",
-    icon: "P",
+    icon: Insights,
   },
   {
     title: "Client Success Stories",
     description:
       "Read about real cases and how our legal strategies helped clients achieve their goals.",
-    icon: "S",
+    icon: Clients,
   },
   {
     title: "Industry Trends",
     description:
       "Learn about emerging trends in the legal industry and how they impact businesses and individuals.",
-    icon: "T",
+    icon: Industry,
   },
 ];
-
 const newsletterTopics = [
   "Recent Supreme Court Decisions",
   "Corporate Law Developments",
@@ -46,45 +49,50 @@ const newsletterTopics = [
 
 <BaseLayout>
   <section>
-    <Wrapper variant="standard">
-      <!-- Hero Section -->
-      <div class="text-center mb-16">
-        <Text
-          tag="h1"
-          variant="textLG"
-          class="order-last font-serif uppercase lg:order-none col-span-full lg:col-span-2 text-base-900 mb-6"
-        >
-          Stay Informed with Our Newsletter
-        </Text>
-        <Text
-          tag="p"
-          variant="textBase"
-          class="text-base-700 max-w-3xl mx-auto leading-relaxed mb-8"
-        >
-          Subscribe to Carrington Law's newsletter and receive expert legal
-          insights, industry updates, and valuable information delivered
-          directly to your inbox. Join thousands of professionals who stay ahead
-          of legal developments.
-        </Text>
-      </div>
-
-      <!-- Newsletter Signup Form -->
-      <div class="max-w-2xl mx-auto mb-16">
-        <div class="bg-base-50 border border-base-200 rounded-lg p-8">
+    <Wrapper variant="standard" class="pb-12 pt-48">
+      <div class="overflow-hidden grid grid-cols-1 lg:grid-cols-2">
+        <div class="p-8 h-full flex flex-col justify-start bg-base-50">
+          <Text
+            tag="h1"
+            variant="displayMD"
+            class="text-accent-800 font-display text-balance lg:col-span-2"
+          >
+            Stay Informed with Our Newsletter
+          </Text>
+          <Text
+            tag="p"
+            variant="textSM"
+            class="text-base-600 max-w-3xl mx-auto leading-relaxed mt-2"
+          >
+            Subscribe to Carrington Law's newsletter and receive expert legal
+            insights, industry updates, and valuable information delivered
+            directly to your inbox. Join thousands of professionals who stay
+            ahead of legal developments.
+          </Text>
           <Text
             tag="h2"
-            variant="textBase"
-            class="font-semibold text-base-900 text-center mb-6"
+            variant="textXL"
+            class="text-accent-800 font-display text-balance mt-8"
           >
-            Subscribe to Our Newsletter
+            Featured Topics
           </Text>
-
-          <form class="space-y-6">
+          <div class="space-y-1 mt-2">
+            {
+              newsletterTopics.map((topic) => (
+                <Text tag="p" variant="textXS" class="text-base-600">
+                  {topic}
+                </Text>
+              ))
+            }
+          </div>
+        </div>
+        <div class="mx-auto">
+          <form class="space-y-4 p-8 bg-accent-900">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
+              <div class="space-y-1">
                 <label
                   for="firstName"
-                  class="block text-sm font-medium text-base-700 mb-2"
+                  class="block text-xs font-medium text-base-300"
                 >
                   First Name *
                 </label>
@@ -93,14 +101,14 @@ const newsletterTopics = [
                   id="firstName"
                   name="firstName"
                   required
-                  class="w-full px-3 py-2 border border-base-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
+                  class="w-full px-3 py-2 border-b border-transparent h-12 bg-white/5 focus:outline-none focus:bg-white/8 text-white text-xs focus:ring-0"
                   placeholder="John"
                 />
               </div>
-              <div>
+              <div class="space-y-1">
                 <label
                   for="lastName"
-                  class="block text-sm font-medium text-base-700 mb-2"
+                  class="block text-xs font-medium text-base-300"
                 >
                   Last Name *
                 </label>
@@ -109,16 +117,15 @@ const newsletterTopics = [
                   id="lastName"
                   name="lastName"
                   required
-                  class="w-full px-3 py-2 border border-base-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
+                  class="w-full px-3 py-2 border-b border-transparent h-12 bg-white/5 focus:outline-none focus:bg-white/8 text-white text-xs focus:ring-0"
                   placeholder="Doe"
                 />
               </div>
             </div>
-
             <div>
               <label
                 for="email"
-                class="block text-sm font-medium text-base-700 mb-2"
+                class="block text-xs font-medium text-base-300"
               >
                 Email Address *
               </label>
@@ -127,22 +134,21 @@ const newsletterTopics = [
                 id="email"
                 name="email"
                 required
-                class="w-full px-3 py-2 border border-base-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
+                class="w-full px-3 py-2 border-b border-transparent h-12 bg-white/5 focus:outline-none focus:bg-white/8 text-white text-xs focus:ring-0"
                 placeholder="john.doe@example.com"
               />
             </div>
-
             <div>
               <label
                 for="practiceArea"
-                class="block text-sm font-medium text-base-700 mb-2"
+                class="block text-xs font-medium text-base-300"
               >
                 Areas of Interest (Optional)
               </label>
               <select
                 id="practiceArea"
                 name="practiceArea"
-                class="w-full px-3 py-2 border border-base-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
+                class="w-full px-3 py-2 border-b border-transparent h-12 bg-white/5 focus:outline-none focus:bg-white/8 text-white text-xs focus:ring-0"
               >
                 <option value="">Select areas of interest</option>
                 <option value="corporate">Corporate Law</option>
@@ -157,115 +163,124 @@ const newsletterTopics = [
                 <option value="all">All Practice Areas</option>
               </select>
             </div>
-
             <div class="flex items-start space-x-3">
               <input
                 type="checkbox"
                 id="privacy"
                 name="privacy"
                 required
-                class="mt-1 h-4 w-4 text-accent-600 focus:ring-accent-500 border-base-300 rounded"
+                class="mt-1 size-4 text-accent-600 focus:ring-accent-500 ring-offset-accent-900 border-white/10 rounded bg-accent-800"
               />
-              <label for="privacy" class="text-sm text-base-700">
+              <label for="privacy" class="text-xs text-base-400">
                 I agree to receive newsletters from Carrington Law. I understand
                 I can unsubscribe at any time. View our <a
                   href="/privacy"
-                  class="text-accent-600 hover:text-accent-700 underline"
+                  class="text-secondary-400 hover:text-accent-700 underline"
                   >Privacy Policy</a
                 >.
               </label>
             </div>
-
-            <Button variant="accent" size="base" type="submit" class="w-full">
+            <Button variant="muted" size="sm" type="submit" class="w-full">
               Subscribe to Newsletter
             </Button>
           </form>
         </div>
       </div>
-
-      <!-- Benefits Section -->
-      <div class="mb-16">
+    </Wrapper>
+    <Wrapper class="py-12 lg:py-24">
+      <Text
+        tag="h2"
+        variant="displayMD"
+        class="text-accent-800 font-display text-balance"
+        >What you'll receive
+      </Text>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+        {
+          newsletterBenefits.map((benefit) => (
+            <div class="bg-base-50  p-8 flex flex-col">
+              {benefit.icon && (
+                <benefit.icon class="size-8 text-secondary-400 " />
+              )}
+              <Text
+                tag="h3"
+                variant="displayXS"
+                class="text-accent-800 font-display mt-12"
+              >
+                {benefit.title}
+              </Text>
+              <Text
+                tag="p"
+                variant="textSM"
+                class="text-base-500 font-medium mt-2"
+              >
+                {benefit.description}
+              </Text>
+            </div>
+          ))
+        }
+      </div>
+    </Wrapper>
+    <Wrapper class="py-12 lg:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-4 items-start gap-y-8">
         <Text
-          tag="h2"
-          variant="textBase"
-          class="font-semibold text-base-900 text-center mb-12"
+          tag="p"
+          variant="textXS"
+          class="text-secondary-500 tracking-wide uppercase"
         >
-          What You'll Receive
+          join us
         </Text>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {
-            newsletterBenefits.map((benefit) => (
-              <div class="text-center p-6 border border-base-200 rounded-lg hover:shadow-md transition-shadow">
-                <div class="text-3xl mb-4">{benefit.icon}</div>
-                <Text
-                  tag="h3"
-                  variant="textSm"
-                  class="font-semibold text-base-900 mb-3"
-                >
-                  {benefit.title}
-                </Text>
-                <Text
-                  tag="p"
-                  variant="textXs"
-                  class="text-base-700 leading-relaxed"
-                >
-                  {benefit.description}
-                </Text>
-              </div>
-            ))
-          }
+        <div class="lg:col-span-3">
+          <Text
+            tag="h2"
+            variant="displayLG"
+            class="text-accent-800 font-display text-balance"
+          >
+            Join Our Community
+          </Text>
+          <Text tag="p" variant="textLG" class="text-base-600 mt-4">
+            Over 5,000 professionals trust Carrington Law for their legal
+            insights and updates. Join our growing community of informed clients
+            and industry leaders.
+          </Text>
         </div>
       </div>
-
-      <!-- Newsletter Topics -->
-      <div class="mb-16">
-        <Text
-          tag="h2"
-          variant="textBase"
-          class="font-semibold text-base-900 text-center mb-8"
-        >
-          Featured Topics
-        </Text>
-
-        <div class="max-w-4xl mx-auto">
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <ul
+        class="grid grid-cols-2 sm:grid-cols-3 gap-y-8 mt-12 lg:mt-24 lg:divide-x lg:divide-base-200 lg:border-x lg:border-base-200"
+      >
+        {
+          [
             {
-              newsletterTopics.map((topic) => (
-                <div class="bg-accent-50 text-accent-800 px-4 py-3 rounded-lg text-center text-sm font-medium">
-                  {topic}
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      </div>
-
-      <!-- Newsletter Stats/Testimonials -->
-      <div class="bg-base-900 text-white rounded-lg p-8 text-center">
-        <Text tag="h2" variant="textBase" class="font-semibold mb-4">
-          Join Our Community
-        </Text>
-        <Text tag="p" variant="textSm" class="mb-6 opacity-90">
-          Over 5,000 professionals trust Carrington Law for their legal insights
-          and updates. Join our growing community of informed clients and
-          industry leaders.
-        </Text>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
-          <div>
-            <div class="text-2xl font-bold text-accent-400 mb-1">5,000+</div>
-            <div class="opacity-80">Active Subscribers</div>
-          </div>
-          <div>
-            <div class="text-2xl font-bold text-accent-400 mb-1">Monthly</div>
-            <div class="opacity-80">Newsletter Delivery</div>
-          </div>
-          <div>
-            <div class="text-2xl font-bold text-accent-400 mb-1">10+</div>
-            <div class="opacity-80">Years of Insights</div>
-          </div>
-        </div>
-      </div>
+              label: "Active Subscribers",
+              value: "5,000+",
+            },
+            {
+              label: "Newsletter Delivery",
+              value: "Monthly",
+            },
+            {
+              label: "Years of Insights",
+              value: "10+",
+            },
+          ].map((stat) => (
+            <li class="flex flex-col gap-1 lg:gap-48 lg:px-4">
+              <Text
+                tag="p"
+                variant="textBase"
+                class="text-base-700 font-medium uppercase"
+              >
+                {stat.label}
+              </Text>
+              <Text
+                tag="p"
+                variant="displayLG"
+                class="text-accent-800 font-display italic font-medium"
+              >
+                {stat.value}
+              </Text>
+            </li>
+          ))
+        }
+      </ul>
     </Wrapper>
   </section>
 </BaseLayout>

@@ -4,7 +4,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Components
-import BlogCard from "@/components/blog/BlogCard.astro";
+import BigBlogCard from "@/components/blog/BigBlogCard.astro";
+import SmallBlogCard from "@/components/blog/SmallBlogCard.astro";
 // Content
 import { getCollection } from "astro:content";
 const allPosts = await getCollection("posts");
@@ -14,18 +15,33 @@ allPosts.sort((a, b) => {
   return dateB - dateA; // Compare timestamps
 });
 ---
-<BaseLayout hideBigLogo={true}>
+
+<BaseLayout>
   <section>
-    <Wrapper variant="standard" class="py-2">
-      <div class="flex items-center justify-between w-full">
-        <Text tag="h1" variant="textBase" class="font-medium text-base-900">
-          Blog
+    <Wrapper variant="standard" class="pb-12 pt-48">
+      <div class="text-center max-w-xl mx-auto">
+        <Text
+          tag="h1"
+          variant="displayXL"
+          class="text-accent-800 font-display text-balance"
+        >
+          Our journal of legal knowledge
+        </Text>
+        <Text
+          tag="p"
+          variant="textBase"
+          class="text-base-600 leading-relaxed border-accent-500 mt-2 lg:text-balance"
+        >
+          Insights, updates, and expert commentary from Carrington Law Firm.
+          Stay informed on legal trends, firm news, and practical advice for
+          clients and professionals.
         </Text>
       </div>
-      <div
-        class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-24 gap-8"
-      >
-        {allPosts.map((post) => <BlogCard post={post} />)}
+      <div class="flex flex-col mt-12 lg:mt-24 gap-8">
+        {allPosts.slice(0, 1).map((post) => <BigBlogCard post={post} />)}
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 mt-8 gap-8">
+        {allPosts.slice(1).map((post) => <SmallBlogCard post={post} />)}
       </div>
     </Wrapper>
   </section>

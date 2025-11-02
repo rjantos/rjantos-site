@@ -1,40 +1,38 @@
 ---
 // Assets
 import { Image } from "astro:assets";
-import heroImage from "@/images/assets/heroImage.png";
+import HeroImage from "@/images/assets/heroImage.png";
+
 // Fundations
 import Text from "@/components/fundations/elements/Text.astro";
-import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+const { inverted = true } = Astro.props;
+const triggerColor = inverted ? "text-white" : "text-base-800";
 const exploreLinks = [
   {
     label: "Practice Areas",
-    desc: "See our legal services",
     href: "/practice-areas",
   },
-  { label: "Cases", desc: "Representative matters and wins", href: "/cases" },
-  { label: "Team", desc: "Meet our attorneys", href: "/team" },
-  { label: "Blog", desc: "Insights and firm updates", href: "/blog" },
-  { label: "Careers", desc: "Join our firm", href: "/careers" },
+  { label: "Cases", href: "/cases" },
+  { label: "Our Attorneys", href: "/team" },
+  { label: "Journal", href: "/blog" },
+  { label: "Careers", href: "/careers" },
   {
     label: "Press & Media",
-    desc: "News and coverage",
     href: "/press-and-media",
   },
-  { label: "Offices", desc: "Locations and contact info", href: "/offices" },
-  { label: "Contact", desc: "Get in touch", href: "/contact" },
+  { label: "Offices", href: "/offices" },
+  { label: "Contact", href: "/contact" },
   {
     label: "Free Consultation",
-    desc: "Schedule a call",
     href: "/free-consultation",
   },
   {
     label: "Press Releases",
-    desc: "Official announcements",
     href: "/press-releases",
   },
-  { label: "Testimonials", desc: "What clients say", href: "/testimonials" },
-  { label: "Newsletter", desc: "Subscribe for updates", href: "/newsletter" },
+  { label: "Testimonials", href: "/testimonials" },
+  { label: "Newsletter", href: "/newsletter" },
 ];
 const posts = [
   {
@@ -55,10 +53,11 @@ const featuredCase = {
   category: "Corporate Law",
 };
 ---
+
 <div class="group" data-mega-wrap>
   <button
     type="button"
-    class="inline-flex items-center gap-1 text-base-200 focus:outline-none"
+    class={`flex text-sm items-center gap-1 ${triggerColor} focus:outline-none`}
     aria-expanded="false"
     aria-controls="mega-desktop"
     data-mega-trigger
@@ -74,203 +73,168 @@ const featuredCase = {
       <path
         d="M6 9l6 6 6-6"
         stroke="currentColor"
-        stroke-width="2"
+        stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"></path>
     </svg>
   </button>
-  <!-- Megamenu Panel -->
   <div
     id="mega-desktop"
     data-mega-panel
     class="absolute inset-x-0 mt-2 top-full w-full z-50 invisible opacity-0 pointer-events-none transition-opacity duration-150 lg:group-hover:visible lg:group-hover:opacity-100 lg:group-hover:pointer-events-auto lg:group-focus-within:visible lg:group-focus-within:opacity-100 lg:group-focus-within:pointer-events-auto"
   >
     <Wrapper>
-      <div class="bg-white overflow-hidden rounded-xl shadow-xl">
-        <div class="grid grid-cols-3 items-start">
-          <!-- CTA: First Column -->
-          <div class="flex flex-col justify-start ">
-            <Image
-              alt="Carrington Law - Professional Legal Services"
-              src={heroImage}
-              aria-hidden="true"
-              loading="eager"
-              decoding="async"
-              fetchpriority="auto"
-              width="1200"
-              height="1200"
-              class="object-cover object-top w-full h-60"
-            />
-            <div class="flex flex-col h-full p-6">
+      <div
+        class="bg-accent-900 overflow-hidden shadow-xl border border-white/5"
+      >
+        <div class="grid grid-cols-4 items-start divide-x divide-white/10">
+          <div class="p-6 h-full">
+            <div class="flex flex-col h-full items-start">
+              <Image
+                src={HeroImage}
+                width={600}
+                height={600}
+                alt="Carrington Law - Professional Legal Services"
+                class="object-cover object-top w-full h-40 rounded-lg"
+                loading="eager"
+                decoding="async"
+              />
               <Text
-                tag="h1"
-                variant="displaySM"
-                class="font-display text-base-900"
+                tag="h2"
+                variant="textXL"
+                class="font-display text-white mt-4"
               >
-                Talk to an attorney
+                About Carrington Law
               </Text>
-              <Text tag="p" variant="textSM" class="text-base-600 mt-2">
-                Schedule a free, no-obligation consultation with our team. Get
-                expert legal advice tailored to your situation.
+              <Text tag="p" variant="textSM" class="text-base-500 mt-2">
+                Carrington Law is dedicated to providing strategic legal counsel
+                and unwavering advocacy for our clients. With decades of
+                experience, our team delivers results-driven solutions for
+                businesses and individuals facing complex legal challenges.
               </Text>
-              <ul class="list-disc pl-3 mt-4 text-base-700 text-xs space-y-1">
-                <li>Confidential case evaluation</li>
-                <li>Direct access to experienced attorneys</li>
-                <li>No fees unless you hire us</li>
-                <li>Quick response, same-day appointments available</li>
-              </ul>
-              <Text tag="p" variant="textXS" class="text-base-500 mt-4">
-                Call us: <a
-                  href="tel:+1234567890"
-                  class="underline text-accent-700">(123) 456-7890</a
+              <div
+                class="w-full mt-4 pt-4 border-t border-white/10 space-y-2 flex flex-col"
+              >
+                <a
+                  href="mailto:carrington@example.com"
+                  class="text-base-300 hover:text-white transition-colors text-xs"
                 >
-              </Text>
-              <Button
-                isLink={true}
-                href="/free-consultation"
-                variant="accent"
-                size="xs"
-                class="w-fit mt-8"
-              >
-                Free Consultation
-              </Button>
+                  carrington@example.com
+                </a>
+                <a
+                  href="tel:+15551234567"
+                  class="text-base-300 hover:text-white transition-colors text-xs"
+                >
+                  (555) 123-4567
+                </a>
+                <a
+                  href="/contact"
+                  class="text-xs text-white hover:text-accent-400 transition-colors"
+                >
+                  Contact us
+                </a>
+              </div>
             </div>
           </div>
-          <!-- Explore: Second Column -->
-          <div class="p-6">
-            <Text
-              tag="h3"
-              variant="textSM"
-              class="font-semibold text-base-200 flex items-center gap-2"
-            >
+          <div class="p-6 h-full">
+            <Text tag="h3" variant="textXS" class="text-secondary-400 gap-2">
               Explore
             </Text>
-            <ul class="space-y-3 mt-2">
+            <ul class="space-y-2 mt-2 pt-2 border-t border-white/10">
               {
-                // Ensure "Our Attorneys" link is present
                 exploreLinks.slice(0, 8).map((explore) => (
-                  <li>
+                  <li class=" group">
                     <a href={explore.href}>
                       <Text
-                        tag="p"
+                        tag="h4"
                         variant="textSM"
-                        class="font-medium text-base-900"
+                        class=" text-base-200 hover:text-secondary-500"
                       >
                         {explore.label}
                       </Text>
-                      {explore.desc && (
-                        <Text
-                          tag="p"
-                          variant="textXS"
-                          class="text-base-600 mt-1"
-                        >
-                          {explore.desc}
-                        </Text>
-                      )}
                     </a>
                   </li>
                 ))
               }
             </ul>
           </div>
-          <!-- Insights & Featured Case: Secondary Section -->
-          <div class="flex flex-col gap-8">
+          <div class="p-6 h-full flex flex-col justify-between">
             <div>
-              <Text
-                tag="h3"
-                variant="textSM"
-                class="font-semibold text-base-200 mb-4 flex items-center gap-2"
-              >
+              <Text tag="h3" variant="textXS" class="text-secondary-400 gap-2">
                 Insights
               </Text>
-              <div class="space-y-4">
+              <ul class="mt-2 pt-2 border-t border-white/10">
                 {
                   posts.map((post) => (
-                    <a
-                      href={`/blog/posts/${post.slug}`}
-                      class="block rounded-lg px-3 py-2 hover:bg-base-50 focus:bg-base-50 focus:outline-none border border-base-100"
-                      aria-label={`Read: ${post.title}`}
-                    >
-                      <Text
-                        tag="p"
-                        variant="textSM"
-                        class="font-medium text-base-200"
+                    <li class="py-2 group">
+                      <a
+                        href={`/blog/posts/${post.slug}`}
+                        aria-label={`Read: ${post.title}`}
                       >
-                        {post.title}
-                      </Text>
-                      {post.description && (
                         <Text
-                          tag="p"
-                          variant="textXS"
-                          class="text-base-200 mt-1"
+                          tag="h4"
+                          variant="textSM"
+                          class="font-medium text-base-200"
                         >
-                          {post.description}
+                          {post.title}
                         </Text>
-                      )}
-                    </a>
+                        {post.description && (
+                          <Text
+                            tag="p"
+                            variant="textXS"
+                            class="text-base-500 mt-1 "
+                          >
+                            {post.description}
+                          </Text>
+                        )}
+                      </a>
+                    </li>
                   ))
                 }
-                <a
-                  href="/blog"
-                  class="text-sm text-accent-600 hover:text-accent-700"
-                >
-                  Explore all insights
-                </a>
-              </div>
+              </ul>
             </div>
+            <a
+              href="/blog"
+              class="text-sm text-white hover:text-accent-400 flex mt-4 pt-4 border-t border-white/10"
+            >
+              Explore all insights
+            </a>
+          </div>
+          <div class="p-6 h-full flex flex-col justify-between">
             <div>
-              <Text
-                tag="h3"
-                variant="textSM"
-                class="font-semibold text-base-200 mb-4 flex items-center gap-2"
-              >
-                <svg
-                  class="size-5 text-accent-600"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  ><path
-                    d="M12 4v16m8-8H4"
-                    stroke="currentColor"
-                    stroke-width="2"></path></svg
-                >
+              <Text tag="h3" variant="textXS" class="text-secondary-400 gap-2">
                 Featured Case
               </Text>
-              {
-                featuredCase && (
+              <ul class="mt-2 pt-2 border-t border-white/10">
+                <li class="py-2 group">
                   <a
                     href={`/cases/${featuredCase.slug}`}
-                    class="block rounded-lg border border-base-100 p-3 hover:bg-base-100 focus:outline-none"
                     aria-label={`View case: ${featuredCase.title}`}
                   >
                     <Text
-                      tag="p"
+                      tag="h4"
                       variant="textSM"
                       class="font-medium text-base-200"
                     >
                       {featuredCase.title}
                     </Text>
-                    {featuredCase.summary && (
-                      <Text tag="p" variant="textXS" class="text-base-200 mt-1">
-                        {featuredCase.summary}
-                      </Text>
-                    )}
-                    {featuredCase.category && (
-                      <Text tag="p" variant="textXS" class="text-base-500 mt-2">
-                        {featuredCase.category}
-                      </Text>
-                    )}
+                    <Text tag="p" variant="textXS" class="text-base-500 mt-1">
+                      {featuredCase.summary}
+                    </Text>
+                    <Text tag="p" variant="textXS" class="text-base-600 mt-1">
+                      {featuredCase.category}
+                    </Text>
                   </a>
-                )
-              }
-              <div class="mt-2">
-                <a
-                  href="/cases"
-                  class="text-sm text-accent-600 hover:text-accent-700"
-                >
-                  View all cases
-                </a>
-              </div>
+                </li>
+              </ul>
             </div>
+
+            <a
+              href="/cases"
+              class="text-sm text-white hover:text-accent-400 flex mt-4 pt-4 border-t border-white/10"
+            >
+              View all cases
+            </a>
           </div>
         </div>
       </div>

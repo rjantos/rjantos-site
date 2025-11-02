@@ -13,16 +13,22 @@ const pageSections = [
           { text: "Home", href: "/" },
           { text: "404", href: "/404" },
           { text: "FAQ", href: "/faq" },
-          { text: "Contact", href: "/contact" },
           { text: "Offices", href: "/offices" },
-          { text: "Newsletter", href: "/newsletter" },
           { text: "Testimonials", href: "/testimonials" },
           { text: "Press and Media", href: "/press-and-media" },
-          { text: "Free Consultation", href: "/free-consultation" },
           {
             text: "Awards and Recognitions",
             href: "/awwards-and-recognitions",
           },
+        ],
+      },
+      {
+        category: " Forms",
+        links: [
+          { text: "Contact", href: "/contact" },
+          { text: "Offices", href: "/offices" },
+          { text: "Newsletter", href: "/newsletter" },
+          { text: "Free Consultation", href: "/free-consultation" },
         ],
       },
       {
@@ -67,7 +73,7 @@ const pageSections = [
         category: "Careers",
         links: [
           { text: "Home", href: "/careers" },
-          { text: "Detail", href: "/careers/associate-attorney-mna" },
+          { text: "Detail", href: "/careers/senior-litigation-associate" },
         ],
       },
       {
@@ -106,10 +112,14 @@ const pageSections = [
 ];
 ---
 
-<BaseLayout hideBigLogo={true}>
+<BaseLayout>
   <section>
-    <Wrapper variant="standard" class="py-2">
-      <Text tag="h2" variant="textBase" class="font-medium text-base-900">
+    <Wrapper variant="standard" class="pb-12 pt-48">
+      <Text
+        tag="h1"
+        variant="displayMD"
+        class="text-accent-800 font-display text-balance"
+      >
         Overview
       </Text>
       <div class="flex flex-col mt-12 gap-12">
@@ -118,18 +128,18 @@ const pageSections = [
             <div>
               <Text
                 tag="h3"
-                variant="textBase"
-                class="font-medium text-base-900"
+                variant="displayXS"
+                class="text-accent-800 font-display text-balance"
               >
                 {section.title}
               </Text>
-              <div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 xl:grid-cols-4">
+              <div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 xl:grid-cols-6">
                 {section.columns.map((column) => (
                   <div>
                     <Text
                       tag="p"
                       variant="textBase"
-                      class="font-medium text-base-900"
+                      class="font-medium text-accent-800"
                     >
                       {column.category}
                     </Text>
@@ -140,7 +150,7 @@ const pageSections = [
                             tag="a"
                             variant="textSM"
                             href={link.href}
-                            class="text-base-500 hover:text-base-900 duration-300"
+                            class="text-base-500 hover:text-accent-800 duration-300"
                           >
                             {link.text}
                           </Text>

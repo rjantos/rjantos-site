@@ -39,11 +39,7 @@ All commands are run from the root of the project, from a terminal:
 Learn more - Explore more through Astro's official [documentation](https://docs.astro.build).
 
 ---
-
-## This update includes:
-
-Added Image component from Astro
-The Astro Image component is coming back to the themes
+## Components
 
 - Reusable components
   This template now includes reusable components, such as the `Text` component:
@@ -96,10 +92,39 @@ Your content goes here
 </Wrapper>
 ```
 
+## Navigation transparency
+
+The main navigation supports an opt-in transparent mode that swaps colors on scroll.
+
+- Default: solid white navigation on all pages.
+- Transparent (opt-in): pass a flag on the page layout.
+
+Enable transparent nav on a page
+
+```astro
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout navTransparent={true}>
+  <!-- page content -->
+</BaseLayout>
+```
+
+Force solid nav (explicit)
+
+```astro
+<BaseLayout navTransparent={false}>
+  <!-- page content -->
+</BaseLayout>
+```
+
+Notes
+- `BaseLayout` forwards the flag to `Navigation`, which handles scroll-based color swapping for the logo, links, and mobile icons.
+- If you render `Navigation` directly (outside the layout), it also supports `<Navigation transparent={true} />`.
+
 ---
 
 ### [Support](https://lexingtonthemes.com/legal/support/)
-
 ### [Documentation](https://lexingtonthemes.com/documentation/)
-
 ### [Get your bundle](https://lexingtonthemes.com)

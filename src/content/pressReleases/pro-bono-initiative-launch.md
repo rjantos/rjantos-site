@@ -1,11 +1,11 @@
 ---
-title: "Carrington Law Launches Pro Bono Initiative for Underserved Communities"
+title: "Carrington law launches pro bono initiative for underserved communities"
 pubDate: 2024-10-20
 category: "Community Impact"
 excerpt: "Carrington Law announces comprehensive pro bono program to provide legal services to underserved communities and promote access to justice."
 ---
 
-# Carrington Law Launches Pro Bono Initiative for Underserved Communities
+
 
 **New York, NY – October 20, 2024** – Carrington Law today announced the launch of its comprehensive pro bono initiative, "Justice for All," aimed at providing legal services to underserved communities and promoting access to justice across the United States.
 

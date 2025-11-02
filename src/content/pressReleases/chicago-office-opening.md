@@ -1,11 +1,11 @@
 ---
-title: "Carrington Law Opens New Chicago Office to Better Serve Midwest Clients"
+title: "Carrington law opens new chicago office to better serve midwest clients"
 pubDate: 2024-09-15
 category: "Business Development"
 excerpt: "Carrington Law announces the opening of its new Chicago office, expanding the firm's presence in the Midwest and enhancing client service capabilities."
 ---
 
-# Carrington Law Opens New Chicago Office to Better Serve Midwest Clients
+
 
 **Chicago, IL – September 15, 2024** – Carrington Law is excited to announce the opening of its new Chicago office, strengthening the firm's presence in the Midwest and providing enhanced legal services to clients throughout the region.
 

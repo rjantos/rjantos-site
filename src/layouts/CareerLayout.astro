@@ -6,158 +6,140 @@ import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 ---
-<BaseLayout hideBigLogo={true}>
+
+<BaseLayout>
   <section>
     <Wrapper variant="standard" class="py-24 lg:pt-48">
-      <div class="max-w-4xl mx-auto">
-        <div class="mb-8">
-          <Text tag="h1" variant="textLG" class="font-medium text-base-900">
-            {frontmatter.title}
-          </Text>
-          <div class="flex flex-wrap items-center gap-4 mt-4">
-            <Text tag="span" variant="textSM" class="text-base-600">
-              {frontmatter.location}
-            </Text>
-            <Text tag="span" variant="textSM" class="text-base-600">
-              {frontmatter.type}
-            </Text>
-            <span
-              class="text-base-600 bg-green-100 text-green-800 px-2 py-1 rounded text-sm"
+      <div class="grid lg:grid-cols-3 gap-12">
+        <div>
+          <div class="lg:sticky lg:top-48">
+            <Text
+              tag="p"
+              variant="textXS"
+              class="text-secondary-500 uppercase font-medium"
             >
-              {frontmatter.remote}
-            </span>
-            <Text tag="span" variant="textSM" class="text-base-600">
-              {frontmatter.salary}
+              Posted on {
+                new Date(frontmatter.postedDate).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })
+              }
             </Text>
-          </div>
-          <Text tag="p" variant="textSM" class="mt-2 text-base-500">
-            Posted on {
-              new Date(frontmatter.postedDate).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })
-            }
-          </Text>
-        </div>
-        <div class="grid lg:grid-cols-3 gap-12">
-          <div class="lg:col-span-2">
-            <div class="mb-8">
-              <Text
-                tag="h2"
-                variant="textBase"
-                class="font-medium text-base-900 mb-4"
-              >
-                Job Description
-              </Text>
-              <Wrapper variant="prose">
-                <p>{frontmatter.description}</p>
-              </Wrapper>
+            <Text
+              tag="h1"
+              variant="displaySM"
+              class="text-accent-800 font-display text-balance mt-12"
+            >
+              {frontmatter.title}
+            </Text>
+            <div class="space-y-2 text-xs text-base-600 mt-4">
+              <span class="block flex items-center justify-between">
+                <span>Location:</span>
+                <span>{frontmatter.location}</span>
+              </span>
+
+              <span class="block flex items-center justify-between">
+                <span>Employment:</span>
+                <span>{frontmatter.type}</span>
+              </span>
+
+              <span class="block flex items-center justify-between">
+                <span>Work setup:</span>
+                <span>{frontmatter.workSetup}</span>
+              </span>
+
+              <span class="block flex items-center justify-between capitalize">
+                <span>Compensation:</span>
+                <span>{frontmatter.salary}</span>
+              </span>
             </div>
-            {
-              frontmatter.responsibilities &&
-                frontmatter.responsibilities.length > 0 && (
-                  <div class="mb-8">
-                    <Text
-                      tag="h2"
-                      variant="textBase"
-                      class="font-medium text-base-900 mb-4"
-                    >
-                      Responsibilities
-                    </Text>
-                    <ul class="list-disc list-inside space-y-2 text-base-700">
-                      {frontmatter.responsibilities.map((item) => (
-                        <li>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )
-            }
-            {
-              frontmatter.requirements &&
-                frontmatter.requirements.length > 0 && (
-                  <div class="mb-8">
-                    <Text
-                      tag="h2"
-                      variant="textBase"
-                      class="font-medium text-base-900 mb-4"
-                    >
-                      Requirements
-                    </Text>
-                    <ul class="list-disc list-inside space-y-2 text-base-700">
-                      {frontmatter.requirements.map((item) => (
-                        <li>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )
-            }
-            {
-              frontmatter.benefits && frontmatter.benefits.length > 0 && (
-                <div class="mb-8">
-                  <Text
-                    tag="h2"
-                    variant="textBase"
-                    class="font-medium text-base-900 mb-4"
-                  >
-                    Benefits
-                  </Text>
-                  <ul class="list-disc list-inside space-y-2 text-base-700">
-                    {frontmatter.benefits.map((item) => (
-                      <li>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              )
-            }
-            <slot />
-          </div>
-          <div class="lg:col-span-1">
-            <div class="bg-base-50 p-6 rounded-lg">
+
+            <div class="mt-12">
               <Text
                 tag="h3"
-                variant="textBase"
-                class="font-medium text-base-900 mb-4"
+                variant="textSM"
+                class="font-medium text-accent-800"
               >
                 Apply for this position
               </Text>
-              <div class="space-y-3">
+              <div
+                class="mt-4 pt-4 border-t border-base-100 flex flex-wrap gap-2"
+              >
                 <Button
-                  variant="primary"
+                  size="xs"
+                  variant="default"
                   href={frontmatter.applyUrl}
                   target="_blank"
-                  class="w-full"
+                  class="w-full lg:w-fit"
                 >
                   Apply Online
                 </Button>
                 <Button
-                  variant="secondary"
+                  size="xs"
+                  variant="muted"
                   href={`mailto:${frontmatter.applyEmail}?subject=Application for ${frontmatter.title}`}
-                  class="w-full"
+                  class="w-full lg:w-fit"
                 >
                   Apply via Email
                 </Button>
               </div>
-              <div class="mt-6">
-                <Text
-                  tag="h4"
-                  variant="textSM"
-                  class="font-medium text-base-900 mb-2"
-                >
-                  Tags
-                </Text>
-                <div class="flex flex-wrap gap-2">
-                  {
-                    frontmatter.tags.map((tag) => (
-                      <span class="bg-base-200 text-base-700 px-2 py-1 rounded text-xs">
-                        {tag}
-                      </span>
-                    ))
-                  }
-                </div>
-              </div>
             </div>
           </div>
+        </div>
+        <div class="lg:col-span-2">
+          <div>
+            <Text
+              tag="h2"
+              variant="displaySM"
+              class="text-accent-800 font-display"
+            >
+              Job Description
+            </Text>
+            <Text tag="p" variant="textSM" class="text-base-700 mt-1"
+              >{frontmatter.description}</Text
+            >
+          </div>
+          <div class="space-y-8 mt-8">
+            <div>
+              <Text
+                tag="h2"
+                variant="textBase"
+                class="font-medium text-accent-800"
+              >
+                Responsibilities
+              </Text>
+              <ul class="list-disc list-inside space-y-2 text-base-700 mt-4">
+                {frontmatter.responsibilities.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+            <div>
+              <Text
+                tag="h2"
+                variant="textBase"
+                class="font-medium text-accent-800"
+              >
+                Requirements
+              </Text>
+              <ul class="list-disc list-inside space-y-2 text-base-700 mt-4">
+                {frontmatter.requirements.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+            <div>
+              <Text
+                tag="h2"
+                variant="textBase"
+                class="font-medium text-accent-800"
+              >
+                Benefits
+              </Text>
+              <ul class="list-disc list-inside space-y-2 text-base-700 mt-4">
+                {frontmatter.benefits.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          </div>
+
+          <Wrapper variant="prose" class="mt-12"> <slot /></Wrapper>
         </div>
       </div>
     </Wrapper>

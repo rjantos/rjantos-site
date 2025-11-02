@@ -1,11 +1,11 @@
 ---
-title: "Carrington Law Recognized as Top Litigation Firm by Legal 500"
+title: "Carrington law recognized as top litigation firm by legal 500"
 pubDate: 2024-11-28
 category: "Awards & Recognition"
 excerpt: "Carrington Law receives prestigious recognition from Legal 500 for excellence in litigation practice and client service."
 ---
 
-# Carrington Law Recognized as Top Litigation Firm by Legal 500
+
 
 **New York, NY – November 28, 2024** – Carrington Law has been named a top litigation firm in the 2024 Legal 500 rankings, highlighting the firm's exceptional performance in complex litigation matters and commitment to client success.
 

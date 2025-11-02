@@ -1,13 +1,20 @@
 ---
+// Assets
+import { Image } from "astro:assets";
+import DavidKim from "@/images/team/david-kim.jpg";
+import EmilyJohnson from "@/images/team/emily-johnson.jpg";
+import JonSullivan from "@/images/team/jon-sullivan.jpg";
+import LisaThompson from "@/images/team/lisa-thompson.jpg";
+// Components
+import LogoCloud2 from "@/components/testimonials/LogoCloud2.astro";
 // Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-
 const awards = [
   {
-    title: "Best Law Firm of the Year",
+    title: "Best law firm of the year",
     organization: "Legal Excellence Awards",
     year: "2024",
     category: "Corporate Law",
@@ -15,7 +22,7 @@ const awards = [
       "Recognized for outstanding corporate legal services and client satisfaction.",
   },
   {
-    title: "Top 100 Law Firms",
+    title: "Top 100 law firms",
     organization: "National Law Journal",
     year: "2023-2024",
     category: "National Ranking",
@@ -23,7 +30,7 @@ const awards = [
       "Ranked among the top 100 law firms in the United States for comprehensive legal services.",
   },
   {
-    title: "Excellence in Litigation",
+    title: "Excellence in litigation",
     organization: "American Bar Association",
     year: "2024",
     category: "Litigation",
@@ -31,7 +38,7 @@ const awards = [
       "Awarded for exceptional litigation strategies and courtroom success.",
   },
   {
-    title: "Client Choice Award",
+    title: "Client choice award",
     organization: "Client Satisfaction Institute",
     year: "2023",
     category: "Client Service",
@@ -39,42 +46,36 @@ const awards = [
       "Recognized for superior client service and communication throughout legal matters.",
   },
 ];
-
 const recognitions = [
   {
-    title: "AV Preeminent Rating",
-    organization: "Martindale-Hubbell",
-    description: "Highest rating for legal ability and ethical standards",
-    attorneys: "All Partners",
-  },
-  {
-    title: "Super Lawyers",
-    organization: "Super Lawyers Magazine",
-    description: "Selected as Super Lawyers in multiple practice areas",
-    attorneys: "12 Attorneys",
-  },
-  {
-    title: "Best Lawyers in America",
-    organization: "Best Lawyers",
-    description: "Listed in Best Lawyers in America directory",
-    attorneys: "8 Attorneys",
-  },
-  {
-    title: "Top Rated Lawyers",
-    organization: "American Lawyer Media",
+    title: "Outstanding Leadership",
+    organization: "Carrington Law Team",
     description:
-      "Recognized for professional excellence and client satisfaction",
-    attorneys: "15 Attorneys",
+      "Recognized for exceptional leadership and dedication to clients.",
+    attorneys: "David Kim",
+    image: DavidKim,
   },
-];
-
-const memberships = [
-  "American Bar Association",
-  "New York State Bar Association",
-  "California State Bar Association",
-  "American Corporate Counsel Association",
-  "Defense Research Institute",
-  "International Bar Association",
+  {
+    title: "Client Service Excellence",
+    organization: "Carrington Law Team",
+    description: "Honored for going above and beyond in client service.",
+    attorneys: "Emily Johnson",
+    image: EmilyJohnson,
+  },
+  {
+    title: "Innovative Legal Solutions",
+    organization: "Carrington Law Team",
+    description: "Awarded for creative and effective legal strategies.",
+    attorneys: "Jon Sullivan",
+    image: JonSullivan,
+  },
+  {
+    title: "Excellence in Advocacy",
+    organization: "Carrington Law Team",
+    description: "Recognized for outstanding advocacy in complex cases.",
+    attorneys: "Lisa Thompson",
+    image: LisaThompson,
+  },
 ];
 
 const rankings = [
@@ -83,31 +84,116 @@ const rankings = [
     ranking: "Band 1",
     category: "Corporate/M&A",
     location: "New York",
+    year: "2024",
+    notes: "Highest band for transactional work.",
+  },
+  {
+    publication: "Global Law Experts",
+    ranking: "Recommended",
+    category: "International Arbitration",
+    location: "Global",
+    year: "2025",
+    notes: "Recognized for expertise in cross-border disputes.",
+  },
+  {
+    publication: "Who's Who Legal",
+    ranking: "Leading Firm",
+    category: "Corporate Governance",
+    location: "United States",
+    year: "2024",
+    notes: "Praised for governance and compliance work.",
+  },
+  {
+    publication: "Lawdragon 500",
+    ranking: "Top 500",
+    category: "Litigation & Corporate",
+    location: "National",
+    year: "2025",
+    notes: "Included among the nation's top lawyers.",
+  },
+  {
+    publication: "The American Lawyer",
+    ranking: "Top 20",
+    category: "Pro Bono",
+    location: "East Coast",
+    year: "2024",
+    notes: "Recognized for outstanding pro bono service.",
+  },
+  {
+    publication: "Financial Times Innovative Lawyers",
+    ranking: "Highly Commended",
+    category: "Innovation in Legal Services",
+    location: "Global",
+    year: "2025",
+    notes: "Awarded for innovative approaches to client solutions.",
+  },
+  {
+    publication: "National Law Journal",
+    ranking: "Elite Trial Lawyers",
+    category: "Litigation",
+    location: "United States",
+    year: "2024",
+    notes: "Honored for trial excellence and results.",
   },
   {
     publication: "Legal 500",
     ranking: "Tier 1",
     category: "Corporate Law",
     location: "United States",
+    year: "2023-2024",
+    notes: "Consistently ranked for excellence.",
   },
   {
     publication: "U.S. News & World Report",
     ranking: "Top Tier",
     category: "Business Law",
     location: "National",
+    year: "2024",
+    notes: "Recognized for client satisfaction.",
+  },
+  {
+    publication: "Benchmark Litigation",
+    ranking: "Recommended Firm",
+    category: "Litigation",
+    location: "East Coast",
+    year: "2023",
+    notes: "Noted for complex litigation wins.",
+  },
+  {
+    publication: "IFLR1000",
+    ranking: "Leading Firm",
+    category: "Financial & Corporate",
+    location: "Global",
+    year: "2024",
+    notes: "Praised for cross-border deals.",
+  },
+  {
+    publication: "Best Lawyers",
+    ranking: "Top Listed",
+    category: "Employment Law",
+    location: "California",
+    year: "2023",
+    notes: "Multiple attorneys recognized.",
+  },
+  {
+    publication: "Super Lawyers",
+    ranking: "Top 100",
+    category: "General Practice",
+    location: "New York",
+    year: "2024",
+    notes: "Selected for outstanding service.",
   },
 ];
 ---
 
 <BaseLayout>
   <section>
-    <Wrapper variant="standard">
-      <!-- Hero Section -->
-      <div class="text-center mb-16">
+    <Wrapper variant="standard" class="pb-12 pt-48">
+      <div class="max-w-xl">
         <Text
           tag="h1"
-          variant="textLG"
-          class="order-last font-serif uppercase lg:order-none col-span-full lg:col-span-2 text-base-900 mb-6"
+          variant="displayLG"
+          class="text-accent-800 font-display text-balance"
         >
           Awards and Recognitions
         </Text>
@@ -122,200 +208,291 @@ const rankings = [
           dedication to providing outstanding legal representation.
         </Text>
       </div>
-
-      <!-- Awards Section -->
-      <div class="mb-16">
+    </Wrapper>
+    <Wrapper variant="standard" class="py-12 lg:py-24">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-start gap-y-8 gap-x-4"
+      >
         <Text
-          tag="h2"
-          variant="textBase"
-          class="font-semibold text-base-900 text-center mb-12"
+          tag="p"
+          variant="textXS"
+          class="text-secondary-500 tracking-wide uppercase"
         >
-          Major Awards
+          Our Most Prestigious Honors
         </Text>
+        <div class="lg:col-span-3">
+          <Text
+            tag="h2"
+            variant="displayLG"
+            class="text-accent-800 font-display text-balance"
+          >
+            Major Awards
+          </Text>
+          <Text tag="p" variant="textLG" class="text-base-600 mt-4">
+            Our firm has been honored with distinguished awards from leading
+            legal organizations, recognizing our commitment to excellence,
+            innovation, and client service in the legal profession.
+          </Text>
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:col-span-2 mt-12 lg:mt-24"
+      >
+        {
+          awards.map((award) => (
+            <div class="bg-base-50  p-8 flex flex-col">
+              <Text tag="p" variant="textXS" class="text-secondary-500 ">
+                {award.organization}•{award.year}•{award.category}
+              </Text>
+              <Text
+                tag="h3"
+                variant="displaySM"
+                class="text-accent-800 font-display mt-12 lg:mt-48"
+              >
+                {award.title}
+              </Text>
+              <Text
+                tag="p"
+                variant="textSM"
+                class="text-base-500 font-medium mt-2 lg:text-balance"
+              >
+                {award.description}
+              </Text>
+            </div>
+          ))
+        }
+      </div>
+    </Wrapper>
+    <Wrapper variant="standard" class="py-12 lg:py-24">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-start gap-y-8 gap-x-4"
+      >
+        <Text
+          tag="p"
+          variant="textXS"
+          class="text-secondary-500 tracking-wide uppercase"
+        >
+          Trusted by leading publications
+        </Text>
+        <div class="lg:col-span-3">
+          <Text
+            tag="h2"
+            variant="displayLG"
+            class="text-accent-800 font-display text-balance"
+          >
+            Professional Rankings
+          </Text>
+          <Text tag="p" variant="textLG" class="text-base-600 mt-4">
+            Our firm is consistently recognized by top legal publications and
+            industry analysts for excellence, leadership, and client results
+            across multiple practice areas and regions.
+          </Text>
+        </div>
+      </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {
-            awards.map((award) => (
-              <div class="bg-base-50 border border-base-200 rounded-lg p-6 hover:shadow-md transition-shadow">
-                <div class="flex items-start justify-between mb-4">
-                  <div>
-                    <Text
-                      tag="h3"
-                      variant="textSm"
-                      class="font-semibold text-base-900 mb-1"
-                    >
-                      {award.title}
-                    </Text>
-                    <Text
-                      tag="p"
-                      variant="textXs"
-                      class="text-accent-600 font-medium"
-                    >
-                      {award.organization} • {award.year}
-                    </Text>
-                  </div>
-                  <div class="bg-accent-100 text-accent-800 px-3 py-1 rounded-full text-xs font-medium">
-                    {award.category}
-                  </div>
-                </div>
-                <Text tag="p" variant="textXs" class="text-base-700">
-                  {award.description}
+      <div class="overflow-x-auto mt-12 lg:mt-24 scrollbar-hide">
+        <table class="w-full">
+          <thead class="bg-base-50">
+            <tr>
+              <th
+                class="px-4 py-3 text-left text-xs font-medium text-accent-800 uppercase tracking-wider"
+                >Publication</th
+              >
+              <th
+                class="px-4 py-3 text-left text-xs font-medium text-accent-800 uppercase tracking-wider"
+                >Ranking</th
+              >
+              <th
+                class="px-4 py-3 text-left text-xs font-medium text-accent-800 uppercase tracking-wider"
+                >Category</th
+              >
+              <th
+                class="px-4 py-3 text-left text-xs font-medium text-accent-800 uppercase tracking-wider"
+                >Location</th
+              >
+              <th
+                class="px-4 py-3 text-left text-xs font-medium text-accent-800 uppercase tracking-wider"
+                >Year</th
+              >
+              <th
+                class="px-4 py-3 text-left text-xs font-medium text-accent-800 uppercase tracking-wider"
+                >Notes</th
+              >
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            {
+              rankings.map((ranking, index) => (
+                <tr class={index % 2 === 0 ? "bg-white" : "bg-base-50"}>
+                  <td class="px-4 py-4 lg:py-8 whitespace-nowrap text-sm font-medium text-accent-800">
+                    {ranking.publication}
+                  </td>
+                  <td class="px-4 py-4 lg:py-8 whitespace-nowrap text-xs">
+                    <span class=" text-secondary-500  text-xs font-medium uppercase">
+                      {ranking.ranking}
+                    </span>
+                  </td>
+                  <td class="px-4 py-4 lg:py-8 whitespace-nowrap text-sm text-base-600">
+                    {ranking.category}
+                  </td>
+                  <td class="px-4 py-4 lg:py-8 whitespace-nowrap text-sm text-base-600">
+                    {ranking.location}
+                  </td>
+                  <td class="px-4 py-4 lg:py-8 whitespace-nowrap text-sm text-base-600">
+                    {ranking.year}
+                  </td>
+                  <td class="px-4 py-4 lg:py-8 whitespace-nowrap text-sm text-base-600 truncate">
+                    {ranking.notes}
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </Wrapper>
+    <Wrapper variant="standard" class="py-12 lg:py-24">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-start gap-y-8 gap-x-4"
+      >
+        <Text
+          tag="p"
+          variant="textXS"
+          class="text-secondary-500 tracking-wide uppercase"
+        >
+          Honoring Excellence in Legal Practice
+        </Text>
+        <div class="lg:col-span-3">
+          <Text
+            tag="h2"
+            variant="displayLG"
+            class="text-accent-800 font-display text-balance"
+          >
+            Attorney Recognitions
+          </Text>
+          <Text tag="p" variant="textLG" class="text-base-600 mt-4">
+            Our attorneys are regularly recognized for their outstanding
+            achievements, leadership, and dedication to client success across a
+            wide range of practice areas.
+          </Text>
+        </div>
+      </div>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:col-span-2 mt-12 lg:mt-24"
+      >
+        {
+          recognitions.map((recognition) => (
+            <div class="grid gird-cols-1 lg:grid-cols-2">
+              {recognition.image && (
+                <Image
+                  src={recognition.image}
+                  alt={recognition.attorneys}
+                  class="h-full object-cover "
+                  loading="lazy"
+                />
+              )}
+              <div class="p-8 bg-base-50">
+                <Text
+                  tag="p"
+                  variant="textXS"
+                  class="text-secondary-500 flex items-center gap-2 "
+                >
+                  {recognition.organization}
+                  <span aria-hidden="true">•</span>
+                  {recognition.attorneys}
                 </Text>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-
-      <!-- Rankings Section -->
-      <div class="mb-16">
-        <Text
-          tag="h2"
-          variant="textBase"
-          class="font-semibold text-base-900 text-center mb-12"
-        >
-          Professional Rankings
-        </Text>
-
-        <div class="overflow-x-auto">
-          <table class="w-full border border-base-200 rounded-lg">
-            <thead class="bg-base-50">
-              <tr>
-                <th
-                  class="px-6 py-3 text-left text-xs font-medium text-base-900 uppercase tracking-wider"
-                >
-                  Publication
-                </th>
-                <th
-                  class="px-6 py-3 text-left text-xs font-medium text-base-900 uppercase tracking-wider"
-                >
-                  Ranking
-                </th>
-                <th
-                  class="px-6 py-3 text-left text-xs font-medium text-base-900 uppercase tracking-wider"
-                >
-                  Category
-                </th>
-                <th
-                  class="px-6 py-3 text-left text-xs font-medium text-base-900 uppercase tracking-wider"
-                >
-                  Location
-                </th>
-              </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-base-200">
-              {
-                rankings.map((ranking, index) => (
-                  <tr class={index % 2 === 0 ? "bg-white" : "bg-base-50"}>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-base-900">
-                      {ranking.publication}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-base-700">
-                      <span class="bg-accent-100 text-accent-800 px-2 py-1 rounded text-xs font-medium">
-                        {ranking.ranking}
-                      </span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-base-700">
-                      {ranking.category}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-base-700">
-                      {ranking.location}
-                    </td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Recognitions Section -->
-      <div class="mb-16">
-        <Text
-          tag="h2"
-          variant="textBase"
-          class="font-semibold text-base-900 text-center mb-12"
-        >
-          Attorney Recognitions
-        </Text>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {
-            recognitions.map((recognition) => (
-              <div class="border border-base-200 rounded-lg p-6 text-center hover:shadow-md transition-shadow">
                 <Text
                   tag="h3"
-                  variant="textSm"
-                  class="font-semibold text-base-900 mb-2"
+                  variant="displaySM"
+                  class="text-accent-800 font-display mt-12 lg:mt-48 "
                 >
                   {recognition.title}
                 </Text>
                 <Text
                   tag="p"
-                  variant="textXs"
-                  class="text-accent-600 font-medium mb-3"
+                  variant="textSM"
+                  class="text-base-500 font-medium mt-2 lg:text-balance "
                 >
-                  {recognition.organization}
-                </Text>
-                <Text tag="p" variant="textXs" class="text-base-700 mb-3">
                   {recognition.description}
                 </Text>
-                <div class="bg-base-100 px-3 py-2 rounded text-xs text-base-800 font-medium">
-                  {recognition.attorneys}
-                </div>
               </div>
-            ))
-          }
-        </div>
+            </div>
+          ))
+        }
       </div>
-
-      <!-- Memberships Section -->
-      <div class="mb-16">
-        <Text
-          tag="h2"
-          variant="textBase"
-          class="font-semibold text-base-900 text-center mb-8"
-        >
-          Professional Memberships
-        </Text>
-
-        <div class="flex flex-wrap justify-center gap-4">
-          {
-            memberships.map((membership) => (
-              <div class="bg-accent-50 text-accent-800 px-4 py-2 rounded-lg text-sm font-medium border border-accent-200">
-                {membership}
-              </div>
-            ))
-          }
-        </div>
-      </div>
-
-      <!-- Call to Action -->
-      <div class="text-center bg-base-900 text-white rounded-lg p-8">
-        <Text tag="h2" variant="textBase" class="font-semibold mb-4">
-          Experience Excellence
-        </Text>
+    </Wrapper>
+    <Wrapper variant="standard" class="py-12 lg:py-24">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-start gap-y-8 gap-x-4"
+      >
         <Text
           tag="p"
-          variant="textSm"
-          class="mb-6 opacity-90 max-w-2xl mx-auto"
+          variant="textXS"
+          class="text-secondary-500 tracking-wide uppercase"
         >
-          Our awards and recognitions reflect our commitment to providing
-          exceptional legal services. Contact us today to experience the
-          Carrington Law difference.
+          Connected to the Legal Community
         </Text>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button isLink={true} href="/contact" variant="accent" size="base">
-            Contact Us
-          </Button>
-          <Button
-            isLink={true}
-            href="/free-consultation"
-            variant="muted"
-            size="base"
+        <div class="lg:col-span-3">
+          <Text
+            tag="h2"
+            variant="displayLG"
+            class="text-accent-800 font-display text-balance"
           >
-            Free Consultation
-          </Button>
+            Professional Memberships
+          </Text>
+          <Text tag="p" variant="textLG" class="text-base-600 mt-4">
+            Our attorneys are active members of leading professional
+            organizations, reflecting our commitment to ongoing education,
+            collaboration, and the highest standards of legal practice.
+          </Text>
+        </div>
+      </div>
+      <LogoCloud2 />
+      <div class="bg-base-50 p-8 lg:p-12 mt-12">
+        <div
+          class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6"
+        >
+          <div>
+            <Text
+              tag="h3"
+              variant="displaySM"
+              class="text-accent-800 font-display"
+            >
+              Experience Excellence
+            </Text>
+            <Text
+              tag="p"
+              variant="textSM"
+              class="text-base-600 mt-1 text-balance"
+            >
+              Our awards and recognitions reflect our commitment to providing
+              exceptional legal services. Contact us today to experience the
+              Carrington Law difference.
+            </Text>
+          </div>
+          <div
+            class="flex flex-col lg:flex-row w-full lg:w-fit items-center gap-2 shrink-0"
+          >
+            <Button
+              isLink={true}
+              href="/contact"
+              variant="default"
+              size="sm"
+              class="w-full lg:w-fit"
+            >
+              Contact Us
+            </Button>
+            <Button
+              isLink={true}
+              variant="muted"
+              size="sm"
+              href="/free-consultation"
+              class="w-full lg:w-fit"
+            >
+              Free Consultation
+            </Button>
+          </div>
         </div>
       </div>
     </Wrapper>

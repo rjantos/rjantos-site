@@ -1,71 +1,27 @@
 ---
-// Assets
-import { Image } from "astro:assets";
-import DavidKim from "@/images/team/david-kim.jpg";
+
 // Fundations
 import Text from "@/components/fundations/elements/Text.astro";
-
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 ---
 
 <section>
   <Wrapper variant="paddingLess">
     <div class="relative overflow-hidden">
+     
       <video
         autoplay
         muted
         loop
         playsinline
-        class="object-cover object-center w-full h-[65dvh] lg:h-[72dvh]  bg-base-50"
+        class="object-cover object-center w-full h-[60dvh] lg:h-[72dvh] bg-base-50"
       >
-        <source src="/bgvideo.mp4" type="video/mp4" />
+        <source src="/bgvideo2.mp4" type="video/mp4" />
       </video>
       <div
         aria-hidden="true"
-        class="absolute inset-0 pointer-events-none bg-base-950/50"
+        class="absolute inset-0 pointer-events-none bg-accent-950/70"
       >
-      </div>
-      <!-- Contact Info Overlay -->
-      <div
-        class="absolute hidden lg:grid lg:grid-cols-3 bottom-4 right-24 flex flex-col items-end z-10 w-full"
-      >
-        <a href="/contact" class="grid grid-cols-3  w-full col-start-3">
-          <div class="shadow-xl">
-            <Image
-              src={DavidKim}
-              width={500}
-              height={500}
-              loading="eager"
-              decoding="async"
-              alt="David Kim portrait"
-              class="h-full object-cover r object-top"
-            />
-          </div>
-          <div
-            class="shadow-lg flex flex-col h-full justify-between backdrop-blur-md p-4 bg-base-50 col-span-2"
-          >
-            <div>
-              <Text
-                tag="p"
-                variant="textBase"
-                class="text-base-900 font-medium"
-              >
-                David Kim
-              </Text>
-              <Text tag="h4" variant="textSM" class="text-base-500 mt-1">
-                Senior Paralegal
-              </Text>
-              <Text tag="p" variant="textXS" class="text-base-500"
-                >at Carrington Law</Text
-              >
-            </div>
-            <div
-              class="flex items-center mt-8 text-base-900 text-sm justify-between w-full"
-            >
-              Let's talk <span>&rarr;</span>
-            </div>
-          </div>
-        </a>
       </div>
     </div>
   </Wrapper>
@@ -74,13 +30,13 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
       <Text
         tag="h1"
         variant="displayXL"
-        class="text-base-900 font-display text-balance lg:col-span-2"
+        class="text-accent-800 font-display text-balance lg:col-span-2"
       >
         Experienced legal counsel you can trust.
       </Text>
       <Text
         tag="p"
-        variant="textSBase"
+        variant="textSM"
         class="text-base-600 leading-relaxed border-accent-500"
       >
         For over two decades, Carrington Law has been the trusted partner for

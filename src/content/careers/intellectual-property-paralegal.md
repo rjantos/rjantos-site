@@ -1,10 +1,9 @@
 ---
 title: Intellectual Property Paralegal
-
-location: Chicago, IL
+location: Remote / Los Angeles, CA
 type: Full-time
 remote: Hybrid
-postedDate: 2025-09-25
+postedDate: 2025-10-05
 salary: $65,000 - $75,000
 description: Support IP attorneys with patent, trademark, and copyright matters.
 responsibilities:
@@ -31,6 +30,28 @@ tags:
   - Paralegal
   - Administrative
 ---
+
+# Intellectual Property Paralegal
+
+Support Carrington Law’s IP practice by assisting attorneys with patent, trademark, and copyright matters. You’ll play a key role in protecting client innovations and brands.
+
+## Responsibilities
+
+- Prepare and file IP applications and documents
+- Conduct research on patents, trademarks, and copyrights
+- Manage deadlines and maintain case files
+- Communicate with clients and government agencies
+
+## Qualifications
+
+- Bachelor’s degree or paralegal certificate
+- 2+ years of IP law experience preferred
+- Detail-oriented with strong organizational skills
+- Excellent written and verbal communication
+
+## Benefits
+
+Flexible work arrangements, ongoing training, and a supportive team. Grow your career in intellectual property with Carrington Law.
 
 ## IP Practice Support
 

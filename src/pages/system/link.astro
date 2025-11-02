@@ -9,29 +9,27 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Plus from "@/components/fundations/icons/Plus.astro";
 ---
 
-<BaseLayout hideBigLogo={true}>
+<BaseLayout>
   <section>
-    <Wrapper variant="standard" class="py-2">
-      <Text tag="h2" variant="textBase" class="font-medium text-base-900">
+    <Wrapper variant="standard" class="py-12 py-48">
+      <Text
+        tag="h1"
+        variant="displayMD"
+        class="text-accent-800 font-display text-balance"
+      >
         All links variants
       </Text>
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 text-base-400 mt-8"
-      >
-        <!-- Default -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 mt-12 lg:mt-24 gap-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <Text
               tag="p"
               variant="textXS"
-              class="font-medium uppercase text-base-900"
+              class="font-medium uppercase text-accent-800"
             >
               Default text
             </Text>
             <div class="flex flex-col mt-2 gap-4">
-              <Button isLink={true} href="#_" size="xxs" variant="default"
-                >Default XXS</Button
-              >
               <Button isLink={true} href="#_" size="xs" variant="default"
                 >Default XS</Button
               >
@@ -56,18 +54,11 @@ import Plus from "@/components/fundations/icons/Plus.astro";
             <Text
               tag="p"
               variant="textXS"
-              class="font-medium uppercase text-base-900"
+              class="font-medium uppercase text-accent-800"
             >
               Icon
             </Text>
             <div class="flex flex-col mt-2 gap-4">
-              <Button
-                isLink={true}
-                href="#_"
-                size="xxs"
-                variant="default"
-                iconOnly><Plus slot="icon" size="sm" /></Button
-              >
               <Button
                 isLink={true}
                 href="#_"
@@ -113,20 +104,17 @@ import Plus from "@/components/fundations/icons/Plus.astro";
             </div>
           </div>
         </div>
-        <!-- Accent -->
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <Text
               tag="p"
               variant="textXS"
-              class="font-medium uppercase text-base-900"
+              class="font-medium uppercase text-accent-800"
             >
               Accent text
             </Text>
             <div class="flex flex-col mt-2 gap-4">
-              <Button isLink={true} href="#_" size="xxs" variant="accent"
-                >Accent XXS</Button
-              >
               <Button isLink={true} href="#_" size="xs" variant="accent"
                 >Accent XS</Button
               >
@@ -151,18 +139,11 @@ import Plus from "@/components/fundations/icons/Plus.astro";
             <Text
               tag="p"
               variant="textXS"
-              class="font-medium uppercase text-base-900"
+              class="font-medium uppercase text-accent-800"
             >
               Icon
             </Text>
             <div class="flex flex-col mt-2 gap-4">
-              <Button
-                isLink={true}
-                href="#_"
-                size="xxs"
-                variant="accent"
-                iconOnly><Plus slot="icon" size="sm" /></Button
-              >
               <Button
                 isLink={true}
                 href="#_"
@@ -208,20 +189,17 @@ import Plus from "@/components/fundations/icons/Plus.astro";
             </div>
           </div>
         </div>
-        <!-- Muted -->
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <Text
               tag="p"
               variant="textXS"
-              class="font-medium uppercase text-base-900"
+              class="font-medium uppercase text-accent-800"
             >
               Muted text
             </Text>
             <div class="flex flex-col mt-2 gap-4">
-              <Button isLink={true} href="#_" size="xxs" variant="muted"
-                >Muted XXS</Button
-              >
               <Button isLink={true} href="#_" size="xs" variant="muted"
                 >Muted XS</Button
               >
@@ -246,18 +224,11 @@ import Plus from "@/components/fundations/icons/Plus.astro";
             <Text
               tag="p"
               variant="textXS"
-              class="font-medium uppercase text-base-900"
+              class="font-medium uppercase text-accent-800"
             >
               Icon
             </Text>
             <div class="flex flex-col mt-2 gap-4">
-              <Button
-                isLink={true}
-                href="#_"
-                size="xxs"
-                variant="muted"
-                iconOnly><Plus slot="icon" size="sm" /></Button
-              >
               <Button isLink={true} href="#_" size="xs" variant="muted" iconOnly
                 ><Plus slot="icon" size="sm" /></Button
               >

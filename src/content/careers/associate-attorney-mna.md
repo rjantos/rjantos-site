@@ -21,3 +21,26 @@ tags:
   - M&A
   - Mid-level
 ---
+
+
+# Associate Attorney – Mergers & Acquisitions
+
+Join Carrington Law as an Associate Attorney specializing in M&A. You’ll work with a dynamic team on high-profile transactions, providing strategic legal counsel to clients in diverse industries.
+
+## Responsibilities
+
+- Draft, review, and negotiate contracts and transaction documents
+- Conduct due diligence and risk analysis
+- Advise clients on deal structure and regulatory compliance
+- Collaborate with senior attorneys and clients throughout the transaction lifecycle
+
+## Qualifications
+
+- Juris Doctor (JD) degree and bar admission
+- 2+ years of experience in M&A or corporate law
+- Strong analytical, communication, and negotiation skills
+- Ability to manage multiple projects in a fast-paced environment
+
+## Why Carrington Law?
+
+We offer mentorship, growth opportunities, and exposure to complex deals. Join us to advance your career and make a real impact.

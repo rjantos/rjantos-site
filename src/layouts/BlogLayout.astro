@@ -4,123 +4,160 @@ import { Image } from "astro:assets";
 // Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
+import ShareButtons from "@/components/fundations/elements/ShareButtons.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Sections
-import BlogCard from "@/components/blog/BlogCard.astro";
-const { frontmatter } = Astro.props;
+import SmallBlogCard from "@/components/blog/SmallBlogCard.astro";
+// Icons
+import ArrowLeft from "@/components/fundations/icons/ArrowLeft.astro";
+import ArrowRight from "@/components/fundations/icons/ArrowRight.astro";
+// Content
+const { frontmatter, slug } = Astro.props;
 import { getEntry } from "astro:content";
 const team = frontmatter.team ? await getEntry("team", frontmatter.team) : null;
 // Get all posts and filter by tag
 import { getCollection } from "astro:content";
-const allPosts = await getCollection("posts");
-const relatedPosts = allPosts.filter((post) =>
-  post.data.tags.some((tag) => frontmatter.tags.includes(tag))
+import Button from "@/components/fundations/elements/Button.astro";
+const allPosts = (await getCollection("posts")).sort(
+  (a, b) =>
+    new Date(a.data.pubDate).getTime() - new Date(b.data.pubDate).getTime()
 );
+const relatedPosts = allPosts.filter(
+  (post) =>
+    post.slug !== slug &&
+    post.data.tags.some((tag) => frontmatter.tags.includes(tag))
+);
+// Pagination (computed in frontmatter for reuse)
+const currentIndex = allPosts.findIndex((post) => post.slug === slug);
+const prevPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+const nextPost =
+  currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+const prevUrl = prevPost ? `/blog/posts/${prevPost.slug}` : null;
+const nextUrl = nextPost ? `/blog/posts/${nextPost.slug}` : null;
+const truncate = (str, n) =>
+  typeof str === "string" && str.length > n ? str.slice(0, n - 1) + "…" : str;
 ---
-
-<BaseLayout hideBigLogo={true}>
+<BaseLayout>
   <section>
-    <Wrapper variant="standard" class="py-2 relative">
-      <div class="text-center max-w-xl mx-auto">
-        {
-          frontmatter.tags.map((tag) => (
-            <a
-              class="block w-full text-sm capitalize text-base-500  hover:text-base-900"
-              href={`/blog/tags/${tag}`}
-            >
-              {tag}
-            </a>
-          ))
-        }
+    <Wrapper variant="standard" class="pb-12 pt-48">
+      <div class="text-center max-w-3xl mx-auto">
         <Text
           tag="p"
-          variant="textXL"
-          class="max-w-xl mx-auto font-light mt-4 font-serif uppercase text-center leading-6"
+          variant="textXS"
+          class="text-secondary-500 uppercase flex items-center gap-2 justify-center"
         >
-          <span class="block opacity-50">
-            {frontmatter.category}
-          </span>
-
-          <span class="block">{frontmatter.title}</span>
+          {
+            frontmatter.tags.map((tag) => (
+              <a
+                class="hover:text-accent-800 transition-colors cursor-pointer"
+                href={`/blog/tags/${tag}`}
+              >
+                {tag}
+              </a>
+            ))
+          }
+          <span aria-hidden="true">•</span>
+          <time datetime={new Date(frontmatter.pubDate).toISOString()}>
+            {
+              new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "2-digit",
+              })
+            }
+          </time>
         </Text>
         <Text
+          tag="h1"
+          variant="displayXL"
+          class="text-accent-800 font-display text-balance mt-12"
+          >{frontmatter.title}</Text
+        >
+        <Text
           tag="p"
-          variant="textXL"
-          class="font-light mt-2 font-serif uppercase text-center leading-6"
+          variant="textBase"
+          class="text-base-600 leading-relaxed border-accent-500 mt-4 lg:text-balance"
         >
           {frontmatter.description}
         </Text>
-        {
-          team ? (
-            <a href={`/team/${team.slug}`} class="absolute inset-0 z-10" />
-          ) : (
-            <div class="absolute inset-0 z-10" />
-          )
-        }
-
-        <Text tag="p" variant="textSM" class="text-base-500 mt-4">
-          <span>
-            Written in
-            <span class="font-medium text-base-500">
-              <time datetime={new Date(frontmatter.pubDate).toISOString()}>
-                {
-                  new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "2-digit",
-                  })
-                }
-              </time>
-            </span>
-          </span>
+      </div>
+    </Wrapper>
+    <Image
+      width={1420}
+      height={1420}
+      src={frontmatter.image.url}
+      alt={frontmatter.image.alt}
+      class="object-cover object-top mt-4 size-full lg:max-h-200"
+    />
+    <Wrapper class="py-12 lg:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+        <div class="lg:sticky lg:top-24">
+          <ShareButtons description={frontmatter.description} />
+        </div>
+        <Wrapper variant="prose" class="max-w-3xl mx-auto lg:col-span-3">
+          <slot />
+        </Wrapper>
+      </div>
+      <nav
+        class="flex flex-col lg:flex-row justify-between items-start gap-8 mt-4 pt-4 border-t border-base-100"
+      >
+        <div class="lg:w-fit text-left w-full">
           {
-            team && (
-              <span>
-                by
-                <span class="font-medium text-base-500">{team.data.name}</span>
-              </span>
+            prevUrl && prevPost && (
+              <Button
+                size="xs"
+                variant="muted"
+                isLink={true}
+                href={prevUrl}
+                aria-label={`Previous: ${prevPost.data.title}`}
+                class="gap-2"
+              >
+                <ArrowLeft slot="left-icon" size="base" />
+                Previous
+                <span class="sr-only">{truncate(prevPost.data.title, 64)}</span>
+              </Button>
             )
           }
-        </Text>
-        <Image
-          width={1400}
-          height={1400}
-          src={frontmatter.image.url}
-          alt={frontmatter.image.alt}
-          class="object-cover object-center mt-4 size-full lg:max-h-200"
-        />
-        <Text
-          tag="p"
-          variant="textSM"
-          class="text-base-900 leading-6 text-balance font-serif uppercase mt-8"
-        >
-          <em>{frontmatter.description}</em>
-        </Text>
-      </div>
-
-      <Wrapper variant="prose" class="max-w-xl mx-auto"><slot /></Wrapper>
+        </div>
+        <div class="lg:w-fit text-right w-full">
+          {
+            nextUrl && nextPost && (
+              <Button
+                size="xs"
+                variant="muted"
+                isLink={true}
+                href={nextUrl}
+                aria-label={`Next: ${nextPost.data.title}`}
+                class="gap-2"
+              >
+                Next
+                <ArrowRight slot="right-icon" size="base" />
+                <span class="sr-only">{truncate(nextPost.data.title, 64)}</span>
+              </Button>
+            )
+          }
+        </div>
+      </nav>
     </Wrapper>
-  </section>
-  {
-    relatedPosts.length > 0 && (
-      <section>
-        <Wrapper variant="standard" class="pt-40 relative">
-          <div class="max-w-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+    {
+      relatedPosts.length > 0 && (
+        <section>
+          <Wrapper variant="standard" class="py-12 lg:py-24 relative">
             <Text
               tag="h2"
-              variant="textBase"
-              class="font-medium text-base-900 "
+              variant="displayMD"
+              class="text-accent-800 font-display text-balance"
             >
               Related posts
             </Text>
-            <div class="flex flex-col gap-4 lg:col-span-2">
+            <div class="grid grid-cols-1 lg:grid-cols-3 mt-8 gap-8">
               {relatedPosts.slice(0, 3).map((post) => (
-                <BlogCard post={post} />
+                <SmallBlogCard post={post} />
               ))}
             </div>
-          </div>
-        </Wrapper>
-      </section>
-    )
-  }
+          </Wrapper>
+        </section>
+      )
+    }
+  </section>
 </BaseLayout>

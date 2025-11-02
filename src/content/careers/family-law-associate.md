@@ -2,7 +2,7 @@
 title: Family Law Associate
 slug: family-law-associate
 location: Miami, FL
-type: Full-time
+type: Contract
 remote: On-site
 postedDate: 2025-10-01
 salary: $95,000 - $115,000 + bonus

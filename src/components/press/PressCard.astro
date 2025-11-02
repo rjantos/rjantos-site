@@ -16,40 +16,27 @@ const { title, excerpt, date, category, url } = {
 };
 ---
 
-<article
-  class="relative flex flex-col group border border-base-200 rounded-lg p-6 hover:shadow-md transition-shadow"
->
+<article class="relative bg-base-50 p-8 flex flex-col">
   <a
     href={url}
     title={`Read press release: ${title}`}
     aria-label={`Read press release: ${title}`}
     class="absolute inset-0 z-10"></a>
-
-  <div class="flex items-start justify-between mb-4">
-    <div class="flex-1">
-      <Text tag="h3" variant="textSm" class="font-semibold text-base-900 mb-2">
-        {title}
-      </Text>
-      <div class="flex items-center gap-4 text-xs text-base-600 mb-3">
-        <span>{date}</span>
-        <span class="bg-accent-100 text-accent-800 px-2 py-1 rounded">
-          {category}
-        </span>
-      </div>
-    </div>
+  <div class="flex items-center gap-2 text-xs text-base-600">
+    <span>{date}</span>
+    <span aria-hidden="true">•</span>
+    <span>
+      {category}
+    </span>
   </div>
-
+  <Text tag="h3" variant="displaySM" class="text-accent-800 font-display mt-12">
+    {title}
+  </Text>
   <Text
     tag="p"
-    variant="textXs"
-    class="text-base-700 leading-relaxed mb-4 line-clamp-3"
+    variant="textBase"
+    class="text-base-600 leading-relaxed line-clamp-3"
   >
     {excerpt}
   </Text>
-
-  <div class="mt-auto">
-    <Button variant="muted" size="xs" class="pointer-events-none">
-      Read More →
-    </Button>
-  </div>
 </article>

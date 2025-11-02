@@ -4,7 +4,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-
+// Icons
+import Plus from "@/components/fundations/icons/Plus.astro";
 const faqs = [
   {
     question: "How much do your legal services cost?",
@@ -51,40 +52,52 @@ const faqs = [
 
 <BaseLayout>
   <section>
-    <Wrapper variant="standard">
-      <Text
-        tag="h1"
-        variant="textLG"
-        class="order-last font-serif uppercase lg:order-none col-span-full lg:col-span-2 text-base-900 mb-8"
-      >
-        Frequently Asked Questions
-      </Text>
+    <Wrapper variant="standard" class="pb-12 pt-48">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-y-8 gap-x-12">
+        <div>
+          <Text
+            tag="h1"
+            variant="displayMD"
+            class="text-accent-800 font-display text-balance"
+          >
+            Frequently Asked Questions
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-700 mt-2">
+            Don't see your question here? Contact us for personalized
+            assistance.
+          </Text>
+          <Button
+            size="xs"
+            variant="muted"
+            isLink={true}
+            href="/contact"
+            class="w-full lg:w-fit mt-8"
+          >
+            Contact us
+          </Button>
+        </div>
 
-      <div class="space-y-4">
-        {
-          faqs.map((faq, index) => (
-            <details class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors">
-              <summary class="font-semibold text-lg cursor-pointer text-base-900 flex justify-between items-center">
-                <span>{faq.question}</span>
-                <span class="text-2xl ml-4">+</span>
-              </summary>
-              <div class="mt-4 text-base-700 leading-relaxed">
-                <Text tag="p" variant="textBase">
-                  {faq.answer}
-                </Text>
-              </div>
-            </details>
-          ))
-        }
-      </div>
-
-      <div class="mt-12 text-center">
-        <Text tag="p" variant="textBase" class="mb-6 text-base-700">
-          Don't see your question here? Contact us for personalized assistance.
-        </Text>
-        <Button variant="default" size="sm" isLink={true} href="/contact">
-          Contact Us
-        </Button>
+        <div class="lg:col-span-2 divide-y divide-base-100 space-y-4">
+          {
+            faqs.map((faq) => (
+              <details class="transition-colors pb-4 group">
+                <summary class=" text-lg cursor-pointer text-accent-800 flex justify-between items-center group-open:text-secondary-500">
+                  <span>{faq.question}</span>
+                  <Plus
+                    slot="icon"
+                    size="sm"
+                    class="text-base-700 transition-transform group-open:rotate-180 duration-300"
+                  />
+                </summary>
+                <div class="mt-4 text-base-700 leading-relaxed">
+                  <Text tag="p" variant="textBase">
+                    {faq.answer}
+                  </Text>
+                </div>
+              </details>
+            ))
+          }
+        </div>
       </div>
     </Wrapper>
   </section>

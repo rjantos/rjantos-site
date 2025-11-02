@@ -1,175 +1,257 @@
 ---
+// Assets
+import { Image } from "astro:assets";
+import saraImg from "@/images/testimonials/sara.png";
+import lisaImg from "@/images/testimonials/lisa.png";
+import emilyImg from "@/images/testimonials/emily.png";
+import davidImg from "@/images/testimonials/david.png";
+import robertImg from "@/images/testimonials/robert.png";
+import michaelImg from "@/images/testimonials/michael.png";
+// Icons
+import Quote from "@/components/fundations/icons/Quote.astro";
 // Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-
 const testimonials = [
   {
     name: "Sarah Johnson",
     position: "CEO",
     company: "TechStart Inc.",
-    practiceArea: "Corporate Law",
-    rating: 5,
-    quote: "Carrington Law guided us through a complex merger with exceptional expertise. Their strategic approach and attention to detail were instrumental in achieving our goals. The team's communication was outstanding throughout the entire process.",
-    image: "/images/team/placeholder.jpg"
+    practiceArea:
+      "CEO of a leading tech startup, transforming industries with innovative solutions.",
+    title: "Exceptional guidance through merger",
+    quote:
+      "Carrington Law guided us through a complex merger with exceptional expertise. Their strategic approach and attention to detail were instrumental in achieving our goals. The team's communication was outstanding throughout the entire process.",
+    image: saraImg,
   },
   {
     name: "Michael Chen",
     position: "Founder",
     company: "Chen Enterprises",
-    practiceArea: "Business Litigation",
-    rating: 5,
-    quote: "When we faced a challenging business dispute, Carrington Law provided aggressive yet thoughtful representation. They achieved a favorable outcome that protected our company's interests and allowed us to continue growing.",
-    image: "/images/team/placeholder.jpg"
+    practiceArea:
+      "Founder of a dynamic enterprise, resolving complex business disputes and driving growth.",
+    title: "Resolving complex business disputes",
+    quote:
+      "When we faced a challenging business dispute, Carrington Law provided aggressive yet thoughtful representation. They achieved a favorable outcome that protected our company's interests and allowed us to continue growing.",
+    image: michaelImg,
   },
   {
     name: "Emily Rodriguez",
     position: "Managing Director",
     company: "Rodriguez & Associates",
-    practiceArea: "Employment Law",
-    rating: 5,
-    quote: "The employment law expertise at Carrington Law is unparalleled. They handled our complex case with professionalism and achieved results that exceeded our expectations. I highly recommend their services.",
-    image: "/images/team/placeholder.jpg"
+    practiceArea:
+      "Managing Director, championing fair workplaces and employment law excellence.",
+    title: "Unparalleled employment law expertise",
+    quote:
+      "The employment law expertise at Carrington Law is unparalleled. They handled our complex case with professionalism and achieved results that exceeded our expectations. I highly recommend their services.",
+    image: emilyImg,
   },
   {
     name: "David Thompson",
     position: "President",
     company: "Thompson Manufacturing",
-    practiceArea: "Real Estate Law",
-    rating: 5,
-    quote: "Carrington Law's real estate team helped us navigate a multi-property acquisition seamlessly. Their knowledge of commercial real estate law and negotiation skills were crucial to our success.",
-    image: "/images/team/placeholder.jpg"
+    practiceArea:
+      "President of a manufacturing firm, navigating multi-property acquisitions and commercial real estate challenges.",
+    title: "Seamless multi-property acquisition",
+    quote:
+      "Carrington Law's real estate team helped us navigate a multi-property acquisition seamlessly. Their knowledge of commercial real estate law and negotiation skills were crucial to our success.",
+    image: davidImg,
   },
   {
     name: "Lisa Park",
     position: "Partner",
     company: "Park Family Office",
-    practiceArea: "Estate Planning",
-    rating: 5,
-    quote: "Working with Carrington Law on our estate planning was a truly positive experience. They took the time to understand our unique family situation and provided comprehensive solutions that gave us peace of mind.",
-    image: "/images/team/placeholder.jpg"
+    practiceArea:
+      "Partner at a family office, securing legacies through thoughtful estate planning.",
+    title: "Comprehensive estate planning solutions",
+    quote:
+      "Working with Carrington Law on our estate planning was a truly positive experience. They took the time to understand our unique family situation and provided comprehensive solutions that gave us peace of mind.",
+    image: lisaImg,
   },
   {
     name: "Robert Williams",
     position: "Chairman",
     company: "Williams Group",
-    practiceArea: "Intellectual Property",
-    rating: 5,
-    quote: "The intellectual property team at Carrington Law protected our innovations with precision and expertise. Their proactive approach and deep industry knowledge were invaluable to our technology company.",
-    image: "/images/team/placeholder.jpg"
-  }
+    practiceArea:
+      "Chairman of a technology group, protecting innovations and intellectual property assets.",
+    title: "Protecting our innovations",
+    quote:
+      "The intellectual property team at Carrington Law protected our innovations with precision and expertise. Their proactive approach and deep industry knowledge were invaluable to our technology company.",
+    image: robertImg,
+  },
 ];
-
 const stats = [
   { number: "500+", label: "Satisfied Clients" },
   { number: "98%", label: "Success Rate" },
   { number: "25+", label: "Years Experience" },
-  { number: "50+", label: "Cases Won" }
+  { number: "50+", label: "Cases Won" },
 ];
 ---
 
 <BaseLayout>
   <section>
-    <Wrapper variant="standard">
-      <!-- Hero Section -->
-      <div class="text-center mb-16">
+    <Wrapper variant="standard" class="pb-12 pt-48">
+      <div class="max-w-xl">
         <Text
           tag="h1"
-          variant="textLG"
-          class="order-last font-serif uppercase lg:order-none col-span-full lg:col-span-2 text-base-900 mb-6"
+          variant="displayLG"
+          class="text-accent-800 font-display text-balance"
         >
           Client Testimonials
         </Text>
-        <Text tag="p" variant="textBase" class="text-base-700 max-w-3xl mx-auto leading-relaxed mb-8">
-          Don't just take our word for it. Hear from our satisfied clients who have experienced
-          the Carrington Law difference. Our commitment to excellence and client satisfaction
-          is reflected in the success stories shared by those we've had the privilege to serve.
+        <Text
+          tag="p"
+          variant="textSM"
+          class="text-base-600 leading-relaxed border-accent-500 mt-2"
+        >
+          Don't just take our word for it. Hear from our satisfied clients who
+          have experienced the Carrington Law difference. Our commitment to
+          excellence and client satisfaction is reflected in the success stories
+          shared by those we've had the privilege to serve.
         </Text>
-
-        <!-- Stats -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-          {stats.map((stat) => (
-            <div class="text-center">
-              <div class="text-3xl font-bold text-accent-600 mb-2">{stat.number}</div>
-              <div class="text-sm text-base-700">{stat.label}</div>
-            </div>
-          ))}
-        </div>
       </div>
-
-      <!-- Testimonials Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        {testimonials.map((testimonial) => (
-          <div class="bg-white border border-base-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
-            <!-- Rating -->
-            <div class="mb-4">
-              <div class="flex items-center">
-                {Array.from({ length: 5 }, (_, i) => (
-                  <span class={`text-sm ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}`}>
-                    ★
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <!-- Quote -->
-            <blockquote class="text-base-700 mb-6 leading-relaxed italic">
-              "{testimonial.quote}"
-            </blockquote>
-
-            <!-- Client Info -->
-            <div class="flex items-center">
-              <div class="w-12 h-12 bg-base-200 rounded-full flex items-center justify-center mr-4">
-                <span class="text-base-600 font-semibold text-sm">
-                  {testimonial.name.split(' ').map(n => n[0]).join('')}
-                </span>
-              </div>
-              <div>
-                <div class="font-semibold text-base-900 text-sm">{testimonial.name}</div>
-                <div class="text-xs text-base-600">{testimonial.position}</div>
-                <div class="text-xs text-base-600">{testimonial.company}</div>
-                <div class="text-xs bg-accent-100 text-accent-800 px-2 py-1 rounded mt-1 inline-block">
-                  {testimonial.practiceArea}
+      <ul
+        class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 mt-12 lg:mt-24 lg:divide-x lg:divide-base-200 lg:border-x lg:border-base-200"
+      >
+        {
+          stats.map((stat) => (
+            <li class=" flex flex-col  gap-1 lg:gap-48 lg:px-4 ">
+              <Text
+                tag="p"
+                variant="textBase"
+                class="text-base-700 font-medium uppercase"
+              >
+                {stat.label}
+              </Text>
+              <Text
+                tag="p"
+                variant="displayLG"
+                class="text-accent-800 font-display italic font-medium"
+              >
+                {stat.number}
+              </Text>
+            </li>
+          ))
+        }
+      </ul>
+    </Wrapper>
+    <Wrapper variant="paddingLess" class="py-24">
+      <div class="space-y8">
+        {
+          testimonials.map((testimonial, idx) => {
+            const leftFirst = idx % 2 === 0;
+            const imageOrder = leftFirst ? "lg:order-1" : "lg:order-2";
+            const quoteOrder = leftFirst ? "lg:order-2" : "lg:order-1";
+            return (
+              <div class="grid grid-cols-1 lg:grid-cols-2">
+                <div
+                  class={`relative w-full ${imageOrder} h-[80dvh]  lg:h-[90dvh]`}
+                >
+                  <Image
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    width={1200}
+                    height={1200}
+                    class="object-cover object-top w-full h-full"
+                  />
+                  <div class="absolute inset-0 flex flex-col items-start justify-end px-6 sm:px-8 z-10 pb-6 sm:pb-8">
+                    <div class="bg-accent-900/90 lg:bg-accent-900/80 p-6 sm:p-8 ">
+                      <Text
+                        tag="p"
+                        variant="textXS"
+                        class="text-secondary-400 tracking-wide uppercase"
+                      >
+                        {testimonial.position},{testimonial.company}
+                      </Text>
+                      <Text
+                        tag="h2"
+                        variant="displayMD"
+                        class="text-white font-display text-balance mt-12 font-light"
+                      >
+                        {testimonial.name}
+                      </Text>
+                      <Text
+                        tag="p"
+                        variant="textBase"
+                        class="text-base-300 mt-2 text-balance"
+                      >
+                        {testimonial.practiceArea}
+                      </Text>
+                    </div>
+                  </div>
+                </div>
+                <div class={`p-8 flex flex-col bg-accent-900 ${quoteOrder}`}>
+                  <Quote slot="icon" class="size-14 text-secondary-400" />
+                  <blockquote>
+                    <Text
+                      tag="h2"
+                      variant="displayLG"
+                      class="text-white font-display text-balance mt-24 font-light"
+                    >
+                      {testimonial.title}
+                    </Text>
+                    <Text
+                      tag="p"
+                      variant="textBase"
+                      class=" text-base-300 leading-relaxed mt-4 text-balance"
+                    >
+                      {testimonial.quote}
+                    </Text>
+                  </blockquote>
                 </div>
               </div>
-            </div>
+            );
+          })
+        }
+      </div>
+    </Wrapper>
+    <Wrapper variant="standard" class="py-12">
+      <div class="bg-base-50 p-8 lg:p-12">
+        <div
+          class="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6"
+        >
+          <div>
+            <Text
+              tag="h3"
+              variant="displaySM"
+              class="text-accent-800 font-display"
+            >
+              Ready to join our success stories?
+            </Text>
+            <Text
+              tag="p"
+              variant="textSM"
+              class="text-base-600 mt-1 text-balance"
+            >
+              Experience the Carrington Law difference. Our track record speaks
+              for itself, and we're ready to add your success story to our
+              growing list of satisfied clients.
+            </Text>
           </div>
-        ))}
-      </div>
-
-      <!-- Practice Areas Served -->
-      <div class="mb-16">
-        <Text tag="h2" variant="textBase" class="font-semibold text-base-900 text-center mb-8">
-          Practice Areas We Serve
-        </Text>
-
-        <div class="flex flex-wrap justify-center gap-3">
-          {Array.from(new Set(testimonials.map(t => t.practiceArea))).map((area) => (
-            <span class="bg-accent-50 text-accent-800 px-4 py-2 rounded-full text-sm font-medium border border-accent-200">
-              {area}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <!-- Call to Action -->
-      <div class="text-center bg-base-900 text-white rounded-lg p-8">
-        <Text tag="h2" variant="textBase" class="font-semibold mb-4">
-          Ready to Join Our Success Stories?
-        </Text>
-        <Text tag="p" variant="textSm" class="mb-6 opacity-90 max-w-2xl mx-auto">
-          Experience the Carrington Law difference. Our track record speaks for itself,
-          and we're ready to add your success story to our growing list of satisfied clients.
-        </Text>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button isLink={true} href="/free-consultation" variant="accent" size="base">
-            Free Consultation
-          </Button>
-          <Button isLink={true} href="/contact" variant="muted" size="base">
-            Contact Us
-          </Button>
+          <div
+            class="flex flex-col lg:flex-row w-full lg:w-fit items-center gap-2 shrink-0"
+          >
+            <Button
+              isLink={true}
+              href="/free-consultation"
+              variant="default"
+              size="sm"
+              class="w-full lg:w-fit"
+            >
+              Free Consultation
+            </Button>
+            <Button
+              isLink={true}
+              variant="muted"
+              size="sm"
+              href="/contact"
+              class="w-full lg:w-fit"
+            >
+              Contact Us
+            </Button>
+          </div>
         </div>
       </div>
     </Wrapper>

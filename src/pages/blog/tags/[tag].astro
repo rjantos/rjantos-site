@@ -4,7 +4,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Components
-import BlogEntry from "@/components/blog/BlogCard.astro";
+import SmallBlogCard from "@/components/blog/SmallBlogCard.astro";
 // Content
 import { getCollection } from "astro:content";
 export async function getStaticPaths() {
@@ -26,23 +26,21 @@ const { tag } = Astro.params;
 const { posts } = Astro.props;
 ---
 
-<BaseLayout pageTitle={tag}>
+<BaseLayout>
   <section>
-    <Wrapper variant="standard" class="py-24 lg:pt-48">
+    <Wrapper variant="standard" class="py-12 lg:py-48">
       <Text
         tag="h1"
-        variant="textBase"
-        class="font-medium capitalize text-base-900"
+        variant="displayXL"
+        class="text-accent-800 font-display text-balance"
       >
-        {tag}</Text
-      >
+        All posts tagged with <span class="capitalize">{tag}</span>
+      </Text>
 
-      <div
-        class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-y-24 gap-4"
-      >
+      <div class="grid grid-cols-1 lg:grid-cols-3 mt-12 lg:mt-24 gap-8">
         {
           posts.map((post, index) => (
-            <BlogEntry post={post} index={index + 1} />
+            <SmallBlogCard post={post} index={index + 1} />
           ))
         }
       </div>

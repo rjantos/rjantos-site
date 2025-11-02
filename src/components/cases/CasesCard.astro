@@ -12,26 +12,26 @@ const { title, client, image, url } = {
 };
 ---
 
-<article class="relative flex flex-col group">
+<article class="relative group overflow-hidden">
   <a
     href={url}
     title={`Read case study: ${title}`}
     aria-label={`Read case study for ${title}`}
-    class="absolute inset-0 z-10"></a>
+    class="absolute inset-0 z-20"></a>
   <Image
     src={image}
     alt={title}
     width={1000}
     height={100}
-    class="object-cover object-center w-full aspect-square mb-4"
+    class="object-cover object-center w-full aspect-square transition-transform duration-300 group-hover:scale-[1.02]"
   />
-  <div class="flex-1">
-    <Text tag="h3" variant="textBase" class="font-medium text-base-900 mb-2">
+  <div class="absolute inset-0 bg-accent-900/70"></div>
+  <div class="absolute inset-0 p-4 md:p-5 flex flex-col justify-end">
+    <Text tag="h3" variant="displaySM" class="text-white font-display">
       {title}
     </Text>
-
-    <Text tag="p" variant="textSM" class="text-base-600">
-      Client: {client}
+    <Text tag="p" variant="textBase" class="text-base-200 mt-1 lg:text-pretty">
+      {client}
     </Text>
   </div>
 </article>

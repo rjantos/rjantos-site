@@ -17,17 +17,29 @@ allCases.sort((a, b) => {
 
 <BaseLayout>
   <section>
-    <Wrapper variant="standard">
-      <Text
-        tag="h1"
-        variant="textLG"
-        class="order-last font-serif uppercase lg:order-none col-span-full lg:col-span-2 text-base-900"
-      >
-        Cases
-      </Text>
-      <div
-        class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-24 gap-8"
-      >
+    <Wrapper variant="standard" class="pb-12 pt-48">
+      <div class="max-w-xl">
+        <Text
+          tag="h1"
+          variant="displayLG"
+          class="text-accent-800 font-display text-balance"
+        >
+          Cases
+        </Text>
+        <Text
+          tag="p"
+          variant="textSM"
+          class="text-base-600 leading-relaxed border-accent-500 mt-2"
+        >
+          Explore a selection of our recent cases to see how Carrington Law
+          delivers results for clients facing complex legal challenges. Each
+          case reflects our commitment to strategic advocacy, thorough
+          preparation, and achieving outcomes that matter. Discover the stories
+          behind our work and the impact we make across industries.
+        </Text>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 mt-12 lg:mt-24 gap-8">
         {allCases.map((caseItem) => <CasesCard post={caseItem} />)}
       </div>
     </Wrapper>
