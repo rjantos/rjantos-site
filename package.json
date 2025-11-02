@@ -20,6 +20,6 @@
   "devDependencies": {
     "@astrojs/rss": "^4.0.13",
     "@astrojs/sitemap": "^3.6.0",
-    "astro": "^5.15.2"
+    "astro": "^5.15.3"
   }
 }
