@@ -1,0 +1,366 @@
+# .pages.yml — Pages CMS config for this site (Astro content collections)
+
+media:
+  name: images
+  label: Images
+  input: src/images
+  output: src/images
+  path: "" # start at src/images
+  extensions: [png, jpg, jpeg, webp, svg]
+
+settings:
+  content:
+    merge: true
+
+content:
+  # ---------------------
+  # INFO PAGES
+  # ---------------------
+  - name: infopages
+    label: Info Pages
+    type: collection
+    path: src/content/infopages
+    filename: "{primary}.md"
+    view:
+      primary: page
+      fields: [page, pubDate]
+      sort: [page]
+    fields:
+      - name: page
+        label: Page
+        type: string
+        required: true
+      - name: pubDate
+        label: Publication Date
+        type: date
+      - name: body
+        label: Body
+        type: rich-text
+
+  # ---------------------
+  # BLOG POSTS
+  # ---------------------
+  - name: posts
+    label: Posts
+    type: collection
+    path: src/content/posts
+    filename: "{primary}.md"
+    view:
+      primary: title
+      fields: [title, pubDate]
+      sort: [pubDate]
+      default: { sort: pubDate, order: desc }
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: pubDate
+        label: Publication Date
+        type: date
+      - name: description
+        label: Description
+        type: text
+      - name: image
+        label: Cover Image
+        type: object
+        fields:
+          - name: url
+            label: Image
+            type: image
+            options:
+              media: images
+              path: blog
+          - name: alt
+            label: Alt text
+            type: string
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+      - name: body
+        label: Body
+        type: rich-text
+
+  # ---------------------
+  # TEAM
+  # ---------------------
+  - name: team
+    label: Team
+    type: collection
+    path: src/content/team
+    filename: "{primary}.md"
+    view:
+      primary: name
+      fields: [name, title]
+      sort: [name]
+    fields:
+      - name: name
+        label: Name
+        type: string
+        required: true
+      - name: title
+        label: Title
+        type: string
+      - name: bio
+        label: Bio
+        type: text
+      - name: experience
+        label: Experience
+        type: text
+      - name: education
+        label: Education
+        type: string
+        list: true
+      - name: barAdmissions
+        label: Bar Admissions
+        type: string
+        list: true
+      - name: specialties
+        label: Specialties
+        type: string
+        list: true
+      - name: image
+        label: Profile Image
+        type: object
+        fields:
+          - name: url
+            label: Image
+            type: image
+            options:
+              media: images
+              path: team
+          - name: alt
+            label: Alt text
+            type: string
+      - name: contact
+        label: Contact
+        type: object
+        fields:
+          - { name: email,    label: Email,    type: string }
+          - { name: phone,    label: Phone,    type: string }
+          - { name: location, label: Location, type: string }
+      - name: socials
+        label: Socials
+        type: object
+        fields:
+          - { name: linkedin, label: LinkedIn URL, type: string }
+          - { name: website,  label: Website URL,  type: string }
+          - { name: twitter,  label: X/Twitter URL,type: string }
+      - name: body
+        label: Body
+        type: rich-text
+
+  # ---------------------
+  # PRACTICE AREAS
+  # ---------------------
+  - name: practice
+    label: Practice Areas
+    type: collection
+    path: src/content/practice
+    filename: "{primary}.md"
+    view:
+      primary: title
+      fields: [title]
+      sort: [title]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: summary
+        label: Summary
+        type: text
+      - name: description
+        label: Description
+        type: text
+      - name: icon
+        label: Icon (optional)
+        type: string
+      - name: image
+        label: Image
+        type: object
+        fields:
+          - name: url
+            label: Image
+            type: image
+            options:
+              media: images
+              path: practice
+          - name: alt
+            label: Alt text
+            type: string
+      - name: body
+        label: Body
+        type: rich-text
+
+  # ---------------------
+  # CAREERS
+  # ---------------------
+  - name: careers
+    label: Careers
+    type: collection
+    path: src/content/careers
+    filename: "{primary}.md"
+    view:
+      primary: title
+      fields: [title, location, postedDate]
+      sort: [postedDate]
+      default: { sort: postedDate, order: desc }
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: location
+        label: Location
+        type: string
+      - name: type
+        label: Type
+        type: string
+        options: [Full-time, Part-time, Contract, Internship]
+      - name: remote
+        label: Remote
+        type: string
+      - name: postedDate
+        label: Posted Date
+        type: date
+      - name: salary
+        label: Salary
+        type: string
+      - name: description
+        label: Description
+        type: text
+      - name: responsibilities
+        label: Responsibilities
+        type: string
+        list: true
+      - name: requirements
+        label: Requirements
+        type: string
+        list: true
+      - name: benefits
+        label: Benefits
+        type: string
+        list: true
+      - name: applyUrl
+        label: Apply URL
+        type: string
+      - name: applyEmail
+        label: Apply Email
+        type: string
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+      - name: body
+        label: Body
+        type: rich-text
+
+  # ---------------------
+  # CASES
+  # ---------------------
+  - name: cases
+    label: Cases
+    type: collection
+    path: src/content/cases
+    filename: "{primary}.md"
+    view:
+      primary: title
+      fields: [title, pubDate, result]
+      sort: [pubDate]
+      default: { sort: pubDate, order: desc }
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: summary
+        label: Summary
+        type: text
+      - name: category
+        label: Category
+        type: string
+      - name: practice
+        label: Practice Area (slug or name)
+        type: string
+      - name: attorneys
+        label: Attorneys (slugs)
+        type: string
+        list: true
+      - name: client
+        label: Client
+        type: string
+      - name: jurisdiction
+        label: Jurisdiction
+        type: string
+      - name: value
+        label: Value
+        type: string
+      - name: result
+        label: Result
+        type: string
+      - name: pubDate
+        label: Publication Date
+        type: date
+      - name: image
+        label: Image
+        type: object
+        fields:
+          - name: url
+            label: Image
+            type: image
+            options:
+              media: images
+              path: cases
+          - name: alt
+            label: Alt text
+            type: string
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+      - name: testimonial
+        label: Testimonial
+        type: object
+        fields:
+          - { name: name,  label: Name,  type: string }
+          - { name: quote, label: Quote, type: text }
+      - name: body
+        label: Body
+        type: rich-text
+
+  # ---------------------
+  # PRESS RELEASES
+  # ---------------------
+  - name: pressReleases
+    label: Press Releases
+    type: collection
+    path: src/content/pressReleases
+    filename: "{primary}.md"
+    view:
+      primary: title
+      fields: [title, pubDate, category]
+      sort: [pubDate]
+      default: { sort: pubDate, order: desc }
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: pubDate
+        label: Publication Date
+        type: date
+      - name: category
+        label: Category
+        type: string
+      - name: excerpt
+        label: Excerpt
+        type: text
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+      - name: body
+        label: Body
+        type: rich-text
