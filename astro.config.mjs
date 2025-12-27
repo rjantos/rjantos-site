@@ -6,6 +6,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  site: 'https://yourdomain.com',
+  site: 'https://rjantos.com',
   integrations: [ sitemap()]
 });
