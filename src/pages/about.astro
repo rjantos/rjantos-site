@@ -1,0 +1,140 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Sections
+import Cta from "@/components/global/Cta.astro";
+---
+
+<BaseLayout
+  title="About — Rudi Jantos"
+  description="Background, approach, and how I help B2B teams fix tracking, attribution, and decision-making."
+>
+  <!-- ABOUT HERO -->
+  <section class="bg-base-50">
+    <Wrapper variant="standard" class="py-20 lg:py-28">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+        
+        <!-- COPY -->
+        <div class="lg:col-span-2 max-w-xl space-y-6">
+          <Text
+            tag="h1"
+            variant="displayMD"
+            class="text-accent-800 font-display"
+          >
+            About
+          </Text>
+
+          <p class="text-lg text-base-800">
+            I’m Rudi Jantos. I help B2B teams fix tracking, attribution,
+            and decision-making when ads, analytics, and CRM don’t agree.
+          </p>
+
+          <p class="text-base-700 font-medium">
+            Most teams don’t have a traffic problem.<br />
+            They have a clarity problem.
+          </p>
+        </div>
+
+        <!-- IMAGE -->
+        <div class="flex justify-start lg:justify-end">
+          <img
+            src="/rj_profile.jpeg"
+            alt="Rudi Jantos"
+            class="w-64 h-64 rounded-sm border border-base-100 object-cover"
+            loading="eager"
+          />
+        </div>
+
+      </div>
+    </Wrapper>
+  </section>
+
+  <!-- CONTENT -->
+  <Wrapper variant="standard" class="py-20 lg:py-28">
+    <div class="max-w-2xl space-y-12">
+
+      <!-- BACKGROUND -->
+      <section class="space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Background
+        </Text>
+        
+        <p>
+          Before working independently, I spent several years as Head of Marketing
+          at a venture-backed B2B startup.
+        </p>
+        
+        <p>
+          I led growth and analytics across markets, supported international
+          expansion, and worked closely with product, sales, and leadership
+          through a successful exit.
+        </p>
+
+        <p>
+          That experience shaped how I work today: focus on signal, not noise,
+          and build systems that still hold up when budgets, expectations,
+          and accountability increase.
+        </p>
+      </section>
+      <hr class="my-12 border-base-100" />
+
+
+      <!-- WHAT I DO NOW -->
+      <section class="space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          What I do now
+        </Text>
+
+        <p>
+          Today, I work directly with founders, operators, and small B2B teams
+          who need clean data and defensible answers.
+        </p>
+
+        <p>
+          I’m usually brought in when tracking is unreliable, attribution is
+          unclear, dashboards don’t match reality, and decisions are being made
+          on shaky numbers.
+        </p>
+
+        <p>
+          The goal is simple: make sure everyone is looking at the same numbers,
+          for the same reasons, and making decisions they can stand behind.
+        </p>
+      </section>
+      <hr class="my-12 border-base-100" />
+
+      <!-- HOW I WORK -->
+      <section class="space-y-6">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          How I work
+        </Text>
+
+        <p class="text-base-700">
+          I prioritize clarity over complexity. Clean tracking, reliable data,
+          and decisions you can defend.
+        </p>
+
+        <ul class="space-y-3 text-base-700">
+          <li>
+            <strong>Signal over noise.</strong>
+            I remove unnecessary tools and reports so the real drivers are visible.
+          </li>
+          <li>
+            <strong>Practical execution.</strong>
+            I focus on fixes that actually get implemented, not theory.
+          </li>
+          <li>
+            <strong>Systems that last.</strong>
+            I design setups that still work when teams, spend, and pressure increase.
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </Wrapper>
+
+  <!-- CTA -->
+    <Cta />
+</BaseLayout>

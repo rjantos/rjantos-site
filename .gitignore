@@ -33,3 +33,9 @@ pnpm-debug.log*
 *.swp
 *.tmp
 Thumbs.db
+
+node_modules
+dist
+.astro
+.env
+.env.*

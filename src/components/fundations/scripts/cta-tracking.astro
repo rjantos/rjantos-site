@@ -1,0 +1,40 @@
+<script>
+  document.addEventListener("click", function (e) {
+    const target = e.target.closest("[data-track]");
+    if (!target) return;
+
+    const type = target.getAttribute("data-track");
+    const location = window.location.pathname || "/";
+    const href = target.getAttribute("href");
+
+    if (typeof gtag !== "function") return;
+
+    // Prevent immediate navigation
+    if (href) {
+      e.preventDefault();
+    }
+
+    let eventName = null;
+
+    if (type === "book-call") eventName = "book_call_click";
+    if (type === "email") eventName = "email_click";
+
+    if (!eventName) return;
+
+    gtag("event", eventName, {
+      location: location,
+      event_callback: function () {
+        if (href) {
+          window.location.href = href;
+        }
+      }
+    });
+
+    // Fallback in case GA callback never fires
+    setTimeout(function () {
+      if (href) {
+        window.location.href = href;
+      }
+    }, 400);
+  });
+</script>

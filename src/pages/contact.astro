@@ -1,274 +1,110 @@
 ---
-// Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-const contactInfo = [
-  {
-    label: "Phone",
-    value: "(555) 123-4567",
-    href: "tel:+15551234567",
-  },
-  {
-    label: "Email",
-    value: "carrington@example.com",
-    href: "mailto:carrington@example.com",
-  },
-  {
-    label: "Address",
-    value: "123 Legal Avenue, Suite 400\nNew York, NY 10001",
-    href: "#",
-  },
-];
-const officeLocations = [
-  {
-    name: "Main Office - New York",
-    address: "123 Legal Avenue, Suite 400",
-    city: "New York, NY 10001",
-    phone: "(555) 123-4567",
-    email: "ny@carringtonlaw.com",
-  },
-  {
-    name: "Branch Office - Los Angeles",
-    address: "456 Justice Boulevard, Floor 12",
-    city: "Los Angeles, CA 90210",
-    phone: "(555) 987-6543",
-    email: "la@carringtonlaw.com",
-  },
-];
-const businessHours = [
-  { day: "Monday - Friday", hours: "8:00 AM - 6:00 PM" },
-  { day: "Saturday", hours: "9:00 AM - 2:00 PM" },
-  { day: "Sunday", hours: "Closed" },
-];
 ---
 
-<BaseLayout>
-  <section>
-    <Wrapper variant="standard" class="pb-12 pt-48">
-      <div class="overflow-hidden grid grid-cols-1 lg:grid-cols-2">
-        <div class="p-8 h-full flex flex-col justify-start bg-base-50">
-          <div>
-            <Text
-              tag="h1"
-              variant="displayMD"
-              class="text-accent-800 font-display text-balance lg:col-span-2"
-            >
-              Contact Us
-            </Text>
-            <div class="space-y-1 mt-8">
-              {
-                contactInfo.map((info) => (
-                  <div class="flex items-start space-x-3">
-                    <Text
-                      tag="p"
-                      variant="textSM"
-                      class="font-medium text-accent-800"
-                    >
-                      {info.label}
-                    </Text>
-                    {info.href !== "#" ? (
-                      <a
-                        href={info.href}
-                        class="text-secondary-600 hover:text-accent-800 transition-colors"
-                      >
-                        <Text tag="p" variant="textSM">
-                          {info.value}
-                        </Text>
-                      </a>
-                    ) : (
-                      <Text tag="p" variant="textSM" class="text-base-600">
-                        {info.value
-                          .split("\n")
-                          .map((line) => line.trim())
-                          .join(", ")}
-                      </Text>
-                    )}
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-          <div class="mt-8 pt-8 border-t border-base-200">
-            <Text
-              tag="h3"
-              variant="textXL"
-              class="font-display text-accent-800 mb-3"
-            >
-              Business Hours
-            </Text>
-            <div class="space-y-2 mt-8">
-              {
-                businessHours.map((schedule) => (
-                  <div class="flex justify-between text-sm">
-                    <span class="text-accent-800">{schedule.day}</span>
-                    <span class="text-base-600">{schedule.hours}</span>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-        </div>
-        <form class="space-y-4 p-8 bg-accent-900">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="space-y-1">
-              <label
-                for="firstName"
-                class="block text-xs font-medium text-base-300"
-              >
-                First Name *
-              </label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                required
-                class="w-full px-3 py-2 border-b border-transparent h-12 bg-white/5 focus:outline-none focus:bg-white/8 text-white text-xs focus:ring-0"
-              />
-            </div>
-            <div class="space-y-1">
-              <label
-                for="lastName"
-                class="block text-xs font-medium text-base-300"
-              >
-                Last Name *
-              </label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                required
-                class="w-full px-3 py-2 border-b border-transparent h-12 bg-white/5 focus:outline-none focus:bg-white/8 text-white text-xs focus:ring-0"
-              />
-            </div>
-          </div>
-          <div class="space-y-1">
-            <label for="email" class="block text-xs font-medium text-base-300">
-              Email Address *
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              class="w-full px-3 py-2 border-b border-transparent h-12 bg-white/5 focus:outline-none focus:bg-white/8 text-white text-xs focus:ring-0"
-            />
-          </div>
-          <div class="space-y-1">
-            <label for="phone" class="block text-xs font-medium text-base-300">
-              Phone Number
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              class="w-full px-3 py-2 border-b border-transparent h-12 bg-white/5 focus:outline-none focus:bg-white/8 text-white text-xs focus:ring-0"
-            />
-          </div>
-          <div class="space-y-1">
-            <label
-              for="practiceArea"
-              class="block text-xs font-medium text-base-300"
-            >
-              Practice Area
-            </label>
-            <select
-              id="practiceArea"
-              name="practiceArea"
-              class="w-full px-3 py-2 border-b border-transparent h-12 bg-white/5 focus:outline-none focus:bg-white/8 text-white text-xs focus:ring-0"
-            >
-              <option value="">Select a practice area</option>
-              <option value="corporate">Corporate Law</option>
-              <option value="criminal">Criminal Defense</option>
-              <option value="family">Family Law</option>
-              <option value="personal-injury">Personal Injury</option>
-              <option value="real-estate">Real Estate</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="space-y-1">
-            <label
-              for="message"
-              class="block text-xs font-medium text-base-300"
-            >
-              Message *
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              required
-              placeholder="Please describe your legal matter..."
-              class="w-full px-3 py-2 border-b border-transparent bg-white/5 focus:outline-none focus:bg-white/8 text-white text-xs focus:ring-0"
-            ></textarea>
-          </div>
-
-          <Button variant="muted" size="sm" type="submit" class="w-full">
-            Send Message
-          </Button>
-        </form>
-      </div>
-    </Wrapper>
-    <Wrapper variant="standard" class="py-12">
-      <div>
+<BaseLayout
+  title="Contact — Rudi Jantos"
+  description="Book a quick call or email me to fix unreliable tracking, unclear attribution, and conflicting numbers."
+>
+  <!-- CONTACT HERO -->
+  <section class="bg-base-50">
+    <Wrapper variant="standard" class="py-20 lg:py-28">
+      <div class="max-w-2xl space-y-6">
         <Text
-          tag="h2"
+          tag="h1"
           variant="displayMD"
-          class="text-accent-800 font-display text-balance"
+          class="text-accent-800 font-display"
         >
-          Our Offices
+          Contact
         </Text>
-        <div class="grid grid-cols-1 lg:grid-cols-2 mt-12 gap-8">
-          {
-            officeLocations.map((office) => (
-              <div class="bg-base-50   gap-8">
-                <div class="p-8">
-                  <Text
-                    tag="h3"
-                    variant="displaySM"
-                    class="text-accent-800 font-display"
-                  >
-                    {office.name}
-                  </Text>
-                  <div class="space-y-1 text-sm text-base-700 mt-8">
-                    <Text tag="p" variant="textXS">
-                      {office.address}
-                    </Text>
-                    <Text tag="p" variant="textXS">
-                      {office.city}
-                    </Text>
-                    <a
-                      href={`tel:${office.phone}`}
-                      class="text-secondary-500 hover:text-accent-80 transition-colors text-xs block"
-                    >
-                      {office.phone}
-                    </a>
-                    <a
-                      href={`mailto:${office.email}`}
-                      class="text-secondary-500 hover:text-accent-800 transition-colors text-xs block"
-                    >
-                      {office.email}
-                    </a>
-                  </div>
-                </div>
-                <div class="aspect-video  overflow-hidden">
-                  <iframe
-                    src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.221990489111!2d-74.00369368459375!3d40.713129579331854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316ba4bf83%3A0xbae5cb597764b!2s${encodeURIComponent(office.address + ", " + office.city)}!5e0!3m2!1sen!2sus!4v1696871234567!5m2!1sen!2sus`}
-                    width="100%"
-                    height="100%"
-                    style="border:0;"
-                    allowfullscreen=""
-                    loading="eager"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    title={`Map of ${office.name}`}
-                  />
-                </div>
-              </div>
-            ))
-          }
-        </div>
+
+        <p class="text-lg text-base-800">
+          If you’re dealing with unreliable tracking, unclear attribution,
+          or conflicting numbers, the fastest next step is a short conversation.
+        </p>
+
+        <p class="text-base-700">
+          No sales pitch. No obligation.
+          Just clarity on whether I can help and what to do next.
+        </p>
       </div>
     </Wrapper>
   </section>
+
+  <!-- CONTACT OPTIONS -->
+  <Wrapper variant="standard" class="py-20 lg:py-28">
+    <div class="max-w-xl space-y-10">
+      <div class="bg-white border border-base-100 p-8 rounded-sm max-w-xl">
+
+      <!-- PRIMARY CTA -->
+      <div class="space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Book a quick call
+        </Text>
+
+        <p class="text-base-700">
+          A short call to understand your setup, your constraints,
+          and whether it makes sense to work together.
+        </p>
+
+        <Button
+          isLink={true}
+          href="https://cal.com/rudi-jantos"
+          data-track="book-call"
+          variant="default"
+          size="md"
+        >
+          Book a quick call
+        </Button>
+
+        <p class="text-xs text-base-500">
+          Typically 20–30 minutes. No prep required.
+        </p>
+      </div>
+      </div>
+
+      <div class="bg-white border border-base-100 p-8 rounded-sm max-w-xl">  
+      <!-- SECONDARY CTA -->
+      <div class="space-y-4 border-base-100 pt-8">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Prefer email?
+        </Text>
+
+        <p class="text-base-700">
+          If you’d rather write first, feel free to email me directly.
+        </p>
+
+        <Button
+          isLink={true}
+          href="mailto:hi@rjantos.com"
+          data-track="email"
+          variant="muted"
+          size="md"
+        >
+          Email me
+        </Button>
+
+        <p class="text-xs text-base-500">
+          I usually reply within one business day.
+        </p>
+      </div>
+      </div>
+      <!-- OPTIONAL MESSAGE -->
+      <div class="space-y-4 pt-8 border-t border-base-200">
+        <Text tag="h3" variant="textLG" class="font-display">
+          What should I include?
+        </Text>
+
+        <ul class="text-base-700 space-y-2 list-disc pl-5">
+          <li>What’s currently not working</li>
+          <li>What tools you’re using (ads, analytics, CRM)</li>
+          <li>What decision you’re struggling to make</li>
+        </ul>
+      </div>
+
+    </div>
+  </Wrapper>
 </BaseLayout>

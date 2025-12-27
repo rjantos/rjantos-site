@@ -1,0 +1,69 @@
+---
+// Foundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<section class="bg-white">
+  <Wrapper variant="standard" class="py-20 lg:py-28">
+    <div class="max-w-5xl">
+      <Text
+        tag="h2"
+        variant="displayLG"
+        class="text-accent-800 font-display text-balance"
+      >
+        Why teams bring me in
+      </Text>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <Text tag="p" variant="textMD" class="text-base-700 leading-relaxed">
+            I’ve spent 10+ years in B2B growth and analytics, including leading marketing 
+            at a venture-backed startup through international expansion and exit.
+          </Text>
+        </div>
+
+        <div>
+          <Text tag="p" variant="textMD" class="text-base-700 leading-relaxed">
+            I sit at the intersection of GA4, GTM, HubSpot, and paid media. 
+            I’m called in when tracking is unreliable, attribution is unclear, 
+            or decisions are being made on shaky data.
+          </Text>
+        </div>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="bg-base-50 p-6 rounded-sm border border-base-100">
+          <Text tag="p" variant="textXS" class="text-base-500">
+            Background
+          </Text>
+          <Text tag="p" variant="textSM" class="mt-2 text-accent-900">
+            Former Head of Marketing<br />
+            B2B SaaS, EU & international markets
+          </Text>
+        </div>
+
+        <div class="bg-base-50 p-6 rounded-sm border border-base-100">
+          <Text tag="p" variant="textXS" class="text-base-500">
+            Focus
+          </Text>
+          <Text tag="p" variant="textSM" class="mt-2 text-accent-900">
+            Analytics, attribution, funnel clarity<br />
+            GA4 · GTM · HubSpot · Ads
+          </Text>
+        </div>
+
+        <div class="bg-base-50 p-6 rounded-sm border border-base-100">
+          <Text tag="p" variant="textXS" class="text-base-500">
+            Engagements
+          </Text>
+          <Text tag="p" variant="textSM" class="mt-2 text-accent-900">
+            Audits, fixes, and advisory<br />
+            Typical timeline: 48 hours to 2 weeks<br />
+            Outcome: Clean measurement and a clean next plan
+          </Text>
+        </div>
+      </div>
+    </div>
+  </Wrapper>
+</section>

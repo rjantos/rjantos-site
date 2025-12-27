@@ -1,31 +1,24 @@
 ---
 import { AstroSeo } from "@astrolib/seo";
+
+const {
+  title = "Rudi Jantos — B2B Analytics & Attribution",
+  description = "Strategic marketing partner helping B2B teams fix tracking, attribution, and decision-making across ads, analytics, and CRM.",
+} = Astro.props;
+
+// Build canonical dynamically
+const canonical = Astro.url.href;
 ---
 
 <AstroSeo
-  title="Your Page Title"
-  description="A detailed description of your page content."
-  canonical="https://yourwebsite.com/current-page"
+  title={title}
+  description={description}
+  canonical={canonical}
   openGraph={{
-    url: "https://yourwebsite.com/current-page",
-    title: "Your Page Title",
-    description: "A detailed description of your page content.",
-    images: [
-      {
-        url: "https://yourwebsite.com/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Open Graph Image Alt",
-        type: "image/jpeg",
-      },
-    ],
-    site_name: "Your Site Name",
+    url: canonical,
+    title,
+    description,
+    site_name: "Rudi Jantos",
     type: "website",
-    locale: "en_US",
-  }}
-  twitter={{
-    handle: "@yourhandle",
-    site: "@yourwebsite",
-    cardType: "summary_large_image",
   }}
 />

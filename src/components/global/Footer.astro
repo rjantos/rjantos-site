@@ -1,194 +1,97 @@
 ---
 // Assets
-import Logo from "@/components/assets/Logo.astro";
+import Logo from "@/components/assets/LogoTemp.astro";
 // Fundations
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-// Content
-import { getCollection } from "astro:content";
+
 const currentYear = new Date().getFullYear();
-// Dynamically load practice areas
-const practiceAreasData = await getCollection("practice");
-const practiceAreas = practiceAreasData
-  .sort((a, b) => a.data.title.localeCompare(b.data.title))
-  .slice(0, 6) // Limit to 6 for footer
-  .map((practice) => ({
-    text: practice.data.title,
-    href: `/practice-areas/${practice.slug}`,
-  }));
 
 const quickLinks = [
-  { text: "About Us", href: "/team" },
-  { text: "Practice Areas", href: "/practice-areas" },
-  { text: "Cases", href: "/cases" },
-  { text: "Careers", href: "/careers" },
-  { text: "Press & Media", href: "/press-and-media" },
+  { text: "About", href: "/about" },
   { text: "Contact", href: "/contact" },
-  { text: "Free Consultation", href: "/free-consultation" },
 ];
-// Unified link sections to render with a single template
-const linkSections = [
-  {
-    title: "Quick Links",
-    items: quickLinks,
-  },
-  {
-    title: "Practice Areas",
-    items: practiceAreas,
-  },
-];
-const officeLocations = [
-  {
-    name: "New York Office",
-    address: "123 Legal Avenue, Suite 400",
-    city: "New York, NY 10001",
-    phone: "(555) 123-4567",
-  },
-  {
-    name: "Los Angeles Office",
-    address: "456 Justice Boulevard, Floor 12",
-    city: "Los Angeles, CA 90210",
-    phone: "(555) 987-6543",
-  },
-];
+
 const socialLinks = [
-  { name: "LinkedIn", href: "#" },
-  { name: "Twitter", href: "#" },
-  { name: "Facebook", href: "#" },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/rudolfjantos/",
+  },
+  {
+    name: "Twitter/X",
+    href: "https://x.com/RJantos",
+  },
 ];
 ---
 
-<footer class="bg-base-50">
-  <Wrapper variant="standard" class="py-16">
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-8">
-      <div class="col-span-full md:col-span-1">
+<footer class="bg-base-50 border-t border-base-100">
+  <Wrapper variant="standard" class="py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+      {/* Brand / Positioning */}
+      <div class="space-y-4">
         <Logo class="text-accent-800 h-4" />
-        <Text
-          tag="p"
-          variant="textXS"
-          class="text-base-600 mt-5 leading-relaxed"
-        >
-          Carrington Law provides comprehensive legal services with a commitment
-          to excellence, integrity, and client success. Serving businesses and
-          individuals nationwide.
+        <Text tag="p" variant="textXS" class="text-base-600 leading-relaxed">
+          Rudi Jantos is a strategic marketing partner helping B2B teams fix
+          analytics, attribution, and decision-making across ads, analytics,
+          and CRM.
         </Text>
-        <div class="flex flex-col gap-4 text-xs mt-8">
-          {
-            socialLinks.map((social) => (
-              <a
-                href={social.href}
-                class="text-base-600 hover:text-accent-800 transition-colors"
-                aria-label={social.name}
-              >
-                {social.name}
-              </a>
-            ))
-          }
-        </div>
       </div>
-      {
-        linkSections.map((section) => (
-          <div>
-            <Text tag="h3" variant="textXS" class="text-secondary-500">
-              {section.title}
-            </Text>
-            <ul class="flex flex-col gap-1 mt-4">
-              {section.items.map((item) => (
-                <li>
-                  <a
-                    href={item.href}
-                    class="text-base-600 hover:text-accent-800 transition-colors text-xs"
-                  >
-                    {item.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))
-      }
-      <div class="col-span-full md:col-span-1">
+
+      {/* Links */}
+      <div>
         <Text tag="h3" variant="textXS" class="text-secondary-500">
-          Contact Us
+          Pages
         </Text>
-        <div class="grid grid-cols-2 md:grid-cols-1 gap-y-12 mt-4">
-          {
-            officeLocations.map((office) => (
-              <div class="text-base-600">
-                <Text
-                  tag="p"
-                  variant="textXS"
-                  class="font-medium text-accent-800"
-                >
-                  {office.name}
-                </Text>
-                <Text tag="p" variant="textXS" class="mt-1">
-                  {office.address}
-                </Text>
-                <Text tag="p" variant="textXS" class="mt-1">
-                  {office.city}
-                </Text>
-                <a
-                  href={`tel:${office.phone}`}
-                  class=" hover:text-accent-800 text-base-600 transition-colors text-xs flex mt-4"
-                >
-                  {office.phone}
-                </a>
-              </div>
-            ))
-          }
-        </div>
+        <ul class="flex flex-col gap-2 mt-4">
+          {quickLinks.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="text-base-600 hover:text-accent-800 transition-colors text-xs"
+              >
+                {item.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Contact */}
+      <div class="space-y-4">
+        <Text tag="h3" variant="textXS" class="text-secondary-500">
+          Contact
+        </Text>
+
         <a
-          href="mailto:carrington@example.com"
-          class="text-accent-800 hover:text-accent-300 text-sm transition-colors flex mt-12"
+          href="mailto:hi@rjantos.com"
+          class="text-base-600 hover:text-accent-800 transition-colors text-xs block"
         >
-          carrington@example.com
+          hi@rjantos.com
         </a>
+
+        <div class="flex flex-col gap-2 pt-2">
+          {socialLinks.map((social) => (
+            <a
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-base-600 hover:text-accent-800 transition-colors text-xs"
+            >
+              {social.name}
+            </a>
+          ))}
+        </div>
       </div>
     </div>
-    <div class="border-t border-base-100 pt-8">
-      <div
-        class="flex flex-col md:flex-row justify-between lg:items-center gap-4"
-      >
-        <div class="text-base-600 text-sm">
-          <Text tag="p" variant="textXS">
-            © {currentYear} Carrington Law. All rights reserved.
-          </Text>
-        </div>
-        <div class="flex flex-col md:flex-row gap-4 text-base-600 text-xs">
-          <a
-            href="/infopages/privacy"
-            class="hover:text-accent-800 transition-colors"
-          >
-            Privacy Policy
-          </a>
-          <span class="hidden md:inline">•</span>
-          <a
-            href="/infopages/terms"
-            class="hover:text-accent-800 transition-colors"
-          >
-            Terms of Service
-          </a>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-base-100">
-        <Text tag="p" variant="textXS" class="text-base-600 leading-relaxed">
-          The information provided on this website is for general informational
-          purposes only and does not constitute legal advice, nor does it create
-          an attorney-client relationship. You should not act or rely on any
-          information on this site without seeking the advice of a qualified
-          attorney who is familiar with your specific circumstances.
-          Communications through this website do not establish an
-          attorney-client relationship and are not privileged or confidential.
-          Any testimonials or past results described on this site are not a
-          guarantee of future outcomes, and each case is unique. Carrington Law
-          makes no representations or warranties regarding the accuracy,
-          completeness, or adequacy of the information contained herein. For
-          legal advice tailored to your situation, please contact a licensed
-          attorney directly. By using this site, you acknowledge and accept
-          these terms.
-        </Text>
-      </div>
+
+    <div class="border-t border-base-100 pt-6 flex flex-col md:flex-row justify-between gap-4">
+      <Text tag="p" variant="textXS" class="text-base-600">
+        © {currentYear} Rudi Jantos. All rights reserved.
+      </Text>
+
+      <Text tag="p" variant="textXS" class="text-base-500">
+        Built for clarity, not scale.
+      </Text>
     </div>
   </Wrapper>
 </footer>

@@ -14,16 +14,20 @@ const {
   hideNavigation = false,
   hideFooter = false,
   navTransparent,
+  title,
+  description,
 } = Astro.props as {
   hideNavigation?: boolean;
   hideFooter?: boolean;
   navTransparent?: boolean;
+  title?: string;
+  description?: string;
 };
 ---
 
 <html lang="en" class="scroll-smooth">
   <head>
-    <BaseHead />
+    <BaseHead title={title} description={description} />
   </head>
   <body class="flex flex-col bg-white lg:min-h-svh">
     {

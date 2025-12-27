@@ -1,87 +1,60 @@
 ---
-// Assets
-import { Image } from "astro:assets";
-import HeroImage from "@/images/assets/heroImage.png";
-// Fundations
+// Foundations
 import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 ---
 
-<section>
-  <Wrapper variant="standard" class="py-24">
-    <div class="overflow-hidden grid grid-cols-1 lg:grid-cols-2 bg-base-50">
-      <div
-        class="h-full max-w-xl flex flex-col justify-between lg:gap-70 relative p-8 lg:px-12"
+<section class="bg-accent-900 text-white">
+  <Wrapper variant="standard" class="py-20 lg:py-28">
+    <div class="max-w-3xl">
+      <Text
+        tag="h2"
+        variant="displaySM"
+        class="text-accent-900 font-display text-white"
       >
-        <div>
-          <Text
-            tag="h2"
-            variant="displayMD"
-            class="text-accent-800 font-display"
-          >
-            Take the first step toward trusted legal solutions
-          </Text>
+        Start with clarity, not another tool.
+      </Text>
 
-          <Text
-            tag="p"
-            variant="textSM"
-            class="text-base-700 leading-relaxed mt-4"
-          >
-            Don't let legal challenges hold you back. Our experienced attorneys
-            are here to provide the guidance and representation you need.
-            Schedule your free consultation today.
-          </Text>
+      <Text
+        tag="p"
+        variant="textMD"
+        class="text-white/80 leading-relaxed mt-4"
+      >
+        If your ads, analytics, and CRM don’t agree, you’re flying blind.
+        I help you fix tracking and attribution fast, without adding unnecessary complexity.
+      </Text>
 
-          <div class="flex flex-col sm:flex-row gap-2 items-center mt-12">
-            <Button
-              variant="default"
-              size="xs"
-              isLink={true}
-              href="/free-consultation"
-              class="w-full lg:w-fit"
-            >
-              Schedule free consultation
-            </Button>
+      <div class="flex flex-col sm:flex-row gap-3 mt-8">
+        <Button
+          isLink={true}
+          href="https://cal.com/rudi-jantos"
+          data-track="book-call"
+          variant="default"
+          size="md"
+        >
+          Book a quick call
+        </Button>
 
-            <Button
-              variant="muted"
-              size="xs"
-              isLink={true}
-              href="/contact"
-              class="w-full lg:w-fit"
-            >
-              Contact us
-            </Button>
-          </div>
-
-          <Text tag="p" variant="textXS" class="text-base-700 mt-4">
-            No obligation • Confidential • Professional guidance
-          </Text>
-        </div>
-        <div class="mt-8 text-xs mt-4 pt-4 border-t border-base-200">
-          <a
-            href="tel:(555) 123-4567"
-            class="text-accent-700 hover:text-accent-900 font-semibold"
-            >Call (555) 123-4567</a
-          >
-          or
-          <a
-            href="mailto:info@carringtonlaw.com"
-            class="text-accent-700 hover:text-accent-900 font-semibold"
-            >info@carringtonlaw.com</a
-          >
-        </div>
+        <Button
+          isLink={true}
+          href="mailto:hi@rjantos.com"
+          data-track="email"
+          variant="muted"
+          size="md"
+        >
+          Email me
+        </Button>
       </div>
-      <Image
-        src={HeroImage}
-        width={1440}
-        height={900}
-        alt="Carrington Law - Professional Legal Services"
-        class="object-cover object-center size-full"
-        loading="eager"
-        decoding="async"
-      />
+
+      <Text
+        tag="p"
+        variant="textXS"
+        class="text-base-500 mt-4"
+      >
+        No obligation · Practical advice · Clear next steps
+      </Text>
     </div>
   </Wrapper>
+  <div class="h-px bg-white/10"></div>
 </section>
