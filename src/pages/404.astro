@@ -4,7 +4,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-// Content
+/* // Content
 // Recent cases (latest 3)
 const casesData = await getCollection("cases");
 const recentCases = casesData
@@ -55,7 +55,7 @@ const linkSections = [
     title: "Recent cases",
     items: recentCases,
   },
-];
+]; */
 ---
 
 <BaseLayout>
@@ -75,7 +75,6 @@ const linkSections = [
       >
         Sorry, the page you’re looking for doesn’t exist or has been moved.<br
         />
-        Here are some helpful links to get you back on track:
       </Text>
       <Button
         isLink={true}
@@ -87,7 +86,7 @@ const linkSections = [
         Go back home
       </Button>
 
-      <div
+<!--       <div
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-8 mt-12 lg:mt-24 lg:divide-x lg:divide-base-100 lg:border-x lg:border-base-100"
       >
         {
@@ -115,9 +114,9 @@ const linkSections = [
             </div>
           ))
         }
-      </div>
+      </div> -->
 
-      <div class="bg-base-50 p-8 lg:p-12 mt-12 lg:mt-24">
+    <!--   <div class="bg-base-50 p-8 lg:p-12 mt-12 lg:mt-24">
         <div
           class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6"
         >
@@ -141,7 +140,7 @@ const linkSections = [
             Contact Us
           </Button>
         </div>
-      </div>
+      </div> -->
     </Wrapper>
   </section>
 </BaseLayout>
