@@ -1,0 +1,531 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+---
+
+<BaseLayout
+  title="GA4 Attribution Problems in B2B – Causes, Symptoms, Fixes"
+  description="GA4 attribution problems explained for B2B teams: unassigned traffic, (not set), UTM failures, cross-domain breaks, Ads vs GA4 mismatches, and CRM revenue alignment."
+>
+
+  <!-- HERO -->
+  <section class="bg-base-50 border-b border-base-200">
+    <Wrapper variant="standard" class="py-20 lg:py-28">
+      <div class="max-w-2xl space-y-6">
+        <Text tag="h1" variant="displayMD" class="font-display text-accent-800">
+          GA4 Attribution Problems in B2B Teams
+        </Text>
+
+        <Text variant="textLG" class="text-base-800">
+          GA4 can be “installed correctly” and still misattribute revenue across channels.
+        </Text>
+
+        <Text variant="textBase" class="text-base-700">
+          This page is a practical breakdown of what breaks, how to diagnose it, and what to fix first so your reporting reflects reality.
+        </Text>
+
+        <div class="flex flex-wrap gap-3 pt-2">
+          <Button isLink href="#symptoms" variant="muted" size="md">
+            Symptoms
+          </Button>
+          <Button isLink href="#root-causes" variant="muted" size="md">
+            Root causes
+          </Button>
+          <Button isLink href="#fix-first" variant="muted" size="md">
+            Fix first
+          </Button>
+          <Button isLink href="#faq" variant="muted" size="md">
+            FAQ
+          </Button>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  <!-- MAIN -->
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <div class="max-w-3xl divide-y divide-base-200">
+        <section class="py-12">
+      <!-- WHY THIS MATTERS -->
+      <div class="space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Why attribution is harder in B2B than people expect
+        </Text>
+
+        <ul class="space-y-3 text-base-700 list-disc pl-5">
+          <li>Long sales cycles mean conversions happen far from the first touch</li>
+          <li>Multiple devices, private browsing, and consent changes reduce observable journeys</li>
+          <li>“Leads” are not revenue and GA4 mostly sees pre-revenue behavior</li>
+          <li>Revenue is finalized in the CRM, not in analytics</li>
+        </ul>
+
+        <Text variant="textBase" class="text-base-700">
+          In B2B, the question is rarely “what channel drove a form submit”. It is “what created qualified pipeline and closed revenue”.
+        </Text>
+      </div>
+      </section>
+      <section class="py-12">
+      <!-- SYMPTOMS -->
+      <div id="symptoms" class="space-y-5">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Symptoms of GA4 attribution problems
+        </Text>
+
+        <div class="space-y-4">
+          <Text tag="h3" variant="displaySM" class="font-display">
+            What you see in reports
+          </Text>
+          <ul class="space-y-3 text-base-700 list-disc pl-5">
+            <li>Channels look “wrong” compared to what Sales hears on calls</li>
+            <li>Direct traffic is unusually high</li>
+            <li>Large portions of traffic show as Unassigned, (not set), or Referral</li>
+            <li>Paid performance swings without clear campaign changes</li>
+            <li>GA4 conversions exist, but pipeline and revenue do not reconcile in the CRM</li>
+          </ul>
+        </div>
+
+        <div class="space-y-4">
+          <Text tag="h3" variant="displaySM" class="font-display">
+            What it causes operationally
+          </Text>
+          <ul class="space-y-3 text-base-700 list-disc pl-5">
+            <li>Budget gets moved to the wrong channel</li>
+            <li>High-performing initiatives get cut prematurely</li>
+            <li>Teams argue about numbers instead of acting</li>
+            <li>Leadership loses trust in analytics</li>
+          </ul>
+        </div>
+      </div>
+      </section>
+      <section class="py-12">
+      <!-- REPORTS DISAGREE -->
+      <div class="space-y-5">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Why different GA4 reports disagree about attribution
+        </Text>
+
+        <Text variant="textBase" class="text-base-700">
+          GA4 can apply different attribution logic depending on the report and the scope of the dimension you use. This is a common reason teams believe “GA4 is broken” when the real issue is inconsistent reporting assumptions.
+        </Text>
+
+        <ul class="space-y-3 text-base-700 list-disc pl-5">
+          <li>User and session acquisition views can behave differently from event-scoped conversion attribution</li>
+          <li>Traffic Acquisition often uses last non-direct click logic, while conversion-focused views follow your attribution settings</li>
+          <li>Explorations can change results depending on dimensions chosen</li>
+        </ul>
+
+        <Text variant="textBase" class="text-base-700">
+          Practical takeaway: if you compare channels across different reports, you must confirm which attribution logic is being applied in each view.
+        </Text>
+      </div>
+      </section>
+
+      <!-- ROOT CAUSES -->
+      <div id="root-causes" class="space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Root causes that create misleading channel credit
+        </Text>
+
+        <div class="space-y-4">
+          <Text tag="h3" variant="displaySM" class="font-display">
+            1) UTM tagging hygiene breaks down
+          </Text>
+          <ul class="space-y-3 text-base-700 list-disc pl-5">
+            <li>Inconsistent utm_source and utm_medium naming</li>
+            <li>Missing UTMs on paid social, newsletters, partner links</li>
+            <li>Redirects and link shorteners stripping parameters</li>
+            <li>Non-supported or malformed UTMs being ignored</li>
+          </ul>
+        </div>
+
+        <div class="space-y-4">
+          <Text tag="h3" variant="displaySM" class="font-display">
+            2) Cross-domain journeys break sessions
+          </Text>
+          <ul class="space-y-3 text-base-700 list-disc pl-5">
+            <li>Booking tools, payment pages, subdomains, or app domains treated as new sessions</li>
+            <li>Self-referrals appear and steal credit</li>
+            <li>Campaign attribution resets after domain hops</li>
+          </ul>
+        </div>
+
+        <div class="space-y-4">
+          <Text tag="h3" variant="displaySM" class="font-display">
+            3) Consent and browser restrictions reduce observable paths
+          </Text>
+          <ul class="space-y-3 text-base-700 list-disc pl-5">
+            <li>Users arrive without stable identifiers, sessions fragment, and channel credit becomes noisy</li>
+            <li>“Direct” and “Unassigned” inflate, especially on mobile and Safari</li>
+          </ul>
+        </div>
+
+        <div class="space-y-4">
+          <Text tag="h3" variant="displaySM" class="font-display">
+            4) Events and conversions are not mapped to buying intent
+          </Text>
+          <ul class="space-y-3 text-base-700 list-disc pl-5">
+            <li>Key events represent activity, not qualification</li>
+            <li>“Lead” conversions fire for spam, irrelevant, or low-intent actions</li>
+            <li>Multiple conversion points exist but no hierarchy exists for decision-making</li>
+          </ul>
+        </div>
+
+        <div class="space-y-4">
+          <Text tag="h3" variant="displaySM" class="font-display">
+            5) CRM attribution is not aligned with GA4 channel definitions
+          </Text>
+          <ul class="space-y-3 text-base-700 list-disc pl-5">
+            <li>UTMs are not captured into CRM fields on form submit</li>
+            <li>Sales edits lead sources manually without standards</li>
+            <li>Pipeline stages do not map cleanly to marketing outcomes</li>
+            <li>Closed-won revenue is not connected back to acquisition touchpoints</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- UTM NAMING CONVENTION -->
+<div class="space-y-4">
+  <Text tag="h2" variant="displayXS" class="font-display">
+    A practical UTM naming convention for B2B teams
+  </Text>
+
+  <Text variant="textBase" class="text-base-700">
+    Most attribution problems originate from inconsistent or missing campaign parameters.
+    A simple, enforced UTM convention eliminates a large percentage of “Unassigned” and “Direct” inflation in GA4.
+  </Text>
+
+  <div class="overflow-x-auto border border-base-200 rounded-sm">
+    <table class="min-w-full text-sm text-left text-base-700">
+      <thead class="bg-base-50 border-b border-base-200">
+        <tr>
+          <th class="px-4 py-3 font-medium">Parameter</th>
+          <th class="px-4 py-3 font-medium">What it represents</th>
+          <th class="px-4 py-3 font-medium">Example</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-base-200">
+        <tr>
+          <td class="px-4 py-3">utm_source</td>
+          <td class="px-4 py-3">Traffic origin</td>
+          <td class="px-4 py-3">google, linkedin, newsletter</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-3">utm_medium</td>
+          <td class="px-4 py-3">Channel type</td>
+          <td class="px-4 py-3">cpc, paid_social, email</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-3">utm_campaign</td>
+          <td class="px-4 py-3">Strategic initiative</td>
+          <td class="px-4 py-3">q1_demand_gen, product_launch</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-3">utm_content</td>
+          <td class="px-4 py-3">Creative or message variant</td>
+          <td class="px-4 py-3">carousel_01, demo_cta</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-3">utm_term</td>
+          <td class="px-4 py-3">Optional keyword or audience</td>
+          <td class="px-4 py-3">b2b_analytics, revops</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <Text variant="textBase" class="text-base-700">
+    Practical rules:
+  </Text>
+
+  <ul class="space-y-2 text-base-700 list-disc pl-5">
+    <li>Lowercase everything</li>
+    <li>Use underscores, not spaces</li>
+    <li>Never invent new mediums casually</li>
+    <li>Document the convention and reuse it everywhere</li>
+    <li>Enforce UTMs on paid, email, social, partners, and internal promos</li>
+  </ul>
+</div>
+
+
+      <!-- FIX FIRST -->
+      <div id="fix-first" class="space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Fix-first checklist (highest leverage)
+        </Text>
+
+        <Text variant="textBase" class="text-base-700">
+          If you want to stabilize attribution quickly, do these in order. This sequence reduces noise before you start “optimizing”.
+        </Text>
+
+        <ol class="space-y-4 text-base-700 list-decimal pl-5">
+          <li>
+            <strong>Standardize UTMs</strong>
+            <div class="pt-2">
+              Define a naming convention and enforce it across all links, ads, email, partners, and social.
+            </div>
+          </li>
+          <li>
+            <strong>Eliminate self-referrals and broken cross-domain sessions</strong>
+            <div class="pt-2">
+              Ensure your booking, payment, and app domains are not stealing credit. Confirm cross-domain tracking where needed.
+            </div>
+          </li>
+          <li>
+            <strong>Confirm what “conversion” means in B2B</strong>
+            <div class="pt-2">
+              Separate low-intent actions from real pipeline creation. Make sure “key events” represent intent, not activity.
+            </div>
+          </li>
+          <li>
+            <strong>Capture attribution into your CRM at the moment of conversion</strong>
+            <div class="pt-2">
+              UTMs, landing page, referrer, and click IDs should be stored in the CRM record, not only in GA4.
+            </div>
+          </li>
+          <li>
+            <strong>Validate against closed revenue</strong>
+            <div class="pt-2">
+              Use closed-won samples to verify whether reported sources align with real revenue outcomes.
+            </div>
+          </li>
+        </ol>
+      </div>
+
+<!-- B2B EVENT MODEL -->
+<div class="space-y-4">
+  <Text tag="h2" variant="displayXS" class="font-display">
+    A simple B2B event model that supports attribution
+  </Text>
+
+  <Text variant="textBase" class="text-base-700">
+    GA4 does not understand pipeline or revenue by default. It understands events.
+    The goal is not to track everything, but to track events that map to buying intent.
+  </Text>
+
+  <div class="border border-base-200 bg-base-50 p-6 rounded-sm space-y-4">
+    <Text tag="h3" variant="displaySM" class="font-display">
+      Recommended intent hierarchy
+    </Text>
+
+    <ul class="space-y-3 text-base-700 list-disc pl-5">
+      <li><strong>Lead</strong> – form submit, demo request, contact request</li>
+      <li><strong>MQL proxy</strong> – high-intent behavior (pricing views, product comparison, qualified demo)</li>
+      <li><strong>SQL proxy</strong> – sales-accepted lead or booked meeting</li>
+      <li><strong>Pipeline</strong> – opportunity created in CRM</li>
+      <li><strong>Revenue</strong> – closed-won deal</li>
+    </ul>
+  </div>
+
+  <Text variant="textBase" class="text-base-700">
+    In GA4, only the first layers are usually observable. The rest must be connected via CRM data.
+  </Text>
+
+  <ul class="space-y-3 text-base-700 list-disc pl-5">
+    <li>Key events should represent intent, not engagement</li>
+    <li>Only promote events to “conversions” if they matter for decisions</li>
+    <li>Pipeline and revenue attribution should be validated in the CRM, not guessed in GA4</li>
+  </ul>
+</div>
+
+
+      <!-- COMMON “SIGNATURE” ISSUES -->
+      <div class="space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Common GA4 “signature issues” and what they usually mean
+        </Text>
+
+        <div class="border border-base-200 bg-base-50 p-6 rounded-sm space-y-3">
+          <Text tag="h3" variant="displaySM" class="font-display">
+            Unassigned traffic is high
+          </Text>
+          <ul class="space-y-2 text-base-700 list-disc pl-5">
+            <li>UTMs missing or malformed</li>
+            <li>Redirects stripping parameters</li>
+            <li>Channel mapping does not match your traffic reality</li>
+          </ul>
+        </div>
+
+        <div class="border border-base-200 bg-base-50 p-6 rounded-sm space-y-3">
+          <Text tag="h3" variant="displaySM" class="font-display">
+            (not set) appears in source or medium
+          </Text>
+          <ul class="space-y-2 text-base-700 list-disc pl-5">
+            <li>Data is missing at collection time</li>
+            <li>Events are fired without session context</li>
+            <li>Implementation or consent conditions block source data</li>
+          </ul>
+        </div>
+
+        <div class="border border-base-200 bg-base-50 p-6 rounded-sm space-y-3">
+          <Text tag="h3" variant="displaySM" class="font-display">
+            Direct traffic is inflated
+          </Text>
+          <ul class="space-y-2 text-base-700 list-disc pl-5">
+            <li>UTMs missing on important campaigns</li>
+            <li>Cross-domain breaks and attribution resets</li>
+            <li>Email and dark social traffic not tagged</li>
+          </ul>
+        </div>
+
+        <div class="border border-base-200 bg-base-50 p-6 rounded-sm space-y-3">
+          <Text tag="h3" variant="displaySM" class="font-display">
+            Google Ads and GA4 disagree
+          </Text>
+          <ul class="space-y-2 text-base-700 list-disc pl-5">
+            <li>Different attribution models and lookback windows</li>
+            <li>Different conversion definitions</li>
+            <li>Missing click identifiers or inconsistent tagging</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- MINI CASE EXAMPLES -->
+      <div class="space-y-5">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Quick examples (what “good” looks like)
+        </Text>
+
+        <ul class="space-y-3 text-base-700 list-disc pl-5">
+          <li>UTM convention exists, is documented, and is enforced in templates</li>
+          <li>Cross-domain journeys do not create self-referrals</li>
+          <li>Key events represent intent and are reviewed quarterly</li>
+          <li>CRM stores UTMs, landing page, and original source at conversion time</li>
+          <li>Closed-won sampling is used to validate reporting assumptions</li>
+        </ul>
+      </div>
+
+      <!-- CTA -->
+      <div class="border border-base-200 bg-base-50 p-8 rounded-sm space-y-4">
+        <Text tag="h3" variant="displayXS" class="font-display">
+          If your numbers do not reconcile, fix the system, not the dashboard
+        </Text>
+
+        <Text variant="textBase" class="text-base-700">
+          The fastest way to get clarity is to review GA4, GTM, attribution logic, and CRM tracking together.
+          That is where most B2B setups silently break.
+        </Text>
+
+        <div class="flex flex-wrap gap-3 pt-1">
+          <Button isLink href="/b2b-marketing-audit/" variant="default" size="md">
+            See the B2B Marketing Audit
+          </Button>
+          <Button isLink href="/ga4-b2b-mistakes/" variant="muted" size="md">
+            Related: GA4 Mistakes in B2B
+          </Button>
+        </div>
+      </div>
+
+<!-- DIAGNOSTIC FLOWCHART -->
+<div class="space-y-4">
+  <Text tag="h2" variant="displayXS" class="font-display">
+    A 5-minute diagnostic to locate attribution failure
+  </Text>
+
+  <Text variant="textBase" class="text-base-700">
+    Use this quick flow to identify where attribution breaks before changing dashboards or budgets.
+  </Text>
+
+  <ol class="space-y-4 text-base-700 list-decimal pl-5">
+    <li>
+      <strong>Is Direct or Unassigned unusually high?</strong>
+      <div class="pt-2">
+        → Yes: start with UTMs and redirects.<br />
+        → No: continue.
+      </div>
+    </li>
+
+    <li>
+      <strong>Do GA4 and CRM disagree on top channels?</strong>
+      <div class="pt-2">
+        → Yes: check whether UTMs are captured into CRM fields.<br />
+        → No: continue.
+      </div>
+    </li>
+
+    <li>
+      <strong>Do different GA4 reports show different winners?</strong>
+      <div class="pt-2">
+        → Yes: confirm attribution model and report scope differences.<br />
+        → No: continue.
+      </div>
+    </li>
+
+    <li>
+      <strong>Does attribution reset after booking, payment, or app usage?</strong>
+      <div class="pt-2">
+        → Yes: cross-domain tracking or self-referrals are breaking sessions.<br />
+        → No: continue.
+      </div>
+    </li>
+
+    <li>
+      <strong>Can you reconcile 5 closed-won deals manually?</strong>
+      <div class="pt-2">
+        → No: attribution is not decision-grade yet.<br />
+        → Yes: the system is likely directionally reliable.
+      </div>
+    </li>
+  </ol>
+</div>
+
+
+      <!-- FAQ -->
+      <div id="faq" class="space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          FAQ
+        </Text>
+
+        <div class="space-y-5">
+          <div class="space-y-2">
+            <Text tag="h3" variant="displaySM" class="font-display">
+              Why does GA4 show one “best channel” while the CRM shows another?
+            </Text>
+            <Text variant="textBase" class="text-base-700">
+              GA4 measures onsite behavior and assigns channel credit based on the data it can observe. The CRM reflects sales outcomes and often includes manual adjustments, offline touches, and long-cycle influence that GA4 cannot fully see. The solution is not choosing one system over the other. The solution is aligning definitions and capturing attribution into CRM at conversion time.
+            </Text>
+          </div>
+
+          <div class="space-y-2">
+            <Text tag="h3" variant="displaySM" class="font-display">
+              Why is Unassigned traffic so high in GA4?
+            </Text>
+            <Text variant="textBase" class="text-base-700">
+              The most common causes are missing UTMs, malformed UTMs, redirects stripping parameters, and inconsistent channel mapping. Fix UTMs first, then validate cross-domain flows.
+            </Text>
+          </div>
+
+          <div class="space-y-2">
+            <Text tag="h3" variant="displaySM" class="font-display">
+              Why does Direct keep growing over time?
+            </Text>
+            <Text variant="textBase" class="text-base-700">
+              Direct is often a bucket for “unknown”. It grows when tagging breaks, when cross-domain resets attribution, and when traffic arrives from sources that do not pass referrer data cleanly (email, apps, privacy-protected browsers).
+            </Text>
+          </div>
+
+          <div class="space-y-2">
+            <Text tag="h3" variant="displaySM" class="font-display">
+              Should I trust GA4 data-driven attribution for B2B?
+            </Text>
+            <Text variant="textBase" class="text-base-700">
+              It can be useful, but only if input data is clean: stable UTMs, consistent conversion definitions, and minimized session fragmentation. Better inputs create better outputs. If inputs are noisy, every model becomes misleading.
+            </Text>
+          </div>
+
+          <div class="space-y-2">
+            <Text tag="h3" variant="displaySM" class="font-display">
+              What is the fastest way to know if my attribution is broken?
+            </Text>
+            <Text variant="textBase" class="text-base-700">
+              Pick a small sample of recent closed-won deals and trace the lead source fields and UTMs in the CRM back to the landing pages and campaigns you actually ran. If you cannot reconcile even a small sample, the system needs alignment before any scaling decisions.
+            </Text>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </Wrapper>
+
+</BaseLayout>
