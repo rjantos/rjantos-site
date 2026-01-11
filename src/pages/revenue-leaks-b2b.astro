@@ -1,0 +1,82 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+---
+
+<BaseLayout
+  title="B2B Revenue Leaks Between Ads, Analytics, and CRM"
+  description="How misalignment between ads, analytics, and CRM creates hidden revenue leaks in B2B growth systems."
+>
+
+  <!-- HERO -->
+  <section class="bg-base-50 border-b border-base-200">
+    <Wrapper variant="standard" class="py-20 lg:py-28">
+      <div class="max-w-2xl space-y-6">
+        <Text tag="h1" variant="displayMD" class="font-display text-accent-800">
+          B2B Revenue Leaks Between Ads, Analytics, and CRM
+        </Text>
+
+        <Text variant="textLG" class="text-base-800">
+          Revenue leaks usually come from gaps between systems, not from poor marketing execution.
+        </Text>
+
+        <Text variant="textBase" class="text-base-700">
+          This is one of the most common causes of misleading reporting and poor decisions in B2B teams.
+        </Text>
+      </div>
+    </Wrapper>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <div class="max-w-3xl space-y-10">
+
+      <div class="space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Why this happens
+        </Text>
+
+        <ul class="space-y-3 text-base-700 list-disc pl-5">
+          <li>Leads lost or duplicated between tools</li>
+          <li>Source fields overwritten or missing</li>
+          <li>Offline sales steps not reflected in analytics</li>
+        </ul>
+      </div>
+
+      <div class="space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Why it’s dangerous
+        </Text>
+
+        <ul class="space-y-3 text-base-700 list-disc pl-5">
+          <li>Leads to wrong channel decisions</li>
+          <li>Creates false confidence in numbers</li>
+          <li>Wastes budget or slows growth</li>
+        </ul>
+      </div>
+
+      <div class="border border-base-200 bg-base-50 p-8 rounded-sm space-y-4">
+        <Text tag="h3" variant="displayXS" class="font-display">
+          What to do instead
+        </Text>
+
+        <Text variant="textBase" class="text-base-700">
+          If this problem shows up in your setup, the fastest way to get clarity is a focused audit that looks across analytics, attribution, and CRM together.
+        </Text>
+
+        <Button
+          isLink
+          href="/b2b-marketing-audit/"
+          variant="default"
+          size="md"
+        >
+          See the B2B Marketing Audit
+        </Button>
+      </div>
+
+    </div>
+  </Wrapper>
+
+</BaseLayout>
