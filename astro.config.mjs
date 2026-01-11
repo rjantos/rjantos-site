@@ -16,12 +16,6 @@ export default defineConfig({
   },
 
   integrations: [
-    sitemap({
-      filter: (page) => {
-        const url = new URL(page);
-        const pathname = url.pathname.replace(/\/$/, "");
-        return ALLOWED_PATHS.has(pathname === "" ? "/" : pathname);
-      },
-    }),
+    sitemap(),
   ],
 });
