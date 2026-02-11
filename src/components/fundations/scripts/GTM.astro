@@ -1,13 +1,14 @@
 ---
-// @ts-nocheck
+ // @ts-nocheck
+ // Plain GTM loader with consent defaults
 ---
 <script>
-  const w = window as any;
-  w.dataLayer = w.dataLayer || [];
+  // Ensure dataLayer exists
+  window.dataLayer = window.dataLayer || [];
 
   // GA4 / GTM Consent Mode defaults (privacy-forward)
-  function gtag(...args: any[]): void {
-    w.dataLayer.push(args);
+  function gtag() {
+    window.dataLayer.push(arguments);
   }
 
   gtag("consent", "default", {
@@ -18,7 +19,7 @@
   });
 
   // Helper for future consent banner / CMP
-  w.__setAnalyticsConsent = function (granted: boolean) {
+  window.__setAnalyticsConsent = function (granted) {
     gtag("consent", "update", {
       ad_storage: granted ? "granted" : "denied",
       analytics_storage: granted ? "granted" : "denied",
@@ -26,24 +27,23 @@
       ad_personalization: granted ? "granted" : "denied",
     });
   };
-</script>
-<script>
-  (function (w, d, s, l, i) {
-    const win = w as any;
-    win[l] = win[l] || [];
-    win[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
 
-    const firstScript = d.getElementsByTagName(s)[0] as any | undefined;
+  (function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+
+    var firstScript = d.getElementsByTagName(s)[0];
     if (!firstScript || !firstScript.parentNode) return;
 
-    const j = d.createElement(s) as any;
-    const dl = l !== "dataLayer" ? "&l=" + l : "";
+    var j = d.createElement(s);
+    var dl = l !== "dataLayer" ? "&l=" + l : "";
     j.async = true;
     j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
 
     firstScript.parentNode.insertBefore(j, firstScript);
   })(window, document, "script", "dataLayer", "GTM-W4WBD6BP");
 </script>
+
 <noscript>
   <iframe
     src="https://www.googletagmanager.com/ns.html?id=GTM-W4WBD6BP"
@@ -52,4 +52,3 @@
     style="display:none;visibility:hidden"
   ></iframe>
 </noscript>
-
