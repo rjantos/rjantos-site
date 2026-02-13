@@ -1,21 +1,129 @@
 ---
+import { getCollection } from "astro:content";
 // Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
 // Sections
 import Hero from "@/components/landing/Hero.astro";
 import Credibility from "@/components/landing/Credibility.astro";
 import Philosophy from "@/components/landing/Philosophy.astro";
 import Cta from "@/components/global/Cta.astro";
+
+const latestInsights = (
+  await getCollection("insights", ({ data }) => !data.draft)
+)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
 <BaseLayout 
     navTransparent={false}
-    title="Fix Revenue Leaks Between Ads, Analytics, and CRM — Rudi Jantos"
-    description="I help B2B teams get clean tracking, reliable attribution, and decisions they can defend."
+    title="B2B Marketing Audit & GA4 Tracking Fixes — Rudi Jantos"
+    description="Fix GA4, GTM, attribution, and CRM alignment fast. Practical B2B marketing audits designed to improve decision quality and pipeline outcomes."
     funnelStage="awareness"
 >
   <Hero />
   <Credibility />
+
+  <section class="bg-white border-y border-base-200">
+    <Wrapper variant="standard" class="py-20 lg:py-24">
+      <div class="max-w-5xl grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <article class="border border-base-200 p-6 rounded-sm space-y-3 bg-base-50">
+          <Text tag="h2" variant="displaySM" class="font-display">
+            1) Diagnose
+          </Text>
+          <Text variant="textBase" class="text-base-700">
+            Identify where tracking, attribution, and CRM handoff break first.
+          </Text>
+        </article>
+        <article class="border border-base-200 p-6 rounded-sm space-y-3 bg-base-50">
+          <Text tag="h2" variant="displaySM" class="font-display">
+            2) Prioritize
+          </Text>
+          <Text variant="textBase" class="text-base-700">
+            Focus on the few fixes that remove the most decision risk.
+          </Text>
+        </article>
+        <article class="border border-base-200 p-6 rounded-sm space-y-3 bg-base-50">
+          <Text tag="h2" variant="displaySM" class="font-display">
+            3) Implement
+          </Text>
+          <Text variant="textBase" class="text-base-700">
+            Ship clear GTM/GA4 and CRM tracking standards your team can maintain.
+          </Text>
+        </article>
+      </div>
+      <div class="pt-8 flex flex-wrap gap-3">
+        <Button isLink href="/offer/" data-track="offer" variant="default" size="md">
+          See the offer
+        </Button>
+        <Button
+          isLink
+          href="https://cal.com/rudi-jantos"
+          data-track="book-call"
+          variant="muted"
+          size="md"
+        >
+          Book a quick call
+        </Button>
+      </div>
+    </Wrapper>
+  </section>
+
   <Philosophy />
+
+  <section class="bg-base-50 border-t border-base-200">
+    <Wrapper variant="standard" class="py-20 lg:py-24">
+      <div class="max-w-5xl space-y-8">
+        <div class="space-y-3">
+          <Text tag="h2" variant="displayMD" class="font-display text-accent-800">
+            Start with these practical resources
+          </Text>
+          <Text variant="textBase" class="text-base-700">
+            Built to help you move from confused reporting to decision-grade data.
+          </Text>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {
+            latestInsights.map((entry) => (
+              <article class="border border-base-200 rounded-sm bg-white p-6 space-y-3">
+                <Text tag="h3" variant="displaySM" class="font-display">
+                  <a
+                    href={`/resources/${entry.slug}/`}
+                    data-track="resources"
+                    class="hover:text-accent-700 transition-colors"
+                  >
+                    {entry.data.title}
+                  </a>
+                </Text>
+                <Text variant="textSM" class="text-base-700">
+                  {entry.data.description}
+                </Text>
+              </article>
+            ))
+          }
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <Button
+            isLink
+            href="/resources/"
+            data-track="resources"
+            variant="default"
+            size="md"
+          >
+            Explore all resources
+          </Button>
+          <Button isLink href="/proof/" variant="muted" size="md">
+            See proof and context
+          </Button>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
   <Cta />
 </BaseLayout>

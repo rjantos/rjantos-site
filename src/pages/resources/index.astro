@@ -17,7 +17,7 @@ const insights = (await getCollection("insights", ({ data }) => !data.draft)).so
 >
   <section class="bg-base-50 border-b border-base-200">
     <Wrapper variant="standard" class="py-20 lg:py-28">
-      <div class="max-w-3xl space-y-6">
+      <div class="max-w-4xl space-y-6">
         <Text tag="h1" variant="displayMD" class="font-display text-accent-800">
           Resources
         </Text>
@@ -29,6 +29,43 @@ const insights = (await getCollection("insights", ({ data }) => !data.draft)).so
           Each guide is written to be actionable. No fluff, no vanity metrics,
           and no tool hype.
         </Text>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <a
+          href="/b2b-marketing-audit/"
+          data-track="offer"
+          class="border border-base-200 bg-white p-5 rounded-sm hover:border-accent-300 transition-colors"
+        >
+          <Text tag="h2" variant="displaySM" class="font-display">
+            Start with the audit
+          </Text>
+          <Text variant="textSM" class="text-base-700 mt-2">
+            Decision-stage page with scope and next step.
+          </Text>
+        </a>
+        <a
+          href="/b2b-lead-generation-audit/"
+          class="border border-base-200 bg-white p-5 rounded-sm hover:border-accent-300 transition-colors"
+        >
+          <Text tag="h2" variant="displaySM" class="font-display">
+            Lead generation audit
+          </Text>
+          <Text variant="textSM" class="text-base-700 mt-2">
+            Improve source quality and booked-call outcomes.
+          </Text>
+        </a>
+        <a
+          href="/b2b-content-marketing-audit/"
+          class="border border-base-200 bg-white p-5 rounded-sm hover:border-accent-300 transition-colors"
+        >
+          <Text tag="h2" variant="displaySM" class="font-display">
+            Content audit
+          </Text>
+          <Text variant="textSM" class="text-base-700 mt-2">
+            Convert impressions into clicks and calls.
+          </Text>
+        </a>
       </div>
     </Wrapper>
   </section>
