@@ -80,11 +80,18 @@
             trackedElement.textContent
         );
 
-        pushEvent("cta_click", {
+        const ctaPayload = {
           cta_type: ctaType,
           cta_label: ctaLabel,
           cta_href: href || "",
-        });
+        };
+
+        pushEvent("cta_click", ctaPayload);
+
+        // Dedicated event to simplify GA4 key-event setup for booked calls.
+        if (ctaType === "book-call") {
+          pushEvent("book_call_click", ctaPayload);
+        }
 
         if (
           href &&
