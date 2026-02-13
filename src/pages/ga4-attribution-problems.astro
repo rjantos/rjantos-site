@@ -3,11 +3,13 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
+import TopicClusterNav from "@/components/global/TopicClusterNav.astro";
 ---
 
 <BaseLayout
   title="GA4 Attribution Problems in B2B – Causes, Symptoms, Fixes"
   description="GA4 attribution problems explained for B2B teams: unassigned traffic, (not set), UTM failures, cross-domain breaks, Ads vs GA4 mismatches, and CRM revenue alignment."
+  funnelStage="consideration"
 >
 
   <!-- HERO -->
@@ -408,7 +410,13 @@ import Button from "@/components/fundations/elements/Button.astro";
         </Text>
 
         <div class="flex flex-wrap gap-3 pt-1">
-          <Button isLink href="/b2b-marketing-audit/" variant="default" size="md">
+          <Button
+            isLink
+            href="/b2b-marketing-audit/"
+            data-track="offer"
+            variant="default"
+            size="md"
+          >
             See the B2B Marketing Audit
           </Button>
           <Button isLink href="/ga4-b2b-mistakes/" variant="muted" size="md">
@@ -527,5 +535,7 @@ import Button from "@/components/fundations/elements/Button.astro";
 
     </div>
   </Wrapper>
+
+  <TopicClusterNav current="/ga4-attribution-problems/" />
 
 </BaseLayout>

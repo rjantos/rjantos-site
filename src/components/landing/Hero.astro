@@ -7,7 +7,7 @@ import Button from "@/components/fundations/elements/Button.astro";
 
 <section class="bg-base-50 border-b border-base-200">
   <Wrapper variant="standard" class="py-20 lg:py-28">
-    <div class="max-w-5xl">
+    <div class="max-w-5xl space-y-10">
       <Text
         tag="h1"
         variant="displayXL"
@@ -29,17 +29,43 @@ import Button from "@/components/fundations/elements/Button.astro";
         variant="textMD"
         class="mt-6 text-base-700 max-w-2xl leading-relaxed"
       >
-      Start with a focused B2B Marketing Audit to identify where tracking, attribution, and CRM data break down.
+        Start with a focused B2B Marketing Audit to identify where tracking,
+        attribution, and CRM data break down.
       </Text>
-      <div class="mt-10 flex flex-col sm:flex-row gap-4">
+
+      <div class="mt-10 flex flex-col sm:flex-row gap-4 items-start">
         <Button
           isLink={true}
-          href="/b2b-marketing-audit/"
+          href="/offer/"
+          data-track="offer"
           variant="default"
           size="md"
         >
-          Start with the audit
+          See the offer
         </Button>
 
         <Button
           isLink={true}
+          href="/resources/"
+          variant="muted"
+          size="md"
+        >
+          Explore resources
+        </Button>
+      </div>
+
+      <div class="pt-2">
+        <Button
+          isLink={true}
+          href="https://cal.com/rudi-jantos"
+          data-track="book-call"
+          variant="none"
+          size="xs"
+          class="!text-accent-800 !bg-transparent !hover:bg-transparent !underline underline-offset-4 px-0 py-0 h-auto font-medium"
+        >
+          Or book a quick call
+        </Button>
+      </div>
+    </div>
+  </Wrapper>
+</section>

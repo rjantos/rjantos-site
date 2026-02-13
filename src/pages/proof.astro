@@ -1,0 +1,89 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import TopicClusterNav from "@/components/global/TopicClusterNav.astro";
+
+const proofPoints = [
+  "10+ years in B2B growth, analytics, and attribution",
+  "Former Head of Marketing in a venture-backed B2B SaaS context",
+  "Hands-on execution across GA4, GTM, CRM workflows, and paid channels",
+  "Focus on practical fixes that reduce decision risk quickly",
+];
+---
+
+<BaseLayout
+  title="Proof — Why Teams Bring Rudi Jantos In"
+  description="Proof points and operating context for B2B teams that need reliable tracking, attribution, and CRM-aligned growth decisions."
+  funnelStage="decision"
+>
+  <section class="bg-base-50 border-b border-base-200">
+    <Wrapper variant="standard" class="py-20 lg:py-28">
+      <div class="max-w-3xl space-y-6">
+        <Text tag="h1" variant="displayMD" class="font-display text-accent-800">
+          Proof and context
+        </Text>
+        <Text variant="textLG" class="text-base-800">
+          Teams usually bring me in when reporting is noisy and growth decisions
+          feel risky.
+        </Text>
+        <Text variant="textBase" class="text-base-700">
+          The work is focused on improving decision quality, not producing more
+          dashboards.
+        </Text>
+      </div>
+    </Wrapper>
+  </section>
+
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <div class="max-w-3xl space-y-10">
+      <section class="space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Why this works
+        </Text>
+        <ul class="space-y-3 text-base-700 list-disc pl-5">
+          {proofPoints.map((point) => <li>{point}</li>)}
+        </ul>
+      </section>
+
+      <section class="border border-base-200 bg-base-50 p-8 rounded-sm space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Delivery style
+        </Text>
+        <ul class="space-y-2 text-base-700 list-disc pl-5">
+          <li>Start from business decisions that matter now</li>
+          <li>Audit tracking and attribution before proposing tools</li>
+          <li>Prioritize actions by revenue impact and implementation effort</li>
+          <li>Keep systems maintainable for the team after handoff</li>
+        </ul>
+      </section>
+
+      <section class="space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Next step
+        </Text>
+        <Text variant="textBase" class="text-base-700">
+          If this matches your situation, start with the offer page and book a fit
+          call.
+        </Text>
+        <div class="flex flex-wrap gap-3">
+          <Button isLink href="/offer/" variant="default" size="md">
+            See the offer
+          </Button>
+          <Button
+            isLink
+            href="https://cal.com/rudi-jantos"
+            data-track="book-call"
+            variant="muted"
+            size="md"
+          >
+            Book a quick call
+          </Button>
+        </div>
+      </section>
+    </div>
+  </Wrapper>
+
+  <TopicClusterNav current="/proof/" />
+</BaseLayout>

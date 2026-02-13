@@ -1,0 +1,71 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import TopicClusterNav from "@/components/global/TopicClusterNav.astro";
+---
+
+<BaseLayout
+  title="Aircall Tracking Teardown — GA4 and CRM Alignment Gaps"
+  description="A practical teardown example of how attribution and CRM alignment issues can hide pipeline truth in B2B setups."
+  funnelStage="consideration"
+>
+  <section class="bg-base-50 border-b border-base-200">
+    <Wrapper variant="standard" class="py-20 lg:py-28">
+      <div class="max-w-3xl space-y-6">
+        <Text tag="h1" variant="displayMD" class="font-display text-accent-800">
+          Aircall teardown: where attribution breaks in B2B
+        </Text>
+        <Text variant="textLG" class="text-base-800">
+          This short teardown shows common failure points between marketing
+          channels, GA4 reporting, and CRM source quality.
+        </Text>
+      </div>
+    </Wrapper>
+  </section>
+
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <div class="max-w-3xl space-y-8">
+      <section class="space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Common breakpoints
+        </Text>
+        <ul class="space-y-3 text-base-700 list-disc pl-5">
+          <li>Campaign parameters missing on high-intent landing pages</li>
+          <li>Session resets between website and booking environments</li>
+          <li>Lead source overwritten in CRM after handoff</li>
+          <li>Pipeline and revenue not joined back to acquisition context</li>
+        </ul>
+      </section>
+
+      <section class="border border-base-200 bg-base-50 p-8 rounded-sm space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Fast remediation path
+        </Text>
+        <ol class="space-y-3 text-base-700 list-decimal pl-5">
+          <li>Stabilize UTM governance and enforce it in launch workflows</li>
+          <li>Fix cross-domain tracking and remove self-referrals</li>
+          <li>Map funnel events to intent, not engagement noise</li>
+          <li>Capture source context in CRM at conversion time</li>
+        </ol>
+      </section>
+
+      <section class="space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Related next steps
+        </Text>
+        <div class="flex flex-wrap gap-3">
+          <Button isLink href="/ga4-attribution-problems/" variant="default" size="md">
+            Read GA4 attribution guide
+          </Button>
+          <Button isLink href="/offer/" variant="muted" size="md">
+            See the audit offer
+          </Button>
+        </div>
+      </section>
+    </div>
+  </Wrapper>
+
+  <TopicClusterNav current="/teardowns/aircall.html/" />
+</BaseLayout>

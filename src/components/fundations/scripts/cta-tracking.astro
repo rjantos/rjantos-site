@@ -1,29 +1,121 @@
 <script>
-  document.addEventListener("click", function (e) {
-    var target = e.target.closest("[data-track]");
-    if (!target) return;
+  (() => {
+    if (window.__rjTrackingBooted) return;
+    window.__rjTrackingBooted = true;
 
-    var type = target.getAttribute("data-track");
-    var location = window.location.pathname || "/";
-    var href = target.getAttribute("href");
+    const dataLayer = (window.dataLayer = window.dataLayer || []);
 
-    var eventName = null;
-    if (type === "book-call") eventName = "book_call_click";
-    if (type === "email") eventName = "email_click";
+    const safeText = (value, max = 140) => {
+      if (!value) return "";
+      return String(value).replace(/\s+/g, " ").trim().slice(0, max);
+    };
 
-    if (!eventName) return;
+    const isNormalNavigationClick = (event, element) =>
+      event.button === 0 &&
+      !event.metaKey &&
+      !event.ctrlKey &&
+      !event.shiftKey &&
+      !event.altKey &&
+      element.getAttribute("target") !== "_blank";
 
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "cta_click",
-      cta_type: type,
-      cta_location: location,
-      cta_href: href || "",
+    const pushEvent = (eventName, payload = {}) => {
+      if (!eventName) return;
+      dataLayer.push({
+        event: eventName,
+        page_path: window.location.pathname || "/",
+        page_title: document.title,
+        ...payload,
+      });
+    };
+
+    // Keep this helper globally available for manual event pushes.
+    window.rjTrack = pushEvent;
+
+    const funnelStage = document.body?.dataset?.funnelStage;
+    if (funnelStage) {
+      pushEvent("funnel_stage_view", {
+        funnel_stage: funnelStage,
+      });
+    }
+
+    document.addEventListener("click", (event) => {
+      const clicked = event.target instanceof Element ? event.target : null;
+      if (!clicked) return;
+
+      const trackedElement = clicked.closest("[data-track]");
+      const clickableElement = trackedElement || clicked.closest("a,button");
+      if (!clickableElement) return;
+
+      const href =
+        clickableElement instanceof HTMLAnchorElement
+          ? clickableElement.href
+          : clickableElement.getAttribute("href") || "";
+
+      if (trackedElement) {
+        const ctaType = trackedElement.getAttribute("data-track") || "";
+        const ctaLabel = safeText(
+          trackedElement.getAttribute("data-track-label") ||
+            trackedElement.textContent
+        );
+
+        pushEvent("cta_click", {
+          cta_type: ctaType,
+          cta_label: ctaLabel,
+          cta_href: href || "",
+        });
+
+        if (
+          href &&
+          clickableElement instanceof HTMLAnchorElement &&
+          isNormalNavigationClick(event, clickableElement)
+        ) {
+          event.preventDefault();
+          window.setTimeout(() => {
+            window.location.href = href;
+          }, 120);
+        }
+        return;
+      }
+
+      if (href) {
+        try {
+          const targetUrl = new URL(href);
+          if (targetUrl.origin !== window.location.origin) {
+            pushEvent("outbound_click", {
+              link_url: targetUrl.href,
+              link_domain: targetUrl.hostname,
+              link_text: safeText(clickableElement.textContent),
+            });
+          }
+        } catch {
+          // Ignore malformed URLs.
+        }
+
+        if (/\.(pdf|doc|docx|xls|xlsx|ppt|pptx|zip)$/i.test(href)) {
+          pushEvent("file_download", {
+            file_url: href,
+          });
+        }
+      }
     });
 
-    if (href) {
-      e.preventDefault();
-      window.location.href = href;
-    }
-  });
+    const firedScrollThresholds = new Set();
+    const scrollThresholds = [25, 50, 75, 90];
+    const onScroll = () => {
+      const doc = document.documentElement;
+      const maxScrollable = doc.scrollHeight - window.innerHeight;
+      if (maxScrollable <= 0) return;
+      const scrollPercent = Math.round((window.scrollY / maxScrollable) * 100);
+
+      scrollThresholds.forEach((threshold) => {
+        if (scrollPercent >= threshold && !firedScrollThresholds.has(threshold)) {
+          firedScrollThresholds.add(threshold);
+          pushEvent("scroll_depth", { scroll_percent: threshold });
+        }
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  })();
 </script>

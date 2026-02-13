@@ -3,11 +3,13 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
+import TopicClusterNav from "@/components/global/TopicClusterNav.astro";
 ---
 
 <BaseLayout
   title="B2B Attribution Problems That Distort Growth Decisions"
   description="Why attribution models fail in B2B and how misleading data leads teams to optimize the wrong channels."
+  funnelStage="consideration"
 >
 
   <!-- HERO -->
@@ -69,6 +71,7 @@ import Button from "@/components/fundations/elements/Button.astro";
         <Button
           isLink
           href="/b2b-marketing-audit/"
+          data-track="offer"
           variant="default"
           size="md"
         >
@@ -78,5 +81,7 @@ import Button from "@/components/fundations/elements/Button.astro";
 
     </div>
   </Wrapper>
+
+  <TopicClusterNav current="/b2b-attribution-problems/" />
 
 </BaseLayout>

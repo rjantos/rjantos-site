@@ -1,54 +1,77 @@
 ---
- // @ts-nocheck
- // Plain GTM loader with consent defaults
+// @ts-nocheck
+// Plain GTM loader with consent defaults
+const gtmId = import.meta.env.PUBLIC_GTM_ID ?? "GTM-W4WBD6BP";
+const ga4Id = import.meta.env.PUBLIC_GA4_ID ?? "G-91S7J11B9J";
 ---
-<script>
-  // Ensure dataLayer exists
-  window.dataLayer = window.dataLayer || [];
+{
+  gtmId && (
+    <>
+      <script is:inline define:vars={{ gtmId, ga4Id }}>
+        // Ensure dataLayer exists
+        window.dataLayer = window.dataLayer || [];
 
-  // GA4 / GTM Consent Mode defaults (privacy-forward)
-  function gtag() {
-    window.dataLayer.push(arguments);
-  }
+        // Minimal config object useful in debugging and GTM setup docs.
+        window.__rjTrackingConfig = {
+          gtmId,
+          ga4Id,
+        };
 
-  gtag("consent", "default", {
-    ad_storage: "denied",
-    analytics_storage: "denied",
-    ad_user_data: "denied",
-    ad_personalization: "denied",
-  });
+        // GA4 / GTM Consent Mode defaults (privacy-forward)
+        function gtag() {
+          window.dataLayer.push(arguments);
+        }
 
-  // Helper for future consent banner / CMP
-  window.__setAnalyticsConsent = function (granted) {
-    gtag("consent", "update", {
-      ad_storage: granted ? "granted" : "denied",
-      analytics_storage: granted ? "granted" : "denied",
-      ad_user_data: granted ? "granted" : "denied",
-      ad_personalization: granted ? "granted" : "denied",
-    });
-  };
+        gtag("consent", "default", {
+          ad_storage: "denied",
+          analytics_storage: "denied",
+          ad_user_data: "denied",
+          ad_personalization: "denied",
+        });
 
-  (function (w, d, s, l, i) {
-    w[l] = w[l] || [];
-    w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        // Helper for future consent banner / CMP
+        window.__setAnalyticsConsent = function (granted) {
+          gtag("consent", "update", {
+            ad_storage: granted ? "granted" : "denied",
+            analytics_storage: granted ? "granted" : "denied",
+            ad_user_data: granted ? "granted" : "denied",
+            ad_personalization: granted ? "granted" : "denied",
+          });
+        };
 
-    var firstScript = d.getElementsByTagName(s)[0];
-    if (!firstScript || !firstScript.parentNode) return;
+        // Convenience helper for custom event pushes.
+        window.rjTrack = function (eventName, params) {
+          if (!eventName) return;
+          window.dataLayer.push({
+            event: eventName,
+            ...(params || {}),
+          });
+        };
 
-    var j = d.createElement(s);
-    var dl = l !== "dataLayer" ? "&l=" + l : "";
-    j.async = true;
-    j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
 
-    firstScript.parentNode.insertBefore(j, firstScript);
-  })(window, document, "script", "dataLayer", "GTM-W4WBD6BP");
-</script>
+          var firstScript = d.getElementsByTagName(s)[0];
+          if (!firstScript || !firstScript.parentNode) return;
 
-<noscript>
-  <iframe
-    src="https://www.googletagmanager.com/ns.html?id=GTM-W4WBD6BP"
-    height="0"
-    width="0"
-    style="display:none;visibility:hidden"
-  ></iframe>
-</noscript>
+          var j = d.createElement(s);
+          var dl = l !== "dataLayer" ? "&l=" + l : "";
+          j.async = true;
+          j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+
+          firstScript.parentNode.insertBefore(j, firstScript);
+        })(window, document, "script", "dataLayer", gtmId);
+      </script>
+
+      <noscript>
+        <iframe
+          src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+          height="0"
+          width="0"
+          style="display:none;visibility:hidden"
+        />
+      </noscript>
+    </>
+  )
+}

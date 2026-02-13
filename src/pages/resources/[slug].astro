@@ -1,0 +1,156 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+
+export async function getStaticPaths() {
+  const insights = await getCollection("insights", ({ data }) => !data.draft);
+  return insights.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const allInsights = (await getCollection("insights", ({ data }) => !data.draft))
+  .filter((resource) => resource.slug !== entry.slug)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const canonical = new URL(
+  `/resources/${entry.slug}/`,
+  Astro.site ?? Astro.url.origin
+).href;
+
+const articleStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: entry.data.title,
+  description: entry.data.description,
+  datePublished: entry.data.pubDate.toISOString(),
+  ...(entry.data.updatedDate
+    ? { dateModified: entry.data.updatedDate.toISOString() }
+    : {}),
+  mainEntityOfPage: canonical,
+  author: {
+    "@type": "Person",
+    name: "Rudi Jantos",
+    url: "https://rjantos.com/",
+  },
+  publisher: {
+    "@type": "Person",
+    name: "Rudi Jantos",
+    url: "https://rjantos.com/",
+  },
+};
+---
+
+<BaseLayout
+  title={`${entry.data.title} — Resources | Rudi Jantos`}
+  description={entry.data.description}
+  funnelStage="consideration"
+  structuredData={articleStructuredData}
+>
+  <section class="bg-base-50 border-b border-base-200">
+    <Wrapper variant="standard" class="py-20 lg:py-24">
+      <div class="max-w-3xl space-y-4">
+        <a href="/resources/" class="text-sm text-base-600 hover:text-accent-700">
+          ← Back to resources
+        </a>
+        <Text tag="h1" variant="displayMD" class="font-display text-accent-800">
+          {entry.data.title}
+        </Text>
+        <Text variant="textBase" class="text-base-700">
+          {entry.data.description}
+        </Text>
+        <Text variant="textXS" class="text-base-500">
+          Published {entry.data.pubDate.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </Text>
+        {
+          entry.data.tags.length > 0 && (
+            <ul class="flex flex-wrap gap-2 pt-2">
+              {entry.data.tags.map((tag) => (
+                <li class="text-xs px-2.5 py-1 bg-white border border-base-200 text-base-700 rounded-sm">
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </div>
+    </Wrapper>
+  </section>
+
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <article
+      class="prose prose-neutral max-w-3xl prose-headings:font-display prose-a:text-accent-800 prose-strong:text-base-900"
+    >
+      <Content />
+    </article>
+  </Wrapper>
+
+  <section class="bg-base-50 border-t border-base-200">
+    <Wrapper variant="standard" class="py-16 lg:py-20">
+      <div class="max-w-3xl space-y-6">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Need help applying this to your stack?
+        </Text>
+        <Text variant="textBase" class="text-base-700">
+          If your team needs a practical audit and implementation plan, start
+          here.
+        </Text>
+        <div class="flex flex-wrap gap-3">
+          <Button isLink href="/offer/" variant="default" size="md">
+            See the offer
+          </Button>
+          <Button
+            isLink
+            href="https://cal.com/rudi-jantos"
+            data-track="book-call"
+            variant="muted"
+            size="md"
+          >
+            Book a quick call
+          </Button>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  {
+    allInsights.length > 0 && (
+      <Wrapper variant="standard" class="py-20 lg:py-24">
+        <div class="max-w-4xl space-y-6">
+          <Text tag="h2" variant="displayXS" class="font-display">
+            Related resources
+          </Text>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {allInsights.map((resource) => (
+              <article class="border border-base-200 p-6 rounded-sm bg-white space-y-3">
+                <Text tag="h3" variant="displaySM" class="font-display">
+                  <a
+                    href={`/resources/${resource.slug}/`}
+                    class="hover:text-accent-700 transition-colors"
+                  >
+                    {resource.data.title}
+                  </a>
+                </Text>
+                <Text variant="textSM" class="text-base-700">
+                  {resource.data.description}
+                </Text>
+              </article>
+            ))}
+          </div>
+        </div>
+      </Wrapper>
+    )
+  }
+</BaseLayout>

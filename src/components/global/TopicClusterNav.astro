@@ -1,0 +1,42 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+
+const { current = "" } = Astro.props as { current?: string };
+
+const topicLinks = [
+  { title: "B2B Marketing Audit", href: "/b2b-marketing-audit/" },
+  { title: "GA4 Attribution Problems", href: "/ga4-attribution-problems/" },
+  { title: "GA4 B2B Mistakes", href: "/ga4-b2b-mistakes/" },
+  { title: "B2B Attribution Problems", href: "/b2b-attribution-problems/" },
+  { title: "Revenue Leaks in B2B", href: "/revenue-leaks-b2b/" },
+  { title: "Resources", href: "/resources/" },
+  { title: "Offer", href: "/offer/" },
+  { title: "Proof", href: "/proof/" },
+];
+
+const normalizedCurrent = current.endsWith("/") ? current : `${current}/`;
+const visibleLinks = topicLinks.filter((item) => item.href !== normalizedCurrent);
+---
+
+<section class="bg-base-50 border-t border-base-200">
+  <Wrapper variant="standard" class="py-16 lg:py-20">
+    <div class="max-w-4xl space-y-6">
+      <Text tag="h2" variant="displayXS" class="font-display">
+        Explore related topics
+      </Text>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {
+          visibleLinks.map((item) => (
+            <a
+              href={item.href}
+              class="border border-base-200 bg-white px-4 py-3 text-sm text-base-800 hover:text-accent-700 hover:border-accent-300 transition-colors"
+            >
+              {item.title}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </Wrapper>
+</section>

@@ -1,0 +1,110 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import TopicClusterNav from "@/components/global/TopicClusterNav.astro";
+
+const outcomes = [
+  "A clear diagnosis of what is breaking tracking and attribution",
+  "A prioritized action plan based on business impact",
+  "A clean event and funnel model for GA4 + GTM",
+  "A CRM alignment checklist for pipeline and revenue attribution",
+];
+---
+
+<BaseLayout
+  title="Offer — B2B Marketing Audit and Tracking Fixes"
+  description="A focused B2B offer to diagnose and fix GA4, GTM, attribution, and CRM tracking issues so your growth decisions are based on reliable data."
+  funnelStage="decision"
+>
+  <section class="bg-base-50 border-b border-base-200">
+    <Wrapper variant="standard" class="py-20 lg:py-28">
+      <div class="max-w-3xl space-y-6">
+        <Text tag="h1" variant="displayMD" class="font-display text-accent-800">
+          Offer: B2B Marketing Audit
+        </Text>
+
+        <Text variant="textLG" class="text-base-800">
+          If your ads, analytics, and CRM tell different stories, this is where
+          we fix the system.
+        </Text>
+
+        <Text variant="textBase" class="text-base-700">
+          The goal is simple: give your team trustworthy measurement and clear
+          next actions, fast.
+        </Text>
+
+        <div class="flex flex-wrap gap-3 pt-2">
+          <Button
+            isLink
+            href="https://cal.com/rudi-jantos"
+            data-track="book-call"
+            variant="default"
+            size="md"
+          >
+            Book a quick call
+          </Button>
+          <Button
+            isLink
+            href="mailto:hi@rjantos.com"
+            data-track="email"
+            variant="muted"
+            size="md"
+          >
+            Email me
+          </Button>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <div class="max-w-3xl space-y-8">
+      <Text tag="h2" variant="displayXS" class="font-display">
+        What you get
+      </Text>
+
+      <ul class="space-y-3 text-base-700 list-disc pl-5">
+        {outcomes.map((item) => <li>{item}</li>)}
+      </ul>
+
+      <div class="border border-base-200 bg-base-50 p-8 rounded-sm space-y-4">
+        <Text tag="h3" variant="displaySM" class="font-display">
+          Typical fit
+        </Text>
+        <ul class="space-y-2 text-base-700 list-disc pl-5">
+          <li>You run paid and owned channels and need reliable attribution</li>
+          <li>Your GA4 and CRM data disagree on channel performance</li>
+          <li>You need decision-grade data before scaling budget</li>
+        </ul>
+      </div>
+
+      <div class="border border-base-200 p-8 rounded-sm space-y-4">
+        <Text tag="h3" variant="displaySM" class="font-display">
+          Next step
+        </Text>
+        <Text variant="textBase" class="text-base-700">
+          Start with a short fit call. If your setup is already strong, I will say
+          so directly.
+        </Text>
+        <div class="flex flex-wrap gap-3">
+          <Button
+            isLink
+            href="https://cal.com/rudi-jantos"
+            data-track="book-call"
+            variant="default"
+            size="md"
+          >
+            Book a quick call
+          </Button>
+          <Button isLink href="/proof/" variant="muted" size="md">
+            See proof and context
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Wrapper>
+
+  <TopicClusterNav current="/offer/" />
+</BaseLayout>

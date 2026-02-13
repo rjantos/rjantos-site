@@ -4,11 +4,13 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import Cta from "@/components/global/Cta.astro";
+import TopicClusterNav from "@/components/global/TopicClusterNav.astro";
 ---
 
 <BaseLayout
   title="B2B Marketing Audit — Fix GA4, Attribution & Revenue Leaks"
   description="A focused B2B marketing audit to diagnose broken tracking, misleading attribution, and revenue leaks across ads, analytics, and CRM."
+  funnelStage="decision"
 >
 
   <!-- HERO / DECISION -->
@@ -31,6 +33,7 @@ import Cta from "@/components/global/Cta.astro";
           <Button
             isLink
             href="https://cal.com/rudi-jantos"
+            data-track="book-call"
             variant="default"
             size="md"
           >
@@ -40,6 +43,7 @@ import Cta from "@/components/global/Cta.astro";
           <Button
             isLink
             href="mailto:hi@rjantos.com"
+            data-track="email"
             variant="muted"
             size="md"
           >
@@ -105,5 +109,6 @@ import Cta from "@/components/global/Cta.astro";
 
   <!-- FINAL CTA -->
   <Cta />
+  <TopicClusterNav current="/b2b-marketing-audit/" />
 
 </BaseLayout>
