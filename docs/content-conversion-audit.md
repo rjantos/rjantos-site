@@ -27,7 +27,8 @@
 - Added additional decision-stage pages:
   - `/b2b-lead-generation-audit/`
   - `/b2b-content-marketing-audit/`
-  - `/audyt-marketingu-b2b/`
+  - `/tracking-audit-scorecard/`
+- Added secondary-language support via Italian landing page for expansion (`/it/audit-marketing-b2b/`).
 - Added high-intent internal links across topic cluster pages.
 
 ## 3) Content inventory expansion

@@ -1,0 +1,55 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import AsyncLeadForm from "@/components/global/AsyncLeadForm.astro";
+import TopicClusterNav from "@/components/global/TopicClusterNav.astro";
+---
+
+<BaseLayout
+  title="B2B Tracking Audit Scorecard (Free Template)"
+  description="Download a free B2B tracking audit scorecard template to review GA4, GTM, attribution hygiene, and CRM alignment."
+  funnelStage="decision"
+>
+  <section class="bg-base-50 border-b border-base-200">
+    <Wrapper variant="standard" class="py-20 lg:py-28">
+      <div class="max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div class="space-y-5">
+          <Text tag="h1" variant="displayMD" class="font-display text-accent-800">
+            B2B Tracking Audit Scorecard
+          </Text>
+          <Text variant="textBase" class="text-base-700">
+            A practical template to quickly assess whether your GA4, GTM, and CRM
+            tracking stack is reliable enough for decision-making.
+          </Text>
+          <ul class="space-y-2 text-base-700 list-disc pl-5">
+            <li>12 checks across tracking, attribution, and CRM alignment</li>
+            <li>Built for B2B teams in US, UK, Canada, Ireland, and EU markets</li>
+            <li>Designed for weekly operator use, not one-time audits</li>
+          </ul>
+          <Button
+            isLink
+            href="/downloads/b2b-tracking-audit-scorecard.csv"
+            data-track="lead-magnet"
+            data-track-label="download-scorecard-csv"
+            variant="default"
+            size="md"
+          >
+            Download scorecard (.csv)
+          </Button>
+        </div>
+
+        <AsyncLeadForm
+          heading="Want a reviewed version of your scorecard?"
+          body="Send your context asynchronously and I can share prioritized fixes."
+          formName="scorecard_async_request"
+          source="tracking-scorecard"
+          submitLabel="Send async request"
+        />
+      </div>
+    </Wrapper>
+  </section>
+
+  <TopicClusterNav current="/tracking-audit-scorecard/" />
+</BaseLayout>

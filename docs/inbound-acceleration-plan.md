@@ -18,6 +18,15 @@ Based on quick SERP checks for:
 - **Attribution software/content engines:** improvado.io, calibermind.com, utm.io, funnel.io
 - **Long-tail niche experts:** independent consultants on LinkedIn/Substack/blogs
 
+### Competitive gap map (how to outperform)
+
+| Competitor type | Typical strength | Typical weakness | Your advantage angle |
+|---|---|---|---|
+| Large education sites | Domain authority and volume | Generic, low implementation depth | Practical diagnostics + proof-led CTA |
+| Agency blogs | Broad keyword coverage | Weak founder-level voice, lower specificity | Clear operator POV + implementation-first |
+| SaaS content teams | Framework-heavy resources | Tool-biased outcomes | Tool-agnostic decisions tied to pipeline |
+| Solo experts | Sharp POV | Limited site architecture and conversion paths | Stronger internal linking + conversion UX + daily distribution |
+
 ## 2) How to beat them in the short term
 
 Do **not** try to outrank broad head terms first.
@@ -27,6 +36,11 @@ Win on speed and specificity:
 2. Use checklist/template/fixes angles for CTR.
 3. Route every page to one clear CTA (book call / offer).
 4. Distribute each post aggressively (LinkedIn + communities + direct outreach).
+
+### Market and language priority
+
+1. **Primary:** English-speaking B2B markets (USA, UK, Canada, Ireland)
+2. **Secondary:** Italian-language content for selected expansion terms
 
 ## 3) 6-week execution cadence
 
@@ -42,7 +56,7 @@ Win on speed and specificity:
   - GA4 unassigned traffic fixes
   - GA4 vs CRM reconciliation
   - B2B lead generation audit checklist
-- Repurpose into 6-9 LinkedIn posts
+- Repurpose into daily LinkedIn posts (5-7 posts/week)
 - Manually request indexing for new pages
 
 ### Week 3
@@ -80,7 +94,7 @@ Win on speed and specificity:
 3. B2B Lead Generation Audit Checklist
 4. B2B Content Marketing Audit Checklist
 5. GA4 for B2B Conversion Tracking Playbook
-6. Audyt marketingu B2B (PL landing page)
+6. Italian secondary landing page for EU expansion
 7. UTM Naming Convention Examples by Channel
 8. Booked-call funnel benchmark guide for B2B
 

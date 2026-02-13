@@ -1,0 +1,13 @@
+Section,Check,Status,Notes,Priority
+Tracking setup,GA4 property receives page_view across core pages,,,
+Tracking setup,GTM container loads exactly once per page,,,
+Tracking setup,Key conversion events fire once per action,,,
+Attribution hygiene,UTM source medium campaign are present on paid links,,,
+Attribution hygiene,Redirects preserve query parameters,,,
+Attribution hygiene,Cross-domain journeys keep attribution context,,,
+CRM alignment,UTM fields are stored on lead creation,,,
+CRM alignment,Original source fields are protected from overwrite,,,
+Funnel mapping,Key events map to buying intent not noise,,,
+Funnel mapping,Booked call event is tracked and validated,,,
+QA and governance,Monthly tracking QA process exists,,,
+QA and governance,Owner is assigned for attribution standards,,,

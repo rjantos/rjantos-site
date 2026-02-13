@@ -38,6 +38,28 @@
       });
     }
 
+    const startedForms = new WeakSet();
+    document.addEventListener("focusin", (event) => {
+      const focused = event.target instanceof Element ? event.target : null;
+      if (!focused) return;
+      const form = focused.closest("form[data-track-form]");
+      if (!form || startedForms.has(form)) return;
+      startedForms.add(form);
+      pushEvent("lead_form_start", {
+        form_name: form.getAttribute("data-track-form") || "",
+        form_source: form.getAttribute("data-form-source") || "",
+      });
+    });
+
+    document.addEventListener("submit", (event) => {
+      const form = event.target instanceof HTMLFormElement ? event.target : null;
+      if (!form || !form.matches("form[data-track-form]")) return;
+      pushEvent("lead_form_submit_native", {
+        form_name: form.getAttribute("data-track-form") || "",
+        form_source: form.getAttribute("data-form-source") || "",
+      });
+    });
+
     document.addEventListener("click", (event) => {
       const clicked = event.target instanceof Element ? event.target : null;
       if (!clicked) return;

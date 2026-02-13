@@ -55,6 +55,18 @@ npm run new:insight -- --title "Your new topic"
 
 Then edit frontmatter/body and set `draft: false` to publish.
 
+## Async lead form configuration
+
+Set these in `.env`:
+
+```bash
+PUBLIC_ASYNC_FORM_ENDPOINT=
+PUBLIC_CONTACT_EMAIL=hi@rjantos.com
+```
+
+- `PUBLIC_ASYNC_FORM_ENDPOINT`: Form endpoint URL (Formspree, webhook, etc.).
+- If endpoint is empty, forms fall back to opening an email draft.
+
 ---
 ## Components
 

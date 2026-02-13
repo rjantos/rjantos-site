@@ -16,6 +16,7 @@ const {
   hideFooter = false,
   navTransparent,
   hideFloatingCta = false,
+  lang = "en",
   title,
   description,
   funnelStage,
@@ -25,6 +26,7 @@ const {
   hideFooter?: boolean;
   navTransparent?: boolean;
   hideFloatingCta?: boolean;
+  lang?: string;
   title?: string;
   description?: string;
   funnelStage?: string;
@@ -59,7 +61,7 @@ const defaultStructuredData = {
       "@id": `${siteUrl}/#website`,
       url: siteUrl,
       name: "Rudi Jantos",
-      inLanguage: "en",
+      inLanguage: lang,
     },
     {
       "@type": "ProfessionalService",
@@ -69,7 +71,13 @@ const defaultStructuredData = {
       founder: {
         "@id": personId,
       },
-      areaServed: "Worldwide",
+      areaServed: [
+        "United States",
+        "United Kingdom",
+        "Canada",
+        "Ireland",
+        "Italy",
+      ],
       serviceType: [
         "B2B marketing audit",
         "GA4 and GTM tracking audits",
@@ -88,7 +96,7 @@ const extraStructuredData = structuredData
   : [];
 ---
 
-<html lang="en" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <BaseHead title={title} description={description} />
     <script

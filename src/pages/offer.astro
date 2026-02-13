@@ -4,6 +4,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import TopicClusterNav from "@/components/global/TopicClusterNav.astro";
+import AsyncLeadForm from "@/components/global/AsyncLeadForm.astro";
 
 const outcomes = [
   "A clear diagnosis of what is breaking tracking and attribution",
@@ -135,6 +136,7 @@ const offerStructuredData = [
             <li>You already generate traffic/leads but trust in data is low</li>
             <li>You need channel decisions tied to pipeline quality</li>
             <li>You want a focused audit before scaling spend</li>
+            <li>Your primary market is US, UK, Canada, Ireland, or Italy</li>
           </ul>
           <Text variant="textXS" class="text-white/70">
             Typical first response: within 1 business day
@@ -215,6 +217,24 @@ const offerStructuredData = [
         </div>
       </div>
 
+      <div class="border border-base-200 bg-base-50 p-8 rounded-sm space-y-4">
+        <Text tag="h3" variant="displaySM" class="font-display">
+          Service path after the audit
+        </Text>
+        <ol class="space-y-3 text-base-700 list-decimal pl-5">
+          <li>
+            <strong>Audit + fix plan</strong> to stabilize tracking and attribution.
+          </li>
+          <li>
+            <strong>Implementation sprint</strong> to ship high-priority fixes.
+          </li>
+          <li>
+            <strong>Fractional CMO retainer (optional)</strong> for teams that need
+            ongoing growth leadership after data quality is fixed.
+          </li>
+        </ol>
+      </div>
+
       <section class="space-y-4">
         <Text tag="h2" variant="displayXS" class="font-display">
           FAQ
@@ -249,6 +269,32 @@ const offerStructuredData = [
           </details>
         </div>
       </section>
+
+      <AsyncLeadForm
+        heading="Prefer async instead of a call?"
+        body="Share your current setup and goals. I will respond with fit and next steps."
+        formName="offer_async_request"
+        source="offer-page"
+        submitLabel="Send async brief"
+      />
+
+      <div class="border border-base-200 bg-white p-6 rounded-sm space-y-3">
+        <Text tag="h3" variant="displaySM" class="font-display">
+          Free template
+        </Text>
+        <Text variant="textSM" class="text-base-700">
+          Download the tracking audit scorecard and run a first internal check.
+        </Text>
+        <Button
+          isLink
+          href="/tracking-audit-scorecard/"
+          data-track="lead-magnet"
+          variant="muted"
+          size="md"
+        >
+          Open scorecard template
+        </Button>
+      </div>
     </div>
   </Wrapper>
 

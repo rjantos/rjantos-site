@@ -1,0 +1,212 @@
+---
+import Button from "@/components/fundations/elements/Button.astro";
+
+const {
+  heading = "Prefer to send context asynchronously?",
+  body = "Share your setup in 2 minutes and I will reply with next steps.",
+  formName = "async_audit_request",
+  source = "site",
+  submitLabel = "Send request",
+} = Astro.props as {
+  heading?: string;
+  body?: string;
+  formName?: string;
+  source?: string;
+  submitLabel?: string;
+};
+
+const endpoint = import.meta.env.PUBLIC_ASYNC_FORM_ENDPOINT ?? "";
+const fallbackEmail = import.meta.env.PUBLIC_CONTACT_EMAIL ?? "hi@rjantos.com";
+---
+
+<div class="border border-base-200 bg-white p-8 rounded-sm space-y-6">
+  <div class="space-y-2">
+    <h3 class="font-display text-2xl text-accent-800">{heading}</h3>
+    <p class="text-base-700 text-sm">{body}</p>
+  </div>
+
+  <form
+    data-async-lead-form
+    data-track-form={formName}
+    data-form-source={source}
+    data-attribution-form
+    class="space-y-4"
+  >
+    <input type="hidden" name="form_name" value={formName} />
+    <input type="hidden" name="lead_source" value={source} />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <label class="flex flex-col gap-1">
+        <span class="text-xs text-base-600">Name *</span>
+        <input
+          required
+          name="name"
+          type="text"
+          class="h-11 border border-base-200 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent-200"
+        />
+      </label>
+      <label class="flex flex-col gap-1">
+        <span class="text-xs text-base-600">Work email *</span>
+        <input
+          required
+          name="email"
+          type="email"
+          class="h-11 border border-base-200 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent-200"
+        />
+      </label>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <label class="flex flex-col gap-1">
+        <span class="text-xs text-base-600">Company</span>
+        <input
+          name="company"
+          type="text"
+          class="h-11 border border-base-200 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent-200"
+        />
+      </label>
+      <label class="flex flex-col gap-1">
+        <span class="text-xs text-base-600">Primary market</span>
+        <select
+          name="market"
+          class="h-11 border border-base-200 px-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-accent-200"
+        >
+          <option value="">Select</option>
+          <option value="usa">USA</option>
+          <option value="uk">UK</option>
+          <option value="canada">Canada</option>
+          <option value="ireland">Ireland</option>
+          <option value="italy">Italy</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+    </div>
+
+    <label class="flex flex-col gap-1">
+      <span class="text-xs text-base-600">What is currently broken?</span>
+      <textarea
+        name="challenge"
+        rows="4"
+        class="border border-base-200 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent-200"
+        placeholder="e.g. GA4 and CRM channel numbers do not match, and we can't trust attribution."
+      ></textarea>
+    </label>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+      <Button
+        type="submit"
+        data-form-submit
+        variant="default"
+        size="md"
+        class="w-full sm:w-auto"
+      >
+        {submitLabel}
+      </Button>
+      <p class="text-xs text-base-500">Typically replied within 1 business day.</p>
+    </div>
+
+    <p data-form-status class="text-sm text-base-700"></p>
+  </form>
+</div>
+
+<script is:inline define:vars={{ endpoint, fallbackEmail }}>
+  (() => {
+    const forms = document.querySelectorAll("[data-async-lead-form]");
+    if (!forms.length) return;
+
+    const toMailtoBody = (formData) => {
+      const entries = Array.from(formData.entries());
+      return entries
+        .filter(([key]) => !key.startsWith("utm_") && !key.includes("clid"))
+        .map(([key, value]) => `${key}: ${String(value)}`)
+        .join("\n");
+    };
+
+    forms.forEach((form) => {
+      if (form.dataset.bound === "true") return;
+      form.dataset.bound = "true";
+
+      const statusEl = form.querySelector("[data-form-status]");
+      const submitBtn = form.querySelector("[data-form-submit]");
+
+      const setStatus = (message, type = "neutral") => {
+        if (!statusEl) return;
+        statusEl.textContent = message;
+        statusEl.classList.remove("text-green-700", "text-red-700", "text-base-700");
+        if (type === "success") statusEl.classList.add("text-green-700");
+        else if (type === "error") statusEl.classList.add("text-red-700");
+        else statusEl.classList.add("text-base-700");
+      };
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const formName = form.getAttribute("data-track-form") || "lead_form";
+        const leadSource = form.getAttribute("data-form-source") || "site";
+
+        if (window.rjTrack) {
+          window.rjTrack("lead_form_submit_attempt", {
+            form_name: formName,
+            lead_source: leadSource,
+          });
+        }
+
+        if (!endpoint) {
+          const subject = encodeURIComponent("New async audit request");
+          const body = encodeURIComponent(toMailtoBody(formData));
+
+          if (window.rjTrack) {
+            window.rjTrack("lead_form_fallback_email", {
+              form_name: formName,
+              lead_source: leadSource,
+            });
+          }
+
+          setStatus("Opening your email client...", "neutral");
+          window.location.href = `mailto:${fallbackEmail}?subject=${subject}&body=${body}`;
+          return;
+        }
+
+        if (submitBtn) submitBtn.setAttribute("disabled", "true");
+        setStatus("Sending...", "neutral");
+
+        try {
+          const response = await fetch(endpoint, {
+            method: "POST",
+            body: formData,
+            headers: {
+              Accept: "application/json",
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error("Request failed");
+          }
+
+          if (window.rjTrack) {
+            window.rjTrack("lead_form_submit", {
+              form_name: formName,
+              lead_source: leadSource,
+            });
+          }
+
+          setStatus("Received. I will reply within 1 business day.", "success");
+          form.reset();
+        } catch {
+          if (window.rjTrack) {
+            window.rjTrack("lead_form_error", {
+              form_name: formName,
+              lead_source: leadSource,
+            });
+          }
+          setStatus(
+            `Could not submit right now. Please email ${fallbackEmail}.`,
+            "error"
+          );
+        } finally {
+          if (submitBtn) submitBtn.removeAttribute("disabled");
+        }
+      });
+    });
+  })();
+</script>

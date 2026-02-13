@@ -1,0 +1,129 @@
+<script>
+  (() => {
+    const STORAGE_KEY = "rj_attribution_v1";
+    const TRACKING_KEYS = [
+      "utm_source",
+      "utm_medium",
+      "utm_campaign",
+      "utm_content",
+      "utm_term",
+      "gclid",
+      "fbclid",
+      "msclkid",
+      "wbraid",
+      "gbraid",
+    ];
+
+    const safeReadStorage = () => {
+      try {
+        const raw = window.localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : {};
+      } catch {
+        return {};
+      }
+    };
+
+    const safeWriteStorage = (payload) => {
+      try {
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+      } catch {
+        // Ignore storage errors (privacy mode, disabled storage, etc.).
+      }
+    };
+
+    const ensureHiddenField = (form, name, value) => {
+      let input = form.querySelector(`input[name="${name}"]`);
+      if (!input) {
+        input = document.createElement("input");
+        input.type = "hidden";
+        input.name = name;
+        form.appendChild(input);
+      }
+      input.value = value || "";
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const incomingValues = {};
+    TRACKING_KEYS.forEach((key) => {
+      const value = params.get(key);
+      if (value) incomingValues[key] = value;
+    });
+
+    const attribution = safeReadStorage();
+    const now = new Date().toISOString();
+    const hasIncoming = Object.keys(incomingValues).length > 0;
+
+    if (hasIncoming) {
+      if (!attribution.first_touch_timestamp) {
+        attribution.first_touch_timestamp = now;
+        attribution.first_landing_page = window.location.href;
+      }
+
+      Object.entries(incomingValues).forEach(([key, value]) => {
+        if (!attribution[`first_${key}`]) {
+          attribution[`first_${key}`] = value;
+        }
+        attribution[`last_${key}`] = value;
+      });
+
+      attribution.last_touch_timestamp = now;
+      attribution.last_landing_page = window.location.href;
+
+      safeWriteStorage(attribution);
+
+      if (window.rjTrack) {
+        window.rjTrack("attribution_capture", {
+          attribution_keys: Object.keys(incomingValues).join(","),
+        });
+      }
+    }
+
+    const applyAttributionToForm = (form) => {
+      const currentAttribution = safeReadStorage();
+      TRACKING_KEYS.forEach((key) => {
+        const value =
+          currentAttribution[`last_${key}`] ||
+          currentAttribution[`first_${key}`] ||
+          "";
+        ensureHiddenField(form, key, value);
+      });
+
+      ensureHiddenField(
+        form,
+        "first_landing_page",
+        currentAttribution.first_landing_page || ""
+      );
+      ensureHiddenField(
+        form,
+        "last_landing_page",
+        currentAttribution.last_landing_page || window.location.href
+      );
+      ensureHiddenField(form, "referrer", document.referrer || "");
+      ensureHiddenField(form, "page_path", window.location.pathname || "/");
+      ensureHiddenField(
+        form,
+        "first_touch_timestamp",
+        currentAttribution.first_touch_timestamp || ""
+      );
+      ensureHiddenField(
+        form,
+        "last_touch_timestamp",
+        currentAttribution.last_touch_timestamp || ""
+      );
+    };
+
+    const applyToAllForms = () => {
+      document
+        .querySelectorAll("form[data-attribution-form]")
+        .forEach((form) => applyAttributionToForm(form));
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", applyToAllForms, {
+        once: true,
+      });
+    } else {
+      applyToAllForms();
+    }
+  })();
+</script>

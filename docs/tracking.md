@@ -7,6 +7,8 @@ Create a `.env` file from `.env.example`:
 ```bash
 PUBLIC_GTM_ID=GTM-W4WBD6BP
 PUBLIC_GA4_ID=G-91S7J11B9J
+PUBLIC_ASYNC_FORM_ENDPOINT=
+PUBLIC_CONTACT_EMAIL=hi@rjantos.com
 ```
 
 Implementation notes:
@@ -30,16 +32,32 @@ Implementation notes:
   - params: `scroll_percent` (25, 50, 75, 90)
 - `file_download`
   - params: `file_url`
+- `lead_form_start`
+  - params: `form_name`, `form_source`
+- `lead_form_submit_attempt`
+  - params: `form_name`, `lead_source`
+- `lead_form_submit`
+  - params: `form_name`, `lead_source`
+- `lead_form_error`
+  - params: `form_name`, `lead_source`
+- `attribution_capture`
+  - params: `attribution_keys`
 
 ### CTA instrumentation
 
 Any link or button with `data-track="<type>"` will fire `cta_click`.
+
+Forms marked with `data-track-form` and `data-attribution-form` will:
+
+- emit form events (`lead_form_start`, `lead_form_submit_attempt`, etc.)
+- receive persisted attribution fields (UTMs, click IDs, landing/referrer context)
 
 Current common values:
 
 - `book-call`
 - `email`
 - `offer`
+- `lead-magnet`
 
 ## 3) GTM configuration (recommended baseline)
 
@@ -60,6 +78,12 @@ Current common values:
 5. **GA4 Event - outbound_click**
    - Event name: `outbound_click`
    - Trigger: Custom Event `outbound_click`
+6. **GA4 Event - lead_form_submit**
+   - Event name: `lead_form_submit`
+   - Trigger: Custom Event `lead_form_submit`
+7. **GA4 Event - lead_form_submit_attempt**
+   - Event name: `lead_form_submit_attempt`
+   - Trigger: Custom Event `lead_form_submit_attempt`
 
 ### Variables (Data Layer)
 
@@ -69,13 +93,20 @@ Current common values:
 - `funnel_stage`
 - `scroll_percent`
 - `page_path`
+- `form_name`
+- `lead_source`
+- `utm_source`
+- `utm_medium`
+- `utm_campaign`
+- `gclid`
 
 ## 4) GA4 key events for funnel reporting
 
 In GA4 Admin, mark key events:
 
 - `cta_click` filtered to `cta_type = book-call`
-- any validated lead-submit event (when forms are implemented)
+- `lead_form_submit`
+- optionally `cta_click` filtered to `cta_type = lead-magnet` as supporting metric
 
 Keep key events strict. Do not promote low-intent engagement events.
 
@@ -85,7 +116,8 @@ Keep key events strict. Do not promote low-intent engagement events.
 2. Visit homepage, resources page, and offer page.
 3. Confirm `funnel_stage_view` fires with expected stage value.
 4. Click book-call and email CTAs; confirm `cta_click`.
-5. In GA4 DebugView, verify events and parameters.
+5. Submit an async form; confirm `lead_form_submit_attempt` and `lead_form_submit`.
+6. In GA4 DebugView, verify events and parameters.
 
 ## 6) Consent
 
