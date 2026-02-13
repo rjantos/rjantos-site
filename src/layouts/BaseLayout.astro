@@ -53,6 +53,12 @@ const {
   </script>
   </head>
   <body class="flex flex-col bg-white lg:min-h-svh">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-sm focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:text-base-900 focus:shadow"
+    >
+      Skip to content
+    </a>
     {
       !hideNavigation &&
         (navTransparent !== undefined ? (
@@ -61,7 +67,7 @@ const {
           <Navigation />
         ))
     }
-    <main class="grow"><slot /></main>
+    <main id="main-content" class="grow"><slot /></main>
     {!hideFooter && <Footer />}
 
   </body>
