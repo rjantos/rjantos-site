@@ -1,0 +1,77 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import TopicClusterNav from "@/components/global/TopicClusterNav.astro";
+---
+
+<BaseLayout
+  title="B2B Lead Generation Audit — Improve Lead Quality and Call Bookings"
+  description="Audit your B2B lead generation setup to improve source quality, reduce funnel leakage, and increase booked-call conversion."
+  funnelStage="decision"
+>
+  <section class="bg-base-50 border-b border-base-200">
+    <Wrapper variant="standard" class="py-20 lg:py-28">
+      <div class="max-w-3xl space-y-6">
+        <Text tag="h1" variant="displayMD" class="font-display text-accent-800">
+          B2B Lead Generation Audit
+        </Text>
+        <Text variant="textLG" class="text-base-800">
+          If lead volume is high but qualified pipeline is inconsistent, your lead
+          generation system likely has attribution and conversion friction.
+        </Text>
+        <div class="flex flex-wrap gap-3">
+          <Button isLink href="/offer/" data-track="offer" variant="default" size="md">
+            See the audit offer
+          </Button>
+          <Button
+            isLink
+            href="https://cal.com/rudi-jantos"
+            data-track="book-call"
+            variant="muted"
+            size="md"
+          >
+            Book a quick call
+          </Button>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <div class="max-w-3xl space-y-8">
+      <section class="space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          What this audit focuses on
+        </Text>
+        <ul class="space-y-2 text-base-700 list-disc pl-5">
+          <li>Lead source and UTM reliability from click to CRM</li>
+          <li>CTA and booking-flow friction across desktop/mobile</li>
+          <li>Lead qualification signal quality in GA4 and CRM</li>
+          <li>Booked call to pipeline consistency</li>
+        </ul>
+      </section>
+
+      <section class="border border-base-200 bg-base-50 p-8 rounded-sm space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Related resource
+        </Text>
+        <Text variant="textBase" class="text-base-700">
+          Use the quick-win checklist to run an internal first pass:
+        </Text>
+        <Button
+          isLink
+          href="/resources/b2b-lead-generation-audit-checklist/"
+          data-track="resources"
+          variant="default"
+          size="md"
+        >
+          Open lead generation audit checklist
+        </Button>
+      </section>
+    </div>
+  </Wrapper>
+
+  <TopicClusterNav current="/b2b-lead-generation-audit/" />
+</BaseLayout>

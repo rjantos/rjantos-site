@@ -10,6 +10,7 @@ import Cta from "@/components/global/Cta.astro";
 <BaseLayout
   title="About — Rudi Jantos"
   description="Background, approach, and how I help B2B teams fix tracking, attribution, and decision-making."
+  funnelStage="awareness"
 >
   <!-- ABOUT HERO -->
   <section class="bg-base-50">
@@ -39,12 +40,12 @@ import Cta from "@/components/global/Cta.astro";
 
         <!-- IMAGE -->
         <div class="flex justify-start lg:justify-end">
-          <img
-            src="/rj_profile.jpeg"
-            alt="Rudi Jantos"
-            class="w-64 h-64 rounded-sm border border-base-100 object-cover"
-            loading="eager"
-          />
+          <div
+            class="w-64 h-64 rounded-sm border border-base-100 bg-base-100 flex items-center justify-center"
+            aria-label="Rudi Jantos"
+          >
+            <span class="text-4xl font-display text-accent-800">RJ</span>
+          </div>
         </div>
 
       </div>
@@ -111,7 +112,8 @@ import Cta from "@/components/global/Cta.astro";
 
           <Button
             isLink={true}
-            href="/b2b-marketing-audit"
+            href="/b2b-marketing-audit/"
+            data-track="offer"
             variant="default"
             size="md"
           >

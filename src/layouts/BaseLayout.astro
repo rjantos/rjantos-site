@@ -4,6 +4,7 @@ import "@/styles/global.css";
 import BaseHead from "@/components/fundations/head/BaseHead.astro";
 // Components
 import Footer from "@/components/global/Footer.astro";
+import FloatingCta from "@/components/global/FloatingCta.astro";
 
 import Navigation from "@/components/global/Navigation.astro";
 // Hides the big logo, navigation, or footer on selected screens by passing props:
@@ -14,44 +15,104 @@ const {
   hideNavigation = false,
   hideFooter = false,
   navTransparent,
+  hideFloatingCta = false,
+  lang = "en",
   title,
   description,
+  funnelStage,
+  structuredData,
 } = Astro.props as {
   hideNavigation?: boolean;
   hideFooter?: boolean;
   navTransparent?: boolean;
+  hideFloatingCta?: boolean;
+  lang?: string;
   title?: string;
   description?: string;
+  funnelStage?: string;
+  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 };
+
+const siteUrl = String(Astro.site ?? Astro.url.origin).replace(/\/$/, "");
+const personId = `${siteUrl}/#rudi-jantos`;
+
+const defaultStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: "Rudi Jantos",
+      url: siteUrl,
+      jobTitle: "Strategic Marketing Partner",
+      description:
+        "Strategic marketing partner helping B2B teams fix revenue leaks between ads, analytics, and CRM.",
+      sameAs: ["https://www.linkedin.com/in/rudolfjantos/"],
+      knowsAbout: [
+        "Marketing Strategy",
+        "Analytics",
+        "Attribution",
+        "Growth Marketing",
+        "B2B Go-To-Market",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Rudi Jantos",
+      inLanguage: lang,
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${siteUrl}/#professional-service`,
+      name: "Rudi Jantos",
+      url: siteUrl,
+      founder: {
+        "@id": personId,
+      },
+      areaServed: [
+        "United States",
+        "United Kingdom",
+        "Canada",
+        "Ireland",
+        "Italy",
+      ],
+      serviceType: [
+        "B2B marketing audit",
+        "GA4 and GTM tracking audits",
+        "Attribution diagnostics",
+        "CRM and analytics alignment",
+      ],
+      sameAs: ["https://www.linkedin.com/in/rudolfjantos/"],
+    },
+  ],
+};
+
+const extraStructuredData = structuredData
+  ? Array.isArray(structuredData)
+    ? structuredData
+    : [structuredData]
+  : [];
 ---
 
-<html lang="en" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <BaseHead title={title} description={description} />
-
-    <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": "https://rjantos.com/#rudi-jantos",
-    "name": "Rudi Jantos",
-    "url": "https://rjantos.com",
-    "jobTitle": "Strategic Marketing Partner",
-    "description": "Strategic marketing partner helping B2B teams fix revenue leaks between ads, analytics, and CRM.",
-    "sameAs": [
-      "https://www.linkedin.com/in/rudi-jantos/"
-    ],
-    "knowsAbout": [
-      "Marketing Strategy",
-      "Analytics",
-      "Attribution",
-      "Growth Marketing",
-      "B2B Go-To-Market"
-    ]
-  }
-  </script>
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(defaultStructuredData)}
+    />
+    {
+      extraStructuredData.map((schema) => (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      ))
+    }
   </head>
-  <body class="flex flex-col bg-white lg:min-h-svh">
+  <body
+    class="flex flex-col bg-white lg:min-h-svh"
+    data-funnel-stage={funnelStage ?? undefined}
+  >
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-sm focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:text-base-900 focus:shadow"
@@ -66,8 +127,14 @@ const {
           <Navigation />
         ))
     }
-    <main id="main-content" class="grow"><slot /></main>
+    <main
+      id="main-content"
+      class:list={["grow", !hideFloatingCta && "pb-20 sm:pb-0"]}
+    >
+      <slot />
+    </main>
     {!hideFooter && <Footer />}
+    {!hideFloatingCta && <FloatingCta />}
 
   </body>
 </html>

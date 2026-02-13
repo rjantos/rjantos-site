@@ -4,11 +4,45 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import Cta from "@/components/global/Cta.astro";
+import TopicClusterNav from "@/components/global/TopicClusterNav.astro";
+
+const auditFaqStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Is this only for large B2B companies?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No. It is designed for founders, operators, and growth teams that need reliable data before scaling spend.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do you implement fixes or just audit?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "The default offer is an audit plus prioritized plan. Implementation support can be scoped as a follow-up.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How quickly can we get direction?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Usually quickly after kickoff. The purpose is to reduce decision risk early, not create a long analysis cycle.",
+      },
+    },
+  ],
+};
 ---
 
 <BaseLayout
-  title="B2B Marketing Audit — Fix GA4, Attribution & Revenue Leaks"
-  description="A focused B2B marketing audit to diagnose broken tracking, misleading attribution, and revenue leaks across ads, analytics, and CRM."
+  title="B2B Marketing Audit (2026) — Fix GA4, GTM, and Attribution Leaks"
+  description="Practical B2B marketing audit checklist to fix GA4, GTM, attribution, and CRM tracking issues. Prioritized fixes to improve decision quality fast."
+  funnelStage="decision"
+  structuredData={auditFaqStructuredData}
 >
 
   <!-- HERO / DECISION -->
@@ -31,6 +65,7 @@ import Cta from "@/components/global/Cta.astro";
           <Button
             isLink
             href="https://cal.com/rudi-jantos"
+            data-track="book-call"
             variant="default"
             size="md"
           >
@@ -40,6 +75,7 @@ import Cta from "@/components/global/Cta.astro";
           <Button
             isLink
             href="mailto:hi@rjantos.com"
+            data-track="email"
             variant="muted"
             size="md"
           >
@@ -103,7 +139,43 @@ import Cta from "@/components/global/Cta.astro";
     </div>
   </Wrapper>
 
+  <Wrapper variant="standard" class="pb-20 lg:pb-24">
+    <div class="max-w-3xl space-y-4">
+      <Text tag="h2" variant="displayXS" class="font-display">
+        FAQ
+      </Text>
+      <details class="border border-base-200 rounded-sm p-5 bg-base-50">
+        <summary class="cursor-pointer font-medium text-base-800">
+          Is this only for large B2B companies?
+        </summary>
+        <p class="text-sm text-base-700 pt-3">
+          No. It is designed for founders, operators, and growth teams that need
+          reliable data before scaling spend.
+        </p>
+      </details>
+      <details class="border border-base-200 rounded-sm p-5 bg-base-50">
+        <summary class="cursor-pointer font-medium text-base-800">
+          Do you implement fixes or just audit?
+        </summary>
+        <p class="text-sm text-base-700 pt-3">
+          The default offer is an audit + prioritized plan. Implementation support
+          can be scoped as a follow-up.
+        </p>
+      </details>
+      <details class="border border-base-200 rounded-sm p-5 bg-base-50">
+        <summary class="cursor-pointer font-medium text-base-800">
+          How quickly can we get direction?
+        </summary>
+        <p class="text-sm text-base-700 pt-3">
+          Usually quickly after kickoff. The purpose is to reduce decision risk
+          early, not create a long analysis cycle.
+        </p>
+      </details>
+    </div>
+  </Wrapper>
+
   <!-- FINAL CTA -->
   <Cta />
+  <TopicClusterNav current="/b2b-marketing-audit/" />
 
 </BaseLayout>

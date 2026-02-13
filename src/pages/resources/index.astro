@@ -1,0 +1,171 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+
+const insights = (await getCollection("insights", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout
+  title="Resources — B2B Analytics, Attribution, and GA4 Guides"
+  description="Practical resources on B2B analytics, GA4, GTM, attribution, and CRM alignment. Learn what to fix first and how to avoid bad growth decisions."
+  funnelStage="consideration"
+>
+  <section class="bg-base-50 border-b border-base-200">
+    <Wrapper variant="standard" class="py-20 lg:py-28">
+      <div class="max-w-4xl space-y-6">
+        <Text tag="h1" variant="displayMD" class="font-display text-accent-800">
+          Resources
+        </Text>
+        <Text variant="textLG" class="text-base-800">
+          Practical guidance for B2B teams in English-speaking markets that want
+          cleaner tracking, clearer attribution, and better decisions.
+        </Text>
+        <Text variant="textBase" class="text-base-700">
+          Each guide is written to be actionable. No fluff, no vanity metrics,
+          and no tool hype.
+        </Text>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <a
+          href="/b2b-marketing-audit/"
+          data-track="offer"
+          class="border border-base-200 bg-white p-5 rounded-sm hover:border-accent-300 transition-colors"
+        >
+          <Text tag="h2" variant="displaySM" class="font-display">
+            Start with the audit
+          </Text>
+          <Text variant="textSM" class="text-base-700 mt-2">
+            Decision-stage page with scope and next step.
+          </Text>
+        </a>
+        <a
+          href="/b2b-lead-generation-audit/"
+          class="border border-base-200 bg-white p-5 rounded-sm hover:border-accent-300 transition-colors"
+        >
+          <Text tag="h2" variant="displaySM" class="font-display">
+            Lead generation audit
+          </Text>
+          <Text variant="textSM" class="text-base-700 mt-2">
+            Improve source quality and booked-call outcomes.
+          </Text>
+        </a>
+        <a
+          href="/b2b-content-marketing-audit/"
+          class="border border-base-200 bg-white p-5 rounded-sm hover:border-accent-300 transition-colors"
+        >
+          <Text tag="h2" variant="displaySM" class="font-display">
+            Content audit
+          </Text>
+          <Text variant="textSM" class="text-base-700 mt-2">
+            Convert impressions into clicks and calls.
+          </Text>
+        </a>
+      </div>
+
+      <div class="mt-4 border border-base-200 bg-white p-6 rounded-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <Text tag="h2" variant="displaySM" class="font-display">
+            Free tracking scorecard template
+          </Text>
+          <Text variant="textSM" class="text-base-700 mt-1">
+            Download and run a quick self-audit before your next budget decision.
+          </Text>
+        </div>
+        <Button
+          isLink
+          href="/tracking-audit-scorecard/"
+          data-track="lead-magnet"
+          variant="default"
+          size="md"
+        >
+          Open template
+        </Button>
+      </div>
+    </Wrapper>
+  </section>
+
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <div class="max-w-4xl space-y-8">
+      {
+        insights.length > 0 ? (
+          insights.map((entry) => (
+            <article class="border border-base-200 bg-white p-8 rounded-sm space-y-4">
+              <Text tag="p" variant="textXS" class="text-base-500">
+                {entry.data.pubDate.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </Text>
+
+              <Text tag="h2" variant="displayXS" class="font-display">
+                <a
+                  href={`/resources/${entry.slug}/`}
+                  class="hover:text-accent-700 transition-colors"
+                >
+                  {entry.data.title}
+                </a>
+              </Text>
+
+              <Text variant="textBase" class="text-base-700">
+                {entry.data.description}
+              </Text>
+
+              {
+                entry.data.tags.length > 0 && (
+                  <ul class="flex flex-wrap gap-2">
+                    {entry.data.tags.map((tag) => (
+                      <li class="text-xs px-2.5 py-1 bg-base-100 text-base-700 rounded-sm">
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                )
+              }
+            </article>
+          ))
+        ) : (
+          <div class="border border-base-200 bg-base-50 p-8 rounded-sm">
+            <Text variant="textBase" class="text-base-700">
+              No resources published yet.
+            </Text>
+          </div>
+        )
+      }
+    </div>
+  </Wrapper>
+
+  <section class="bg-base-50 border-t border-base-200">
+    <Wrapper variant="standard" class="py-16 lg:py-20">
+      <div class="max-w-3xl space-y-5">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Want a clear diagnosis of your setup?
+        </Text>
+        <Text variant="textBase" class="text-base-700">
+          If tracking, attribution, and CRM data are not aligned, start with a
+          focused audit.
+        </Text>
+        <div class="flex flex-wrap gap-3">
+          <Button isLink href="/offer/" variant="default" size="md">
+            See the offer
+          </Button>
+          <Button
+            isLink
+            href="https://cal.com/rudi-jantos"
+            data-track="book-call"
+            variant="muted"
+            size="md"
+          >
+            Book a quick call
+          </Button>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

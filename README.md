@@ -35,8 +35,37 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`      | Preview your build locally, before deploying     |
 | `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro --help` | Get help using the Astro CLI                     |
+| `npm run new:insight -- --title "..."` | Create a draft markdown resource in `src/content/insights/` |
 
 Learn more - Explore more through Astro's official [documentation](https://docs.astro.build).
+
+## Content publishing workflow (cheap and simple)
+
+This project includes a markdown-driven resources hub:
+
+- List page: `/resources/`
+- Article pages: `/resources/[slug]/`
+- Content files: `src/content/insights/*.md`
+
+Create a new draft:
+
+```bash
+npm run new:insight -- --title "Your new topic"
+```
+
+Then edit frontmatter/body and set `draft: false` to publish.
+
+## Async lead form configuration
+
+Set these in `.env`:
+
+```bash
+PUBLIC_ASYNC_FORM_ENDPOINT=
+PUBLIC_CONTACT_EMAIL=hi@rjantos.com
+```
+
+- `PUBLIC_ASYNC_FORM_ENDPOINT`: Form endpoint URL (Formspree, webhook, etc.).
+- If endpoint is empty, forms fall back to opening an email draft.
 
 ---
 ## Components

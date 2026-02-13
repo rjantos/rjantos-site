@@ -1,0 +1,162 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import TopicClusterNav from "@/components/global/TopicClusterNav.astro";
+
+const proofPoints = [
+  "10+ years in B2B growth, analytics, and attribution",
+  "Former Head of Marketing in a venture-backed B2B SaaS context",
+  "Hands-on execution across GA4, GTM, CRM workflows, and paid channels",
+  "Focus on practical fixes that reduce decision risk quickly",
+];
+
+const anonymizedOutcomes = [
+  {
+    market: "US B2B SaaS",
+    baseline:
+      "Attribution was unstable. Direct + Unassigned represented a large share of reported conversions, and marketing vs CRM channel reporting conflicted weekly.",
+    intervention:
+      "Implemented UTM governance, fixed cross-domain tracking, and aligned CRM source capture fields to first-touch and latest-touch logic.",
+    result:
+      "Within 6 weeks, Unassigned share dropped by roughly 60% relative to baseline, channel trend stability improved, and leadership adopted one weekly source-of-truth view for budget decisions.",
+  },
+  {
+    market: "UK B2B Fintech",
+    baseline:
+      "Paid channels produced leads, but sales quality feedback and CRM outcomes were weakly connected to campaign reporting.",
+    intervention:
+      "Redefined intent-based events, improved lead qualification tagging, and mapped booked-call events into pipeline-stage reporting.",
+    result:
+      "Over one quarter, booked-call to opportunity conversion improved from low-teens to high-teens percentages, and paid budget shifted away from low-yield channels.",
+  },
+  {
+    market: "Canada B2B Services",
+    baseline:
+      "Multiple dashboards existed but no reliable reconciliation between website behavior and revenue outcomes.",
+    intervention:
+      "Built a minimum viable measurement system linking GTM/GA4 events with CRM attribution fields and audit QA cadence.",
+    result:
+      "Within the first quarter, reporting disputes dropped sharply, decision cycles shortened, and growth planning moved from opinion-driven to evidence-driven discussions.",
+  },
+];
+
+const proofStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Anonymized B2B tracking and attribution outcomes",
+  itemListElement: anonymizedOutcomes.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: `${item.market} outcome`,
+    description: item.result,
+  })),
+};
+---
+
+<BaseLayout
+  title="Proof — Why Teams Bring Rudi Jantos In"
+  description="Proof points and operating context for B2B teams that need reliable tracking, attribution, and CRM-aligned growth decisions."
+  funnelStage="decision"
+  structuredData={proofStructuredData}
+>
+  <section class="bg-base-50 border-b border-base-200">
+    <Wrapper variant="standard" class="py-20 lg:py-28">
+      <div class="max-w-3xl space-y-6">
+        <Text tag="h1" variant="displayMD" class="font-display text-accent-800">
+          Proof and context
+        </Text>
+        <Text variant="textLG" class="text-base-800">
+          Teams usually bring me in when reporting is noisy and growth decisions
+          feel risky.
+        </Text>
+        <Text variant="textBase" class="text-base-700">
+          The work is focused on improving decision quality, not producing more
+          dashboards.
+        </Text>
+      </div>
+    </Wrapper>
+  </section>
+
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <div class="max-w-3xl space-y-10">
+      <section class="space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Why this works
+        </Text>
+        <ul class="space-y-3 text-base-700 list-disc pl-5">
+          {proofPoints.map((point) => <li>{point}</li>)}
+        </ul>
+      </section>
+
+      <section class="border border-base-200 bg-base-50 p-8 rounded-sm space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Delivery style
+        </Text>
+        <ul class="space-y-2 text-base-700 list-disc pl-5">
+          <li>Start from business decisions that matter now</li>
+          <li>Audit tracking and attribution before proposing tools</li>
+          <li>Prioritize actions by revenue impact and implementation effort</li>
+          <li>Keep systems maintainable for the team after handoff</li>
+        </ul>
+      </section>
+
+      <section class="space-y-5">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Anonymized case outcomes (for review)
+        </Text>
+        <Text variant="textSM" class="text-base-600">
+          These are anonymized summaries. They are shared to illustrate scope,
+          intervention style, and outcome direction without exposing client data.
+        </Text>
+        <div class="space-y-4">
+          {
+            anonymizedOutcomes.map((item) => (
+              <article class="border border-base-200 bg-white rounded-sm p-6 space-y-3">
+                <Text tag="h3" variant="displaySM" class="font-display">
+                  {item.market}
+                </Text>
+                <Text variant="textSM" class="text-base-700">
+                  <strong>Baseline:</strong> {item.baseline}
+                </Text>
+                <Text variant="textSM" class="text-base-700">
+                  <strong>Intervention:</strong> {item.intervention}
+                </Text>
+                <Text variant="textSM" class="text-base-700">
+                  <strong>Outcome:</strong> {item.result}
+                </Text>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          Next step
+        </Text>
+        <Text variant="textBase" class="text-base-700">
+          If this matches your situation, start with the offer page and book a fit
+          call.
+        </Text>
+        <div class="flex flex-wrap gap-3">
+          <Button isLink href="/offer/" variant="default" size="md">
+            See the offer
+          </Button>
+          <Button
+            isLink
+            href="https://cal.com/rudi-jantos"
+            data-track="book-call"
+            variant="muted"
+            size="md"
+          >
+            Book a quick call
+          </Button>
+        </div>
+      </section>
+    </div>
+  </Wrapper>
+
+  <TopicClusterNav current="/proof/" />
+</BaseLayout>

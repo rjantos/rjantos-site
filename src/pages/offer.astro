@@ -1,0 +1,302 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import TopicClusterNav from "@/components/global/TopicClusterNav.astro";
+import AsyncLeadForm from "@/components/global/AsyncLeadForm.astro";
+
+const outcomes = [
+  "A clear diagnosis of what is breaking tracking and attribution",
+  "A prioritized action plan based on business impact",
+  "A clean event and funnel model for GA4 + GTM",
+  "A CRM alignment checklist for pipeline and revenue attribution",
+];
+
+const deliverySteps = [
+  {
+    title: "Step 1 — Fast diagnostic",
+    description:
+      "Review the current setup, identify data breakpoints, and map the biggest attribution risks.",
+  },
+  {
+    title: "Step 2 — Priority plan",
+    description:
+      "Rank fixes by business impact so the team knows what to ship first and what to ignore.",
+  },
+  {
+    title: "Step 3 — Implementation guidance",
+    description:
+      "Deliver concrete tracking and funnel standards for GTM, GA4, and CRM handoff.",
+  },
+];
+
+const offerStructuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "B2B Marketing Audit",
+    provider: {
+      "@type": "Person",
+      name: "Rudi Jantos",
+      url: "https://rjantos.com/",
+    },
+    areaServed: "Worldwide",
+    serviceType: "GA4 and attribution audit for B2B teams",
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      url: "https://rjantos.com/offer/",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How fast can we start?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Usually within days, depending on your current stack access and team availability.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is this a long retainer?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No. This offer is designed as a focused audit and action plan. If follow-up execution is needed, scope is agreed explicitly.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What if our setup is already good?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "You will get direct feedback. If the system is already reliable, I will say so.",
+        },
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="B2B Marketing Audit Offer (GA4 + GTM + CRM) | Rudi Jantos"
+  description="Get a focused B2B marketing audit to fix GA4, GTM, attribution, and CRM tracking issues quickly. Prioritized action plan + practical implementation guidance."
+  funnelStage="decision"
+  structuredData={offerStructuredData}
+>
+  <section class="bg-accent-900 border-b border-accent-800 text-white">
+    <Wrapper variant="standard" class="py-20 lg:py-28">
+      <div class="max-w-5xl grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+        <div class="lg:col-span-3 space-y-6">
+          <Text tag="h1" variant="displayMD" class="font-display text-white">
+            B2B Marketing Audit Offer
+          </Text>
+
+          <Text variant="textLG" class="text-white/90">
+            If GA4, GTM, ad platforms, and CRM tell different stories, this offer
+            is designed to fix that fast.
+          </Text>
+
+          <Text variant="textBase" class="text-white/80">
+            You get decision-grade tracking clarity and a practical action plan,
+            without extra tooling or bloated retainers.
+          </Text>
+
+          <div class="flex flex-wrap gap-3 pt-2">
+            <Button
+              isLink
+              href="https://cal.com/rudi-jantos"
+              data-track="book-call"
+              variant="default"
+              size="md"
+            >
+              Book a quick call
+            </Button>
+            <Button
+              isLink
+              href="mailto:hi@rjantos.com"
+              data-track="email"
+              variant="muted"
+              size="md"
+            >
+              Email me
+            </Button>
+          </div>
+        </div>
+
+        <aside class="lg:col-span-2 border border-white/20 bg-white/5 p-6 rounded-sm space-y-4">
+          <Text tag="h2" variant="displaySM" class="font-display text-white">
+            Quick fit check
+          </Text>
+          <ul class="space-y-2 text-sm text-white/90 list-disc pl-5">
+            <li>You already generate traffic/leads but trust in data is low</li>
+            <li>You need channel decisions tied to pipeline quality</li>
+            <li>You want a focused audit before scaling spend</li>
+            <li>Your primary market is US, UK, Canada, Ireland, or Italy</li>
+          </ul>
+          <Text variant="textXS" class="text-white/70">
+            Typical first response: within 1 business day
+          </Text>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  <Wrapper variant="standard" class="py-20 lg:py-24">
+    <div class="max-w-3xl space-y-8">
+      <Text tag="h2" variant="displayXS" class="font-display">
+        What you get
+      </Text>
+
+      <ul class="space-y-3 text-base-700 list-disc pl-5">
+        {outcomes.map((item) => <li>{item}</li>)}
+      </ul>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {
+          deliverySteps.map((step) => (
+            <article class="border border-base-200 p-6 rounded-sm bg-white space-y-3">
+              <Text tag="h3" variant="displaySM" class="font-display">
+                {step.title}
+              </Text>
+              <Text variant="textSM" class="text-base-700">
+                {step.description}
+              </Text>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="border border-base-200 bg-base-50 p-8 rounded-sm space-y-4">
+        <Text tag="h3" variant="displaySM" class="font-display">
+          Typical fit
+        </Text>
+        <ul class="space-y-2 text-base-700 list-disc pl-5">
+          <li>You run paid and owned channels and need reliable attribution</li>
+          <li>Your GA4 and CRM data disagree on channel performance</li>
+          <li>You need decision-grade data before scaling budget</li>
+        </ul>
+      </div>
+
+      <div class="border border-base-200 bg-white p-8 rounded-sm space-y-4">
+        <Text tag="h3" variant="displaySM" class="font-display">
+          Common outcomes after implementation
+        </Text>
+        <ul class="space-y-2 text-base-700 list-disc pl-5">
+          <li>Lower attribution noise and fewer reporting conflicts</li>
+          <li>Cleaner channel comparisons for weekly decision-making</li>
+          <li>Better confidence in where pipeline quality really comes from</li>
+        </ul>
+      </div>
+
+      <div class="border border-base-200 p-8 rounded-sm space-y-4">
+        <Text tag="h3" variant="displaySM" class="font-display">
+          Next step
+        </Text>
+        <Text variant="textBase" class="text-base-700">
+          Start with a short fit call. If your setup is already strong, I will say
+          so directly.
+        </Text>
+        <div class="flex flex-wrap gap-3">
+          <Button
+            isLink
+            href="https://cal.com/rudi-jantos"
+            data-track="book-call"
+            variant="default"
+            size="md"
+          >
+            Book a quick call
+          </Button>
+          <Button isLink href="/proof/" variant="muted" size="md">
+            See proof and context
+          </Button>
+        </div>
+      </div>
+
+      <div class="border border-base-200 bg-base-50 p-8 rounded-sm space-y-4">
+        <Text tag="h3" variant="displaySM" class="font-display">
+          Service path after the audit
+        </Text>
+        <ol class="space-y-3 text-base-700 list-decimal pl-5">
+          <li>
+            <strong>Audit + fix plan</strong> to stabilize tracking and attribution.
+          </li>
+          <li>
+            <strong>Implementation sprint</strong> to ship high-priority fixes.
+          </li>
+          <li>
+            <strong>Fractional CMO retainer (optional)</strong> for teams that need
+            ongoing growth leadership after data quality is fixed.
+          </li>
+        </ol>
+      </div>
+
+      <section class="space-y-4">
+        <Text tag="h2" variant="displayXS" class="font-display">
+          FAQ
+        </Text>
+        <div class="space-y-3">
+          <details class="border border-base-200 rounded-sm p-5 bg-base-50">
+            <summary class="cursor-pointer font-medium text-base-800">
+              How fast can we start?
+            </summary>
+            <p class="text-sm text-base-700 pt-3">
+              Usually within days, depending on your current stack access and
+              team availability.
+            </p>
+          </details>
+          <details class="border border-base-200 rounded-sm p-5 bg-base-50">
+            <summary class="cursor-pointer font-medium text-base-800">
+              Is this a long retainer?
+            </summary>
+            <p class="text-sm text-base-700 pt-3">
+              No. This offer is designed as a focused audit and action plan. If
+              follow-up execution is needed, scope is agreed explicitly.
+            </p>
+          </details>
+          <details class="border border-base-200 rounded-sm p-5 bg-base-50">
+            <summary class="cursor-pointer font-medium text-base-800">
+              What if our setup is already good?
+            </summary>
+            <p class="text-sm text-base-700 pt-3">
+              You will get direct feedback. If the system is already reliable, I
+              will say so.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <AsyncLeadForm
+        heading="Prefer async instead of a call?"
+        body="Share your current setup and goals. I will respond with fit and next steps."
+        formName="offer_async_request"
+        source="offer-page"
+        submitLabel="Send async brief"
+      />
+
+      <div class="border border-base-200 bg-white p-6 rounded-sm space-y-3">
+        <Text tag="h3" variant="displaySM" class="font-display">
+          Free template
+        </Text>
+        <Text variant="textSM" class="text-base-700">
+          Download the tracking audit scorecard and run a first internal check.
+        </Text>
+        <Button
+          isLink
+          href="/tracking-audit-scorecard/"
+          data-track="lead-magnet"
+          variant="muted"
+          size="md"
+        >
+          Open scorecard template
+        </Button>
+      </div>
+    </div>
+  </Wrapper>
+
+  <TopicClusterNav current="/offer/" />
+</BaseLayout>

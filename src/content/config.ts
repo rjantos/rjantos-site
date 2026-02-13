@@ -12,6 +12,18 @@ const postsCollection = defineCollection({
       tags: z.array(z.string()),
     }),
 });
+
+const insights = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.date(),
+    updatedDate: z.date().optional(),
+    tags: z.array(z.string()).default([]),
+    draft: z.boolean().default(false),
+  }),
+});
+
 const team = defineCollection({
   schema: ({ image }) =>
     z.object({
@@ -116,6 +128,7 @@ const pressReleases = defineCollection({
   }),
 });
 export const collections = {
+  insights,
   team,
   practice,
   careers,

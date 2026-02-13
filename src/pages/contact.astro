@@ -3,11 +3,14 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import AsyncLeadForm from "@/components/global/AsyncLeadForm.astro";
 ---
 
 <BaseLayout
   title="Contact — Rudi Jantos"
   description="Book a quick call or email me to fix unreliable tracking, unclear attribution, and conflicting numbers."
+  funnelStage="conversion"
+  hideFloatingCta={true}
 >
   <!-- CONTACT HERO -->
   <section class="bg-base-50">
@@ -103,6 +106,34 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
           <li>What tools you’re using (ads, analytics, CRM)</li>
           <li>What decision you’re struggling to make</li>
         </ul>
+      </div>
+
+      <div id="async-brief">
+        <AsyncLeadForm
+          heading="Prefer to send details asynchronously?"
+          body="If now is not ideal for a call, send your context and I will reply with next steps."
+          formName="contact_async_request"
+          source="contact-page"
+          submitLabel="Send async request"
+        />
+      </div>
+
+      <div class="border border-base-200 rounded-sm p-6 space-y-3">
+        <Text tag="h3" variant="textLG" class="font-display">
+          Free tracking scorecard
+        </Text>
+        <Text variant="textBase" class="text-base-700">
+          Use the template to spot attribution and tracking gaps quickly.
+        </Text>
+        <Button
+          isLink
+          href="/tracking-audit-scorecard/"
+          data-track="lead-magnet"
+          variant="muted"
+          size="md"
+        >
+          Open scorecard template
+        </Button>
       </div>
 
     </div>

@@ -8,10 +8,14 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 const currentYear = new Date().getFullYear();
 
 const quickLinks = [
+  { text: "Offer", href: "/offer/" },
+  { text: "Resources", href: "/resources/" },
+  { text: "Tracking scorecard", href: "/tracking-audit-scorecard/" },
+  { text: "Proof", href: "/proof/" },
+  { text: "B2B Marketing Audit", href: "/b2b-marketing-audit/" },
+  { text: "Italiano: Audit marketing B2B", href: "/it/audit-marketing-b2b/" },
   { text: "About", href: "/about" },
   { text: "Contact", href: "/contact" },
-  { text: "B2B Marketing Audit", href: "/b2b-marketing-audit/" },
-
 ];
 
 const socialLinks = [
@@ -66,6 +70,7 @@ const socialLinks = [
 
         <a
           href="mailto:hi@rjantos.com"
+          data-track="email"
           class="text-base-600 hover:text-accent-800 transition-colors text-xs block"
         >
           hi@rjantos.com

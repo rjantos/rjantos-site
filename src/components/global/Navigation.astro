@@ -11,6 +11,8 @@ const { transparent } = Astro.props as { transparent?: boolean };
 const isTransparent = !!transparent;
 const navLinks = [
   { label: "Home", href: "/" },
+  { label: "Offer", href: "/offer/", track: "offer" },
+  { label: "Resources", href: "/resources/", track: "resources" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -37,6 +39,7 @@ const primaryShortcuts = navLinks;
             primaryShortcuts.map((l) => (
               <a
                 href={l.href}
+                data-track={l.track}
                 class={`text-sm ${isTransparent ? "text-white" : "text-base-800"}`}
                 data-primary-link
               >
@@ -90,7 +93,7 @@ const primaryShortcuts = navLinks;
         <div class="space-y-4 text- flex flex-col text-right">
           {
             navLinks.map((link) => (
-              <a href={link.href} class=" text-white text-sm">
+              <a href={link.href} data-track={link.track} class=" text-white text-sm">
                 {link.label}
               </a>
             ))
@@ -100,6 +103,7 @@ const primaryShortcuts = navLinks;
           <Button
             isLink={true}
             href="https://cal.com/rudi-jantos"
+            data-track="book-call"
             variant="accent"
             size="sm"
             class="w-full"
@@ -109,6 +113,7 @@ const primaryShortcuts = navLinks;
           <Button
             isLink={true}
             href="mailto:hi@rjantos.com"
+            data-track="email"
             variant="muted"
             size="sm"
             class="w-full"
@@ -121,6 +126,7 @@ const primaryShortcuts = navLinks;
         >
           <a
             href="mailto:hi@rjantos.com"
+            data-track="email"
             class="text-base-300 hover:text-white transition-colors text-xs"
           >
             hi@rjantos.com

@@ -3,11 +3,13 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
+import TopicClusterNav from "@/components/global/TopicClusterNav.astro";
 ---
 
 <BaseLayout
-  title="GA4 Mistakes That Break B2B Revenue Tracking"
-  description="Common GA4 mistakes in B2B setups that lead to misleading attribution, unreliable reporting, and poor growth decisions."
+  title="GA4 Mistakes in B2B (2026) — 7 Fixes for Reliable Revenue Tracking"
+  description="Common GA4 mistakes in B2B setups and how to fix them: event mapping, attribution logic, CRM alignment, and GTM governance."
+  funnelStage="consideration"
 >
 
   <!-- HERO -->
@@ -69,6 +71,7 @@ import Button from "@/components/fundations/elements/Button.astro";
         <Button
           isLink
           href="/b2b-marketing-audit/"
+          data-track="offer"
           variant="default"
           size="md"
         >
@@ -78,5 +81,7 @@ import Button from "@/components/fundations/elements/Button.astro";
 
     </div>
   </Wrapper>
+
+  <TopicClusterNav current="/ga4-b2b-mistakes/" />
 
 </BaseLayout>

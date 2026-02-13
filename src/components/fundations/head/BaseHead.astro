@@ -1,6 +1,7 @@
 ---
 import GA4 from "@/components/fundations/scripts/GA4.astro";
 import GTM from "@/components/fundations/scripts/GTM.astro";
+import AttributionCapture from "@/components/fundations/scripts/AttributionCapture.astro";
 import CTATracking from "@/components/fundations/scripts/cta-tracking.astro";
 import Seo from "@/components/fundations/head/Seo.astro";
 import Meta from "@/components/fundations/head/Meta.astro";
@@ -16,4 +17,5 @@ const { title, description } = Astro.props;
 <!-- Scripts -->
 <GA4 />
 <GTM />
+<AttributionCapture />
 <CTATracking />
