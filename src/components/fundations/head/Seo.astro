@@ -12,11 +12,6 @@ const canonical = new URL(
   Astro.url.pathname,
   Astro.site ?? Astro.url.origin
 ).href;
-
-const ogImage = new URL(
-  "/rj_profile.jpeg",
-  Astro.site ?? Astro.url.origin
-).href;
 ---
 
 <AstroSeo
@@ -33,9 +28,6 @@ const ogImage = new URL(
 />
 
 <!-- Fill in a few social tags explicitly (safe even if AstroSeo changes) -->
-<meta property="og:image" content={ogImage} />
-<meta property="og:image:alt" content="Rudi Jantos" />
-<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={ogImage} />
