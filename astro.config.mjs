@@ -2,10 +2,11 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
-const ALLOWED_PATHS = new Set([
-  "/",
-  "/about",
-  "/contact",
+const EXCLUDED_SITEMAP_PATHS = new Set([
+  "/404",
+  "/404/",
+  "/rss.xml",
+  "/rss.xml/",
 ]);
 
 export default defineConfig({
@@ -16,6 +17,8 @@ export default defineConfig({
   },
 
   integrations: [
-    sitemap(),
+    sitemap({
+      filter: (page) => !EXCLUDED_SITEMAP_PATHS.has(page),
+    }),
   ],
 });
