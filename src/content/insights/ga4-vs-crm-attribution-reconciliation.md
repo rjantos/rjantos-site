@@ -1,5 +1,5 @@
 ---
-title: GA4 vs CRM Attribution: Why Numbers Don’t Match (and What to Do)
+title: "GA4 vs CRM Attribution: Why Numbers Don’t Match (and What to Do)"
 description: Understand why GA4 and CRM attribution disagree in B2B and how to reconcile channel reporting with pipeline and revenue outcomes.
 pubDate: 2026-02-13
 tags:

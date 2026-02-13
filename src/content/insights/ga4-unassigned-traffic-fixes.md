@@ -1,5 +1,5 @@
 ---
-title: GA4 Unassigned Traffic: 9 Fixes to Recover Attribution Quality
+title: "GA4 Unassigned Traffic: 9 Fixes to Recover Attribution Quality"
 description: Fix GA4 unassigned traffic with a practical checklist covering UTMs, redirects, channel mapping, and cross-domain breaks.
 pubDate: 2026-02-13
 tags:
