@@ -6,8 +6,17 @@ const {
   description = "Strategic marketing partner helping B2B teams fix tracking, attribution, and decision-making across ads, analytics, and CRM.",
 } = Astro.props;
 
-// Build canonical dynamically
-const canonical = Astro.url.href;
+// Build canonical without querystring/hash.
+// Prefer configured `site` from `astro.config.*` so output is stable in preview builds.
+const canonical = new URL(
+  Astro.url.pathname,
+  Astro.site ?? Astro.url.origin
+).href;
+
+const ogImage = new URL(
+  "/rj_profile.jpeg",
+  Astro.site ?? Astro.url.origin
+).href;
 ---
 
 <AstroSeo
@@ -22,3 +31,11 @@ const canonical = Astro.url.href;
     type: "website",
   }}
 />
+
+<!-- Fill in a few social tags explicitly (safe even if AstroSeo changes) -->
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:alt" content="Rudi Jantos" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
