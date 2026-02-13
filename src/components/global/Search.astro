@@ -3,82 +3,16 @@
 import Button from "@/components/fundations/elements/Button.astro";
 // Icons
 import Search from "@/components/fundations/icons/Search.astro";
-import { getCollection } from "astro:content";
-// Build a unified, searchable list across all content collections
-const [
-  postsCol,
-  teamCol,
-  practiceCol,
-  careersCol,
-  casesCol,
-  infoCol,
-  pressCol,
-] = await Promise.all([
-  getCollection("posts"),
-  getCollection("team"),
-  getCollection("practice"),
-  getCollection("careers"),
-  getCollection("cases"),
-  getCollection("infopages"),
-  getCollection("pressReleases"),
-]);
+// Only link to pages that exist (no collection slug routes yet)
 const items = [
-  // Blog posts
-  ...postsCol.map((post) => ({
-    title: post.data.title,
-    description: post.data.description ?? "",
-    date: post.data.pubDate ?? null,
-    url: `/blog/posts/${post.slug}`,
-    section: "Blog",
-  })),
-  // Press releases
-  ...pressCol.map((press) => ({
-    title: press.data.title,
-    description: press.data.excerpt ?? "",
-    date: press.data.pubDate ?? null,
-    url: `/press-releases/${press.slug}`,
-    section: "Press Release",
-  })),
-  // Cases
-  ...casesCol.map((c) => ({
-    title: c.data.title,
-    description: c.data.summary ?? "",
-    date: c.data.pubDate ?? null,
-    url: `/cases/${c.slug}`,
-    section: "Case",
-  })),
-  // Careers
-  ...careersCol.map((job) => ({
-    title: job.data.title,
-    description: job.data.description ?? "",
-    date: job.data.postedDate ?? null,
-    url: `/careers/${job.slug}`,
-    section: "Career",
-  })),
-  // Team
-  ...teamCol.map((member) => ({
-    title: member.data.name,
-    description: member.data.bio ?? "",
-    date: null,
-    url: `/team/${member.slug}`,
-    section: "Team",
-  })),
-  // Practice areas
-  ...practiceCol.map((p) => ({
-    title: p.data.title,
-    description: p.data.summary ?? p.data.description ?? "",
-    date: null,
-    url: `/practice-areas/${p.slug}`,
-    section: "Practice Area",
-  })),
-  // Info pages (e.g., Terms, Privacy)
-  ...infoCol.map((page) => ({
-    title: page.data.page,
-    description: "",
-    date: page.data.pubDate ?? null,
-    url: `/infopages/${page.slug}`,
-    section: "Info Page",
-  })),
+  { title: "Home", description: "Rudi Jantos — B2B analytics & attribution", date: null, url: "/", section: "Page" },
+  { title: "About", description: "About Rudi Jantos", date: null, url: "/about", section: "Page" },
+  { title: "Contact", description: "Get in touch", date: null, url: "/contact", section: "Page" },
+  { title: "B2B Marketing Audit", description: "Fix GA4, attribution & revenue leaks", date: null, url: "/b2b-marketing-audit", section: "Page" },
+  { title: "B2B Attribution Problems", description: "Attribution issues in B2B", date: null, url: "/b2b-attribution-problems", section: "Page" },
+  { title: "GA4 Attribution Problems in B2B", description: "Causes, symptoms, fixes", date: null, url: "/ga4-attribution-problems", section: "Page" },
+  { title: "GA4 Mistakes That Break B2B Revenue Tracking", description: "Common GA4 mistakes in B2B setups", date: null, url: "/ga4-b2b-mistakes", section: "Page" },
+  { title: "Revenue Leaks in B2B", description: "Find and fix revenue leaks", date: null, url: "/revenue-leaks-b2b", section: "Page" },
 ];
 ---
 

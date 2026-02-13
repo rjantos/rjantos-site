@@ -1,11 +1,22 @@
-import rss, { pagesGlobToRssItems } from '@astrojs/rss';
+import rss from "@astrojs/rss";
+import { getCollection } from "astro:content";
+
 export async function GET(context) {
+  const posts = await getCollection("posts");
+  const sorted = [...posts].sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+
   return rss({
-     title: 'Lexington Themes',
-    description: 'Free and premium multipage themes and UI Kits For freelancers, developers, businesses, and personal use.Beautifully crafted with Astro.js, and Tailwind CSS — Simple & easy to customise.',
+    title: "Rudi Jantos",
+    description:
+      "Strategic marketing partner helping B2B teams fix tracking, attribution, and decision-making across ads, analytics, and CRM.",
     site: context.site,
-    items: await pagesGlobToRssItems(
-      import.meta.glob('./blog/*.{md,mdx}'),
-    ),
+    items: sorted.map((post) => ({
+      title: post.data.title,
+      description: post.data.description,
+      link: `/blog/posts/${post.slug}`,
+      pubDate: post.data.pubDate,
+    })),
   });
 }
