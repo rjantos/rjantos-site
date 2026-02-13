@@ -14,7 +14,7 @@
 
 1. GTM Preview: In GTM UI, open Preview, enter rjantos.com. Confirm container loads.
 2. GA4 DebugView: In GA4, enable DebugView. Check page_view and events.
-3. dataLayer: In DevTools console run `window.dataLayer`. After a CTA click you should see an object with event: cta_click.
+3. dataLayer: In DevTools console run `window.dataLayer`. After a CTA click you should see an object with `event: cta_click`.
 
 ## Release checklist
 
